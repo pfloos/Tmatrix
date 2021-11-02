@@ -1,0 +1,716 @@
+\documentclass[aip,jcp,reprint,noshowkeys,superscriptaddress]{revtex4-1}
+\usepackage{graphicx,dcolumn,bm,xcolor,microtype,multirow,amscd,amsmath,amssymb,amsfonts,physics,longtable,wrapfig,txfonts}
+\usepackage[version=4]{mhchem}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{txfonts}
+
+\usepackage[
+	colorlinks=true,
+    citecolor=blue,
+    breaklinks=true
+	]{hyperref}
+\urlstyle{same}
+
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\alert}[1]{\textcolor{red}{#1}}
+\usepackage[normalem]{ulem}
+\newcommand{\titou}[1]{\textcolor{red}{#1}}
+\newcommand{\trashPFL}[1]{\textcolor{red}{\sout{#1}}}
+\newcommand{\trashXB}[1]{\textcolor{darkgreen}{\sout{#1}}}
+\newcommand{\PFL}[1]{\titou{(\underline{\bf PFL}: #1)}}
+
+\newcommand{\mc}{\multicolumn}
+\newcommand{\fnm}{\footnotemark}
+\newcommand{\fnt}{\footnotetext}
+\newcommand{\tabc}[1]{\multicolumn{1}{c}{#1}}
+\newcommand{\SI}{\textcolor{blue}{supporting information}}
+\newcommand{\QP}{\textsc{quantum package}}
+\newcommand{\T}[1]{#1^{\intercal}}
+
+% coordinates
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\dbr}{d\br}
+\newcommand{\dbx}{d\bx}
+
+% methods
+\newcommand{\evGW}{ev$GW$}	
+\newcommand{\qsGW}{qs$GW$}	
+\newcommand{\GOWO}{$G_0W_0$}	
+\newcommand{\Hxc}{\text{Hxc}}
+\newcommand{\xc}{\text{xc}}
+\newcommand{\Ha}{\text{H}}
+\newcommand{\co}{\text{c}}
+\newcommand{\x}{\text{x}}
+
+% 
+\newcommand{\Norb}{N_\text{orb}}
+\newcommand{\Nocc}{O}
+\newcommand{\Nvir}{V}
+
+% operators
+\newcommand{\hH}{\Hat{H}}
+\newcommand{\hS}{\Hat{S}}
+
+% methods
+\newcommand{\KS}{\text{KS}}
+\newcommand{\HF}{\text{HF}}
+\newcommand{\RPA}{\text{RPA}}
+\newcommand{\ppRPA}{\text{pp-RPA}}
+\newcommand{\BSE}{\text{BSE}}
+\newcommand{\dBSE}{\text{dBSE}}
+\newcommand{\GW}{GW}
+\newcommand{\stat}{\text{stat}}
+\newcommand{\dyn}{\text{dyn}}
+\newcommand{\TDA}{\text{TDA}}
+
+% energies
+\newcommand{\Enuc}{E^\text{nuc}}
+\newcommand{\Ec}{E_\text{c}}
+\newcommand{\EHF}{E^\text{HF}}
+\newcommand{\EBSE}{E^\text{BSE}}
+\newcommand{\EcRPA}{E_\text{c}^\text{RPA}}
+\newcommand{\EcBSE}{E_\text{c}^\text{BSE}}
+
+% orbital energies
+\newcommand{\e}[1]{\eps_{#1}}
+\newcommand{\eHF}[1]{\eps^\text{HF}_{#1}}
+\newcommand{\eKS}[1]{\eps^\text{KS}_{#1}}
+\newcommand{\eQP}[1]{\eps^\text{QP}_{#1}}
+\newcommand{\eGOWO}[1]{\eps^\text{\GOWO}_{#1}}
+\newcommand{\eGW}[1]{\eps^{GW}_{#1}}
+\newcommand{\eevGW}[1]{\eps^\text{\evGW}_{#1}}
+\newcommand{\eGnWn}[2]{\eps^\text{\GnWn{#2}}_{#1}}
+\newcommand{\Om}[2]{\Omega_{#1}^{#2}}
+\newcommand{\tOm}[2]{\Tilde{\Omega}_{#1}^{#2}}
+
+
+
+% Matrix elements
+\newcommand{\tA}[2]{\Tilde{A}_{#1}^{#2}}
+\renewcommand{\S}[1]{S_{#1}}
+\newcommand{\ABSE}[2]{A_{#1}^{#2,\text{BSE}}}
+\newcommand{\BBSE}[2]{B_{#1}^{#2,\text{BSE}}}
+\newcommand{\ARPA}[2]{A_{#1}^{#2,\text{RPA}}}
+\newcommand{\BRPA}[2]{B_{#1}^{#2,\text{RPA}}}
+\newcommand{\ARPAx}[2]{A_{#1}^{#2,\text{RPAx}}}
+\newcommand{\BRPAx}[2]{B_{#1}^{#2,\text{RPAx}}}
+\newcommand{\G}[1]{G_{#1}}
+\newcommand{\LBSE}[1]{L_{#1}}
+\newcommand{\XiBSE}[1]{\Xi_{#1}}
+\newcommand{\Po}[1]{P_{#1}}
+\newcommand{\W}[2]{W_{#1}^{#2}}
+\newcommand{\tW}[2]{\widetilde{W}_{#1}^{#2}}
+\newcommand{\Wc}[1]{W^\text{c}_{#1}}
+\newcommand{\vc}[1]{v_{#1}}
+\newcommand{\Sig}[2]{\Sigma_{#1}^{#2}}
+\newcommand{\SigC}[1]{\Sigma^\text{c}_{#1}}
+\newcommand{\SigX}[1]{\Sigma^\text{x}_{#1}}
+\newcommand{\SigXC}[1]{\Sigma^\text{xc}_{#1}}
+\newcommand{\Z}[1]{Z_{#1}}
+\newcommand{\MO}[1]{\phi_{#1}}
+\newcommand{\SO}[1]{\psi_{#1}}
+\newcommand{\ERI}[2]{(#1|#2)}
+\newcommand{\rbra}[1]{(#1|}
+\newcommand{\rket}[1]{|#1)}
+\newcommand{\sERI}[2]{[#1|#2]}
+
+%% bold in Table
+\newcommand{\bb}[1]{\textbf{#1}}
+\newcommand{\rb}[1]{\textbf{\textcolor{red}{#1}}}
+\newcommand{\gb}[1]{\textbf{\textcolor{darkgreen}{#1}}}
+
+% excitation energies
+\newcommand{\OmRPA}[1]{\Omega_{#1}^{\text{RPA}}}
+\newcommand{\OmRPAx}[1]{\Omega_{#1}^{\text{RPAx}}}
+\newcommand{\OmBSE}[1]{\Omega_{#1}^{\text{BSE}}}
+
+
+% Matrices
+\newcommand{\bO}{\mathbf{0}}
+\newcommand{\bI}{\mathbf{1}}
+\newcommand{\bvc}{\mathbf{v}}
+\newcommand{\bSig}{\mathbf{\Sigma}}
+\newcommand{\bSigX}{\mathbf{\Sigma}^\text{x}}
+\newcommand{\bSigC}{\mathbf{\Sigma}^\text{c}}
+\newcommand{\bSigGW}{\mathbf{\Sigma}^{GW}}
+\newcommand{\be}{\mathbf{\epsilon}}
+\newcommand{\beGW}{\mathbf{\epsilon}^{GW}}
+\newcommand{\beGnWn}[1]{\mathbf{\epsilon}^\text{\GnWn{#1}}}
+\newcommand{\bde}{\mathbf{\Delta\epsilon}}
+\newcommand{\bdeHF}{\mathbf{\Delta\epsilon}^\text{HF}}
+\newcommand{\bdeGW}{\mathbf{\Delta\epsilon}^{GW}}
+\newcommand{\bOm}[1]{\mathbf{\Omega}^{#1}}
+\newcommand{\bA}[2]{\mathbf{A}_{#1}^{#2}}
+\newcommand{\bB}[2]{\mathbf{B}_{#1}^{#2}}
+\newcommand{\bC}[2]{\mathbf{C}_{#1}^{#2}}
+\newcommand{\bX}[2]{\mathbf{X}_{#1}^{#2}}
+\newcommand{\bY}[2]{\mathbf{Y}_{#1}^{#2}}
+\newcommand{\bZ}[2]{\mathbf{Z}_{#1}^{#2}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bP}[1]{\mathbf{P}^{#1}}
+
+% units
+\newcommand{\IneV}[1]{#1 eV}
+\newcommand{\InAU}[1]{#1 a.u.}
+\newcommand{\InAA}[1]{#1 \AA}
+\newcommand{\kcal}{kcal/mol}
+
+% orbitals, gaps, etc
+\newcommand{\eps}{\varepsilon}
+\newcommand{\IP}{I}
+\newcommand{\EA}{A}
+\newcommand{\HOMO}{\text{HOMO}}
+\newcommand{\LUMO}{\text{LUMO}}
+\newcommand{\Eg}{E_\text{g}}
+\newcommand{\EgFun}{\Eg^\text{fund}}
+\newcommand{\EgOpt}{\Eg^\text{opt}}
+\newcommand{\EB}{E_B}
+
+\newcommand{\sig}{\sigma}
+\newcommand{\bsig}{{\Bar{\sigma}}}
+\newcommand{\sigp}{{\sigma'}}
+\newcommand{\bsigp}{{\Bar{\sigma}'}}
+\newcommand{\taup}{{\tau'}}
+
+\newcommand{\up}{\uparrow}
+\newcommand{\dw}{\downarrow}
+\newcommand{\upup}{\uparrow\uparrow}
+\newcommand{\updw}{\uparrow\downarrow}
+\newcommand{\dwup}{\downarrow\uparrow}
+\newcommand{\dwdw}{\downarrow\downarrow}
+\newcommand{\spc}{\text{sc}}
+\newcommand{\spf}{\text{sf}}
+\newcommand{\ssp}{\text{ss}}
+\newcommand{\osp}{\text{os}}
+
+% addresses
+\newcommand{\LCPQ}{Laboratoire de Chimie et Physique Quantiques (UMR 5626), Universit\'e de Toulouse, CNRS, UPS, France}
+
+\begin{document}	
+
+\title{Spin structure of the T-matrix}
+
+\author{Pierre-Fran\c{c}ois \surname{Loos}}
+	\email{loos@irsamc.ups-tlse.fr}
+	\affiliation{\LCPQ}
+
+\begin{abstract}
+%\bigskip
+%\begin{center}
+%	\boxed{\includegraphics[width=0.5\linewidth]{TOC}}
+%\end{center}
+%\bigskip
+\end{abstract}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Unrestricted $GT$ formalism}
+\label{sec:UGW}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let us consider an electronic system consisting of $N = N_\up + N_\dw$ electrons (where $N_\up$ and $N_\dw$ are the number of spin-up and spin-down electrons, respectively) and $K$ one-electron basis functions.
+The number of spin-up and spin-down occupied orbitals are $O_\up = N_\up$ and $O_\dw = N_\dw$, respectively, and, assuming the absence of linear dependencies in the one-electron basis set, there is $V_\up = K - O_\up$ and $V_\dw = K - O_\dw$ spin-up and spin-down virtual (\ie, unoccupied) orbitals.
+%The number of spin-conserved (sc) single excitations is then $S^\spc = S_{\up\up}^\spc + S_{\dw\dw}^\spc = O_\up V_\up + O_\dw V_\dw$, while the number of spin-flip (sf) excitations is $S^\spf = S_{\up\dw}^\spf + S_{\dw\up}^\spf = O_\up V_\dw + O_\dw V_\up$.
+Let us denote as $\MO{p_\sig}(\br)$ the $p$th spatial orbital associated with the spin-$\sig$ electrons (where $\sig =$ $\up$ or $\dw$) and $\e{p_\sig}{}$ its one-electron energy.
+%It is important to understand that, in a spin-conserved excitation the hole orbital $\MO{i_\sig}$ and particle orbital $\MO{a_\sig}$ have the same spin $\sig$.
+%In a spin-flip excitation, the hole and particle states, $\MO{i_\sig}$ and $\MO{a_\bsig}$, have opposite spins, $\sig$ and $\bsig$.
+We assume real quantities throughout this manuscript, $i$ and $j$ are occupied orbitals, $a$ and $b$ are unoccupied orbitals, $p$, $q$, $r$, and $s$ indicate arbitrary orbitals, and $m$ labels double electron attachment or double electron detachment.
+
+In a pp-RPA calculation, one considers double ionizations and double electron attachments.
+However, these processes can both involved a pair of same-spin (ss) electrons or opposite-spin (os) electrons.
+For the particle-particle states, we have
+\begin{align}
+	P^{\osp} & = V_\up V_\dw
+	\\
+	P^{\ssp} & = P_{\up\up}^{\ssp} + P_{\dw\dw}^{\ssp}
+	&
+	P_{\up\up}^{\ssp} & = V_\up(V_\up - 1)/2
+	&
+	P_{\dw\dw}^{\ssp} & = V_\dw(V_\dw - 1)/2
+\end{align}
+For the hole-hole states, we have
+\begin{align}
+	H^{\osp} & = O_\up O_\dw
+	\\
+	H^{\ssp} & = H_{\up\up}^{\ssp} + H_{\dw\dw}^{\ssp}
+	&
+	H_{\up\up}^{\ssp} & = O_\up(O_\up - 1)/2
+	&
+	H_{\dw\dw}^{\ssp} & = O_\dw(O_\dw - 1)/2
+\end{align}
+
+%==================================================
+\subsection{Spin structure of the Green's function}
+%==================================================
+
+By definition, the one-body Green's function is
+\begin{equation}
+\label{eq:G}
+	G(\bx_1,\bx_2;\omega) 
+	= \sum_i \frac{\SO{i}(\bx_1) \SO{i}(\bx_2)}{\omega - \e{i}{} - i\eta}	
+	+ \sum_a \frac{\SO{a}(\bx_1) \SO{a}(\bx_2)}{\omega - \e{a}{} + i\eta}	
+\end{equation}
+where $\eta$ is a positive infinitesimal and $\SO{p}(\bx)$ is a spinorbital.
+A sum over spinorbitals can always be decomposed as such $\sum_p = \sum_{p_\sig} + \sum_{p_\bsig}$.
+In the spatial orbital basis, the spin-$\sig$ component of the one-body Green's function reads \cite{ReiningBook,Bruneval_2016}
+\begin{equation}
+\label{eq:G_sig}
+	G^{\sig}(\br_1,\br_2;\omega) 
+	= \sum_{i} \frac{\MO{i_\sig}(\br_1) \MO{i_\sig}(\br_2)}{\omega - \e{i_\sig}{} - i\eta}	
+	+ \sum_{a} \frac{\MO{a_\sig}(\br_1) \MO{a_\sig}(\br_2)}{\omega - \e{a_\sig}{} + i\eta}	
+\end{equation}
+
+%========================================================
+\subsection{Spin structure of the $T$-matrix}
+%========================================================
+
+%========================================================
+\subsection{Spin structure of pp-RPA problem}
+%========================================================
+
+
+\begin{equation}
+\label{eq:LR-RPA}
+	\begin{pmatrix}
+		\bA{}{}				&	\bB{}{}	\\
+		\bB{}{\intercal}	&	\bC{}{}	\\
+	\end{pmatrix}
+	\cdot
+	\begin{pmatrix}
+		\bX{m}{N\pm2}	\\
+		\bY{m}{N\pm2}	\\
+	\end{pmatrix}
+	=
+	\Om{m}{N\pm2}
+	\begin{pmatrix}
+		\bX{m}{N\pm2}	\\
+		\bY{m}{N\pm2}	\\
+	\end{pmatrix}
+\end{equation}
+where
+\begin{subequations}
+\begin{align}
+	A_{ab,cd}^{\ppRPA} & = \delta_{ab} \delta_{cd} (\e{a} + \e{b}) + \mel{ab}{}{cd}
+	\\ 
+	B_{ab,ij}^{\ppRPA} & = \mel{ab}{}{ij}
+	\\ 
+	C_{ij,kl}^{\ppRPA} & = - \delta_{ik} \delta_{jl} (\e{i} + \e{j}) +\mel{ij}{}{kl}
+\end{align}
+\end{subequations}
+with
+\begin{equation}
+	\mel{pq}{}{rs} = \braket{pq}{rs} - \braket{pq}{sr}
+\end{equation}
+The pp-RPA problem yields, in general, $P^{\osp} + P^{\ssp}$ positive eigenvalues $\Om{n}{N+2}$ and $H^{\osp} + H^{\ssp}$ negative eigenvalues $\Om{n}{N-2}$, which  correspond respectively to the double attachments and double detachments.
+The present formula can be explicitly given for the different spin blocks ($\up\up\up\up$, $\up\dw\up\dw$, and $\dw\dw\dw\dw$)
+\begin{subequations}
+\begin{align}
+	A_{a_\sig b_\sig,c_\sig d_\sig}^{\ppRPA} & = \delta_{ab} \delta_{cd} (\e{a_\sig} + \e{b_\sig}) + \mel{a_\sig b_\sig}{}{c_\sig d_\sig}
+	\\ 
+	B_{a_\sig b_\sig,i_\sig j_\sig}^{\ppRPA} & = \mel{a_\sig b_\sig }{}{i_\sig j_\sig}
+	\\ 
+	C_{i_\sig j_\sig,k_\sig l_\sig}^{\ppRPA} & = - \delta_{ik} \delta_{jl} (\e{i_\sig} + \e{j_\sig}) + \mel{i_\sig j_\sig}{}{k_\sig l_\sig}
+\end{align}
+\end{subequations}
+
+\begin{subequations}
+\begin{align}
+	A_{a_\sig b_\bsig,c_\sig d_\bsig}^{\ppRPA} & = \delta_{ab} \delta_{cd} (\e{a_\sig} + \e{b_\bsig}) + \braket{a_\sig b_\bsig}{c_\sig d_\bsig}
+	\\ 
+	B_{a_\sig b_\bsig,i_\sig j_\bsig}^{\ppRPA} & = \braket{a_\sig b_\bsig }{i_\sig j_\bsig}
+	\\ 
+	C_{i_\sig j_\bsig,k_\sig l_\bsig}^{\ppRPA} & = - \delta_{ik} \delta_{jl} (\e{i_\sig} + \e{j_\bsig}) + \braket{i_\sig j_\bsig}{k_\sig l_\bsig}
+\end{align}
+\end{subequations}
+
+
+%\begin{subequations}
+%\begin{align}
+%\label{eq:LR-RPA-AB-sc}
+%	\bA{}{\spc} & = \begin{pmatrix}
+%		\bA{}{\upup,\upup}	&	\bA{}{\upup,\dwdw}	\\
+%		\bA{}{\dwdw,\upup}	&	\bA{}{\dwdw,\dwdw}	\\
+%	\end{pmatrix}
+%	&
+%	\bB{}{\spc} & = \begin{pmatrix}
+%		\bB{}{\upup,\upup}	&	\bB{}{\upup,\dwdw}	\\
+%		\bB{}{\dwdw,\upup}	&	\bB{}{\dwdw,\dwdw}	\\
+%	\end{pmatrix}
+%\\
+%\label{eq:LR-RPA-AB-sf}
+%	\bA{}{\spf} & = \begin{pmatrix}
+%		\bA{}{\updw,\updw}	&	\bO	\\
+%		\bO					&	\bA{}{\dwup,\dwup}	\\
+%	\end{pmatrix}
+%	&
+%	\bB{}{\spf} & = \begin{pmatrix}
+%		\bO					&	\bB{}{\updw,\dwup}	\\
+%		\bB{}{\dwup,\updw}	&	\bO	\\
+%	\end{pmatrix}
+%\end{align}
+%\end{subequations}
+
+%========================================================
+\subsection{Spin structure of the $T$-matrix}
+%========================================================
+According to Roberto, in the spinorbital basis, the correlation part of the $T$-matrix has the following expression
+\begin{equation}
+\begin{split}
+	T_{pqrs}(\omega) 
+		& = T_{pqrs}^{N+2}(\omega) + T_{pqrs}^{N-2}(\omega) 
+		\\
+		& = \sum_{m} \frac{\braket{pq}{\chi_m^{N+2}}\braket{rs}{\chi_m^{N+2}}}{\omega  - \Omega_m^{N+2}}
+		- \sum_{m} \frac{\braket{pq}{\chi_m^{N-2}}\braket{rs}{\chi_m^{N-2}}}{\omega  - \Omega_m^{N-2}}
+\end{split}
+\end{equation}
+with
+\begin{align}
+	\braket{pq}{\chi_m^{N+2}} & = \sum_{c < d} \mel{pq}{}{cd} X_{cd}^{N+2,m} + \sum_{k < l}  \mel{pq}{}{kl} Y_{kl}^{N+2,m}
+	\\
+	\braket{pq}{\chi_m^{N-2}} & = \sum_{c < d} \mel{pq}{}{cd} X_{cd}^{N-2,m} + \sum_{k < l}  \mel{pq}{}{kl} X_{kl}^{N-2,m}
+\end{align}
+Although it looks more complicated, the same spin structure of the $T$-matrix has the than the dynamically-screened Coulomb potential in the $GW$ approximation.
+For example, we have
+\begin{equation}
+\begin{split}
+	T_{p_\sig q_\sigp r_\tau s_\taup}^{N+2}(\omega) 
+		= \sum_{m} \frac{\braket{p_\sig q_\sigp}{\chi_m^{N+2}}\braket{q_\tau s_\taup}{\chi_m^{N+2}}}{\omega  - \Omega_m^{N+2}}
+\end{split}
+\end{equation}
+with a similar structure for $T_{pqrs}^{N-2}(\omega)$, where
+\begin{align}
+	\begin{split}
+		\braket{p_\sig q_\sig}{\chi_{m_{\sig\sig}}^{N+2}} 
+		& = \sum_{c < d} \mel{p_\sig i_\sig}{}{c_\sig d_\sig} X_{c_\sig d_\sig}^{N+2,m_{\sig\sig}} 
+		\\
+		& + \sum_{k < l} \mel{p_\sig i_\sig}{}{k_\sig l_\sig} Y_{k_\sig l_\sig}^{N+2,m_{\sig\sig}}
+	\end{split}
+	\\
+	\begin{split}
+		\braket{p_\sig q_\bsig}{\chi_{m_{\sig\bsig}}^{N+2}} 
+		& = \sum_{c < d} \braket{p_\sig q_\bsig}{c_\sig d_\bsig} X_{c_\sig d_\bsig}^{N+2,m_{\sig\bsig}} 
+		\\
+		& + \sum_{k < l} \braket{p_\sig q_\bsig}{k_\sig l_\bsig} Y_{k_\sig l_\bsig}^{N+2,m_{\sig\bsig}}
+	\end{split}
+	\\
+	\begin{split}
+		\braket{p_\sig q_\sig}{\chi_{m_{\sig\sig}}^{N-2}} 
+		& = \sum_{c < d} \mel{p_\sig q_\sig}{}{c_\sig d_\sig} X_{c_\sig d_\sig}^{N-2,m_{\sig\sig}} 
+		\\
+		& + \sum_{k < l} \mel{p_\sig q_\sig}{}{k_\sig l_\sig} Y_{k_\sig l_\sig}^{N-2,m_{\sig\sig}}
+	\end{split}
+	\\
+	\begin{split}
+		\braket{p_\sig q_\bsig}{\chi_{m_{\sig\bsig}}^{N-2}} 
+		& = \sum_{c < d} \braket{p_\sig q_\bsig}{c_\sig d_\bsig} X_{c_\sig d_\bsig}^{N-2,m_{\sig\bsig}} 
+		\\
+		& + \sum_{k < l} \braket{p_\sig q_\bsig}{k_\sig l_\bsig} Y_{k_\sig l_\bsig}^{N-2,m_{\sig\bsig}}
+	\end{split}
+\end{align}
+are the only non-zero elements.
+%========================================================
+\subsection{Spin structure of the $T$-matrix self-energy}
+%========================================================
+In the spin-orbital basis, the correlation part of the $T$-matrix self-energy reads \cite{Zhang_2017}
+\begin{equation}
+	\Sigma^{T}_{pq}(\omega)
+	= \sum_{im} \frac{\braket{pi}{\chi_m^{N+2}}\braket{qi}{\chi_m^{N+2}}}{\omega + \e{i}{} - \Omega_m^{N+2}}
+	+ \sum_{am} \frac{\braket{pa}{\chi_m^{N-2}}\braket{qa}{\chi_m^{N-2}}}{\omega + \e{i}{} - \Omega_m^{N-2}}
+\end{equation}
+
+The  $T$-matrix self-energy $\Sigma^T_{\co,pq}$ can be spin-resolved
+\begin{equation}
+\begin{split}
+	\Sigma^{T}_{p_\sig q_\sig}(\omega) 
+	& = \sum_{i m} \frac{\braket{p_\sig i_\sig}{\chi_{m_{\sig\sig}}^{N+2}} \braket{q_\sig i_\sig}{\chi_{m_{\sig\sig}}^{N+2}}}{\omega + \e{i_\sig}{} - \Omega_{m_{\sig\sig}}^{N+2}}
+	\\
+	& + \sum_{i m} \frac{\braket{p_\sig i_\bsig}{\chi_{m_{\sig\bsig}}^{N+2}} \braket{q_\sig i_\bsig}{\chi_{m_{\sig\bsig}}^{N+2}}}{\omega + \e{i_\sig}{} - \Omega_{m_{\sig\bsig}}^{N+2}}
+	\\
+	& + \sum_{a m} \frac{\braket{p_\sig a_\sig}{\chi_{m_{\sig\sig}}^{N-2}} \braket{q_\sig a_\sig}{\chi_{m_{\sig\sig}}^{N-2}}}{\omega + \e{a_\sig}{} - \Omega_{m_{\sig\sig}}^{N-2}}
+	\\
+	& + \sum_{a m} \frac{\braket{p_\sig a_\bsig}{\chi_{m_{\sig\bsig}}^{N-2}} \braket{q_\sig a_\bsig}{\chi_{m_{\sig\bsig}}^{N-2}}}{\omega + \e{a_\sig}{} - \Omega_{m_{\sig\bsig}}^{N-2}}
+\end{split}
+\end{equation}
+and is spin-diagonal like the $GW$ self-energy.
+
+
+
+%================================
+%\subsection{The dynamical screening}
+%================================
+
+%Based on the spin-up and spin-down components of $G$ defined in Eq.~\eqref{eq:G}, one can easily compute the non-interacting polarizability (which is a sum over spins)
+%\begin{equation}
+%\label{eq:chi0}
+%	\chi_0(\br_1,\br_2;\omega) = - \frac{i}{2\pi} \sum_\sig \int G^{\sig}(\br_1,\br_2;\omega+\omega') G^{\sig}(\br_1,\br_2;\omega') d\omega'
+%\end{equation}
+%and subsequently the dielectric function
+%\begin{equation}
+%\label{eq:eps}
+%	\epsilon(\br_1,\br_2;\omega) = \delta(\br_1 - \br_2) - \int \frac{\chi_0(\br_1,\br_3;\omega) }{\abs{\br_2 - \br_3}} d\br_3
+%\end{equation}
+%where $\delta(\br)$ is the Dirac delta function.
+%Based on this latter ingredient, one can access the dynamically-screened Coulomb potential
+%\begin{equation}
+%\label{eq:W}
+%	W(\br_1,\br_2;\omega) =  \int \frac{\epsilon^{-1}(\br_1,\br_3;\omega) }{\abs{\br_2 - \br_3}} d\br_3
+%\end{equation}
+%which is naturally spin independent as the bare Coulomb interaction $\abs{\br_1 - \br_2}^{-1}$ does not depend on spin coordinates.
+%
+%Within the $GW$ formalism, \cite{Hedin_1965,Onida_2002,Golze_2019} the dynamical screening is computed at the random-phase approximation (RPA) level by considering only the manifold of the spin-conserved neutral excitations.
+%In the orbital basis, the spectral representation of $W$ is
+%\begin{multline}
+%\label{eq:W_spectral}
+%	W_{p_\sig q_\sig,r_\sigp s_\sigp}(\omega) = \ERI{p_\sig q_\sig}{r_\sigp s_\sigp} 
+%	+ \sum_m \ERI{p_\sig q_\sig}{m}\ERI{r_\sigp s_\sigp}{m} 
+%	\\
+%	\times \qty[ \frac{1}{\omega - \Om{m}{\spc,\RPA} + i \eta} - \frac{1}{\omega + \Om{m}{\spc,\RPA} - i \eta} ]
+%\end{multline}
+%where the bare two-electron integrals are \cite{Gill_1994}
+%\begin{equation}
+%		\ERI{p_\sig q_\tau}{r_\sigp s_\taup} = \int  \frac{\MO{p_\sig}(\br_1) \MO{q_\tau}(\br_1) \MO{r_\sigp}(\br_2) \MO{s_\taup}(\br_2)}{\abs{\br_1 - \br_2}} d\br_1 d\br_2
+%\end{equation}
+%and the screened two-electron integrals (or spectral weights) are explicitly given by
+%\begin{equation}
+%\label{eq:sERI}
+%		\ERI{p_\sig q_\sig}{m} = \sum_{ia\sigp} \ERI{p_\sig q_\sig}{r_\sigp s_\sigp} (\bX{m}{\spc,\RPA}+\bY{m}{\spc,\RPA})_{i_\sigp a_\sigp}
+%\end{equation}
+%In Eqs.~\eqref{eq:W_spectral} and \eqref{eq:sERI}, the spin-conserved RPA neutral excitations $\Om{m}{\spc,\RPA}$ and their corresponding eigenvectors, $\bX{m}{\spc,\RPA}$ and $\bY{m}{\spc,\RPA}$, are obtained by solving a linear response system of the form
+%\begin{equation}
+%\label{eq:LR-RPA}
+%	\begin{pmatrix}
+%		\bA{}{}	&	\bB{}{}	\\
+%		-\bB{}{}	&	-\bA{}{}	\\
+%	\end{pmatrix}
+%	\cdot
+%	\begin{pmatrix}
+%		\bX{m}{}	\\
+%		\bY{m}{}	\\
+%	\end{pmatrix}
+%	=
+%	\Om{m}{}
+%	\begin{pmatrix}
+%		\bX{m}{}	\\
+%		\bY{m}{}	\\
+%	\end{pmatrix}
+%\end{equation}
+%where the expressions of the matrix elements of $\bA{}{}$ and $\bB{}{}$ are specific of the method and of the spin manifold. 
+%The spin structure of these matrices, though, is general 
+%\begin{subequations}
+%\begin{align}
+%\label{eq:LR-RPA-AB-sc}
+%	\bA{}{\spc} & = \begin{pmatrix}
+%		\bA{}{\upup,\upup}	&	\bA{}{\upup,\dwdw}	\\
+%		\bA{}{\dwdw,\upup}	&	\bA{}{\dwdw,\dwdw}	\\
+%	\end{pmatrix}
+%	&
+%	\bB{}{\spc} & = \begin{pmatrix}
+%		\bB{}{\upup,\upup}	&	\bB{}{\upup,\dwdw}	\\
+%		\bB{}{\dwdw,\upup}	&	\bB{}{\dwdw,\dwdw}	\\
+%	\end{pmatrix}
+%\\
+%\label{eq:LR-RPA-AB-sf}
+%	\bA{}{\spf} & = \begin{pmatrix}
+%		\bA{}{\updw,\updw}	&	\bO	\\
+%		\bO					&	\bA{}{\dwup,\dwup}	\\
+%	\end{pmatrix}
+%	&
+%	\bB{}{\spf} & = \begin{pmatrix}
+%		\bO					&	\bB{}{\updw,\dwup}	\\
+%		\bB{}{\dwup,\updw}	&	\bO	\\
+%	\end{pmatrix}
+%\end{align}
+%\end{subequations}
+%In the absence of instabilities, the linear eigenvalue problem \eqref{eq:LR-RPA} has particle-hole symmetry which means that the eigenvalues are obtained by pairs $\pm \Om{m}{}$.
+%In such a case, $(\bA{}{}-\bB{}{})^{1/2}$ is positive definite, and Eq.~\eqref{eq:LR-RPA} can be recast as a Hermitian problem of half its original dimension 
+%\begin{equation}
+%\label{eq:small-LR}
+%	(\bA{}{} - \bB{}{})^{1/2} \cdot (\bA{}{} + \bB{}{}) \cdot (\bA{}{} - \bB{}{})^{1/2} \cdot \bZ{}{} = \bOm{2} \cdot \bZ{}{}
+%\end{equation}
+%where the excitation amplitudes are
+%\begin{equation}
+%	\bX{}{} + \bY{}{} = \bOm{-1/2} \cdot (\bA{}{} - \bB{}{})^{1/2} \cdot \bZ{}{}
+%\end{equation}
+%Within the Tamm-Dancoff approximation (TDA), the coupling terms between the resonant and anti-resonant parts, $\bA{}{}$ and $-\bA{}{}$, are neglected, which consists in setting $\bB{}{} = \bO$.
+%In such a case, Eq.~\eqref{eq:LR-RPA} reduces to a straightforward Hermitian problem of the form:
+%\begin{equation}
+%	\bA{}{} \cdot \bX{m}{} = \Om{m}{} \bX{m}{}
+%\end{equation}
+%Note that, for spin-flip excitations, it is quite common to enforce the TDA especially when one considers a triplet reference as the first ``excited-state'' is usually the ground state of the closed-shell system (hence, corresponding to a negative excitation energy).
+%
+%At the RPA level, the matrix elements of $\bA{}{}$ and $\bB{}{}$ are
+%\begin{subequations}
+%\begin{align}
+%	\label{eq:LR_RPA-A}
+%	\A{i_\sig a_\tau,j_\sigp b_\taup}{\RPA} & = \delta_{ij} \delta_{ab} \delta_{\sig \sigp}  \delta_{\tau \taup} (\e{a_\tau} - \e{i_\sig}) + \ERI{i_\sig a_\tau}{b_\sigp j_\taup}
+%	\\ 
+%	\label{eq:LR_RPA-B}
+%	\B{i_\sig a_\tau,j_\sigp b_\taup}{\RPA} & = \ERI{i_\sig a_\tau}{j_\sigp b_\taup}
+%\end{align}
+%\end{subequations}
+%from which we obtain the following expressions
+%\begin{subequations}
+%\begin{align}
+%	\label{eq:LR_RPA-Asc}
+%	\A{i_\sig a_\sig,j_\sigp b_\sigp}{\spc,\RPA} & = \delta_{ij} \delta_{ab} \delta_{\sig \sigp} (\e{a_\sig} - \e{i_\sig}) + \ERI{i_\sig a_\sig}{b_\sigp j_\sigp}
+%	\\ 
+%	\label{eq:LR_RPA-Bsc}
+%	\B{i_\sig a_\sig,j_\sigp b_\sigp}{\spc,\RPA} & = \ERI{i_\sig a_\sig}{j_\sigp b_\sigp}
+%\end{align}
+%\end{subequations}
+%for the spin-conserved excitations and 
+%\begin{subequations}
+%\begin{align}
+%	\label{eq:LR_RPA-Asf}
+%	\A{i_\sig a_\bsig,j_\sig b_\bsig}{\spf,\RPA} & = \delta_{ij} \delta_{ab} (\e{a_\bsig} - \e{i_\sig})
+%	\\ 
+%	\label{eq:LR_RPA-Bsf}
+%	\B{i_\sig a_\bsig,j_\bsig b_\sig}{\spf,\RPA} & = 0
+%\end{align}
+%\end{subequations}
+%for the spin-flip excitations.
+
+%================================
+%\subsection{The $GW$ self-energy}
+%================================
+%Within the acclaimed $GW$ approximation, \cite{Hedin_1965,Golze_2019} the exchange-correlation (xc) part of the self-energy
+%\begin{equation}
+%\label{eq:Sig}
+%\begin{split}
+%	\Sig{}{\xc,\sig}(\br_1,\br_2;\omega) 
+%	& = \Sig{}{\x,\sig}(\br_1,\br_2) + \Sig{}{\co,\sig}(\br_1,\br_2;\omega) 
+%	\\
+%	& = \frac{i}{2\pi} \int G^{\sig}(\br_1,\br_2;\omega+\omega') W(\br_1,\br_2;\omega') e^{i \eta \omega'} d\omega'
+%\end{split}
+%\end{equation}
+%is, like the one-body Green's function, spin-diagonal, and its spectral representation reads
+%\begin{subequations}
+%\begin{gather}
+%	\Sig{p_\sig q_\sig}{\x}
+%	= - \sum_{i} \ERI{p_\sig i_\sig}{i_\sig q_\sig}	 
+%	\\
+%\begin{split}
+%	\Sig{p_\sig q_\sig}{\co}(\omega) 
+%	& = \sum_{im} \frac{\ERI{p_\sig i_\sig}{m} \ERI{q_\sig i_\sig}{m}}{\omega - \e{i_\sig} + \Om{m}{\spc,\RPA} - i \eta}
+%	\\
+%	& + \sum_{am} \frac{\ERI{p_\sig a_\sig}{m} \ERI{q_\sig a_\sig}{m}}{\omega - \e{a_\sig} - \Om{m}{\spc,\RPA} + i \eta}			 
+%\end{split}
+%\end{gather}
+%\end{subequations}
+%where the self-energy has been split in its exchange (x) and correlation (c) contributions.
+%The Dyson equation linking the Green's function and the self-energy holds separately for each spin component 
+%\begin{equation}
+%\label{eq:Dyson_G}
+%\begin{split}
+%	\qty[ G^{\sig}(\br_1,\br_2;\omega) ]^{-1} 
+%	& = \qty[ G_{\KS}^{\sig}(\br_1,\br_2;\omega) ]^{-1} 
+%	\\
+%	& + \Sig{}{\xc,\sig}(\br_1,\br_2;\omega) - v^{\xc}(\br_1) \delta(\br_1 - \br_2)
+%\end{split}
+%\end{equation}
+%where $v^{\xc}(\br)$ is the KS (local) exchange-correlation potential.
+%The target quantities here are the quasiparticle energies $\eGW{p_\sig}$, \ie, the poles of $G$ [see Eq.~\eqref{eq:G}], which correspond to well-defined addition/removal energies (unlike the KS orbital energies).
+%Because the exchange-correlation part of the self-energy is, itself, constructed with the Green's function [see Eq.~\eqref{eq:Sig}], the present process is, by nature, self-consistent.
+%The same comment applies to the dynamically-screened Coulomb potential $W$ entering the definition of $\Sig{}{\xc}$ [see Eq.~\eqref{eq:Sig}] which is also constructed from $G$ [see Eqs.~\eqref{eq:chi0}, \eqref{eq:eps}, and \eqref{eq:W}].
+%
+%%================================
+%\section{Unrestricted Bethe-Salpeter equation formalism}
+%\label{sec:UBSE}
+%%================================
+%
+%%================================
+%\subsection{Static approximation}
+%\label{sec:BSE}
+%%================================
+%
+%Within the so-called static approximation of BSE, the Dyson equation that links the generalized four-point susceptibility $L^{\sig\sigp}(\br_1,\br_2;\br_1',\br_2';\omega)$ and the BSE kernel $\Xi^{\sig\sigp}(\br_3,\br_5;\br_4,\br_6)$ is \cite{ReiningBook,Bruneval_2016a}
+%\begin{multline}
+%	L^{\sig\sigp}(\br_1,\br_2;\br_1',\br_2';\omega) 
+%	= L_{0}^{\sig\sigp}(\br_1,\br_2;\br_1',\br_2';\omega)
+%	\\
+%	+ \int L_{0}^{\sig\sigp}(\br_1,\br_4;\br_1',\br_3;\omega) 
+%	\Xi^{\sig\sigp}(\br_3,\br_5;\br_4,\br_6)
+%	\\
+%	\times L^{\sig\sigp}(\br_6,\br_2;\br_5,\br_2';\omega)
+%	d\br_3 d\br_4 d\br_5 d\br_6
+%\end{multline}
+%where 
+%\begin{multline}
+%	L_{0}^{\sig\sigp}(\br_1,\br_2;\br_1',\br_2';\omega) 
+%	\\
+%	= \frac{1}{2\pi} \int G^{\sig}(\br_1,\br_2';\omega+\omega') G^{\sig}(\br_1',\br_2;\omega') d\omega'
+%\end{multline}
+%is the non-interacting analog of the two-particle correlation function $L$.
+%
+%Within the $GW$ approximation, the static BSE kernel is
+%\begin{multline}
+%	\label{eq:kernel}
+%	i \Xi^{\sig\sigp}(\br_3,\br_5;\br_4,\br_6) 
+%	= \frac{\delta(\br_3 - \br_4) \delta(\br_5 - \br_6) }{\abs{\br_3-\br_6}} 
+%	\\
+%	- \delta_{\sig\sigp} W(\br_3,\br_4;\omega = 0) \delta(\br_3 - \br_6) \delta(\br_4 - \br_6) 
+%\end{multline}
+%where, as usual, we have not considered the higher-order terms in $W$ by neglecting the derivative $\partial W/\partial G$. \cite{Hanke_1980,Strinati_1982,Strinati_1984,Strinati_1988}
+%
+%As readily seen in Eq.~\eqref{eq:kernel}, the static approximation consists in neglecting the frequency dependence of the dynamically-screened Coulomb potential.
+%In this case, the spin-conserved and spin-flip BSE optical excitations are obtained by solving the usual Casida-like linear response (eigen)problem:
+%\begin{equation}
+%\label{eq:LR-BSE}
+%	\begin{pmatrix}
+%		\bA{}{\BSE}		&	\bB{}{\BSE}	\\
+%		-\bB{}{\BSE}	&	-\bA{}{\BSE}	\\
+%	\end{pmatrix}
+%	\cdot
+%	\begin{pmatrix}
+%		\bX{m}{\BSE}	\\
+%		\bY{m}{\BSE}	\\
+%	\end{pmatrix}
+%	=
+%	\Om{m}{\BSE}
+%	\begin{pmatrix}
+%		\bX{m}{\BSE}	\\
+%		\bY{m}{\BSE}	\\
+%	\end{pmatrix}
+%\end{equation}
+%Defining the elements of the static screening as $W^{\stat}_{p_\sig q_\sig,r_\sigp s_\sigp} = W_{p_\sig q_\sig,r_\sigp s_\sigp}(\omega = 0)$, the general expressions of the BSE matrix elements are
+%\begin{subequations}
+%\begin{align}
+%	\label{eq:LR_BSE-A}
+%	\A{i_\sig a_\tau,j_\sigp b_\taup}{\BSE} & = \A{i_\sig a_\tau,j_\sigp b_\taup}{\RPA} - \delta_{\sig \sigp} W^{\stat}_{i_\sig j_\sigp,b_\taup a_\tau}
+%	\\ 
+%	\label{eq:LR_BSE-B}
+%	\B{i_\sig a_\tau,j_\sigp b_\taup}{\BSE} & = \B{i_\sig a_\tau,j_\sigp b_\taup}{\RPA} - \delta_{\sig \sigp} W^{\stat}_{i_\sig b_\taup,j_\sigp a_\tau}
+%\end{align}
+%\end{subequations}
+%from which we obtain the following expressions for the spin-conserved and spin-flip BSE excitations: 
+%\begin{subequations}
+%\begin{align}
+%	\label{eq:LR_BSE-Asc}
+%	\A{i_\sig a_\sig,j_\sigp b_\sigp}{\spc,\BSE} & = \A{i_\sig a_\sig,j_\sigp b_\sigp}{\spc,\RPA} - \delta_{\sig \sigp} W^{\stat}_{i_\sig j_\sigp,b_\sigp a_\sig}
+%	\\ 
+%	\label{eq:LR_BSE-Bsc}
+%	\B{i_\sig a_\sig,j_\sigp b_\sigp}{\spc,\BSE} & = \B{i_\sig a_\sig,j_\sigp b_\sigp}{\spc,\RPA} - \delta_{\sig \sigp} W^{\stat}_{i_\sig b_\sigp,j_\sigp a_\sig}
+%	\\
+%	\label{eq:LR_BSE-Asf}
+%	\A{i_\sig a_\bsig,j_\sig b_\bsig}{\spf,\BSE} & = \A{i_\sig a_\bsig,j_\sig b_\bsig}{\spf,\RPA} - W^{\stat}_{i_\sig j_\sig,b_\bsig a_\bsig}
+%	\\ 
+%	\label{eq:LR_BSE-Bsf}
+%	\B{i_\sig a_\bsig,j_\bsig b_\sig}{\spf,\BSE} & = - W^{\stat}_{i_\sig b_\sig,j_\bsig a_\bsig}
+%\end{align}
+%\end{subequations}
+%
+%At this stage, it is of particular interest to discuss the form of the spin-flip matrix elements defined in Eqs.~\eqref{eq:LR_BSE-Asf} and \eqref{eq:LR_BSE-Bsf}.
+%As readily seen from Eq.~\eqref{eq:LR_RPA-Asf}, at the RPA level, the spin-flip excitations are given by the difference of one-electron energies, hence missing out on key exchange and correlation effects.
+%This is also the case at the TD-DFT level when one relies on (semi-)local functionals. 
+%This explains why most of spin-flip TD-DFT calculations are performed with hybrid functionals containing a substantial amount of Hartree-Fock exchange as only the exact exchange integral of the form $\ERI{i_\sig j_\sig}{b_\bsig a_\bsig}$ survive spin-symmetry requirements.
+%At the BSE level, these matrix elements are, of course, also present thanks to the contribution of $W^{\stat}_{i_\sig j_\sig,b_\bsig a_\bsig}$ as evidenced in Eq.~\eqref{eq:W_spectral} but it also includes correlation effects.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliography{Tmatrix}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
