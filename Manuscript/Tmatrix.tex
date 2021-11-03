@@ -353,9 +353,9 @@ and
 \end{equation}
 is the so-called BSE kernel that takes into account the self-consistent variation of $\Sigma$ with respect to the variation of $G$.
 By taking into account the interaction of the excited electron and its hole left behind (the infamous excitonic effect), the BSE is able to faithfully model (neutral) optical excitations as measured by absorption spectroscopy. 
-The moderate cost of the BSE [which scales as $\order*{K^4}$ in its standard implementation] and its overall accuracy are the main reasons behind its growing popularity in the molecular electronic structure community. \cite{Rohlfing_1999a,Horst_1999,Puschnig_2002,Tiago_2003,Boulanger_2014,Jacquemin_2015a,Bruneval_2015,Jacquemin_2015b,Hirose_2015,Jacquemin_2017a,Jacquemin_2017b,Rangel_2017,Krause_2017,Gui_2018,Blase_2018,Liu_2020,Blase_2020,Holzer_2018a,Holzer_2018b,Loos_2020e,Loos_2021}
+The moderate cost of the BSE [which scales as $\order*{K^4}$ in its standard implementation] and its all-round accuracy are the main reasons behind its growing popularity in the molecular electronic structure community. \cite{Rohlfing_1999a,Horst_1999,Puschnig_2002,Tiago_2003,Boulanger_2014,Jacquemin_2015a,Bruneval_2015,Jacquemin_2015b,Hirose_2015,Jacquemin_2017a,Jacquemin_2017b,Rangel_2017,Krause_2017,Gui_2018,Blase_2018,Liu_2020,Blase_2020,Holzer_2018a,Holzer_2018b,Loos_2020e,Loos_2021}
 
-In order to target neutral excited states, we first consider the static version of the Bethe-Salpeter equation (BSE) employing the $GT$ quasiparticle energies [see Eq.~\eqref{eq:G0T0}] as well as $T$-matrix kernel [\ie, $\Sigma^{\GT}$ in Eq.~\eqref{eq:Xi}].
+In order to target neutral excited states, we first consider the static version of the BSE employing the $GT$ quasiparticle energies [see Eq.~\eqref{eq:G0T0}] as well as $T$-matrix kernel [\ie, $\Sigma^{\GT}$ in Eq.~\eqref{eq:Xi}].
 In this case, the BSE@$GT$ linear eigenvalue problem reads
 \begin{equation}
 \label{eq:BSE}
@@ -378,22 +378,22 @@ In this case, the BSE@$GT$ linear eigenvalue problem reads
 with 
 \begin{subequations}
 \begin{align}
-	A_{ia,jb}^{\BSE} & = \delta_{ij} \delta_{ab} (\e{a}{\GT} + \e{i}{\GT}) + \mel{ib}{}{aj} + T_{ij,ba}(\omega=0)
+	A_{ia,jb}^{\BSE} & = \delta_{ij} \delta_{ab} (\e{a}{\GT} - \e{i}{\GT}) + \mel{ib}{}{aj} + T_{ij,ba}(\omega=0)
 	\\ 
 	B_{ia,jb}^{\BSE} & = \mel{ij}{}{ab} + T_{ib,ja}(\omega=0)
 \end{align}
 \end{subequations}
-The eigenvalues of Eq.~\eqref{eq:BSE} provide $OV$ singlet and $OV$ triplet single excitations.
-Due to the frequency-independent nature of static BSE equations it is well known that one cannot access double (and higher) excitations.
+The eigenvalues of Eq.~\eqref{eq:BSE} provide $OV$ singlet (\ie, spin-conserved) and $OV$ triplet  (\ie, spin-flip) single excitations.
+Due to the frequency-independent nature of static BSE, it is well known that one cannot access double (and higher) excitations.
 \cite{Loos_2019,Romaniello_2009b,Sangalli_2011,Loos_2020h,Authier_2020,Monino_2021}
 
-In order to go beyond the static approximation, it is possible to consider the dynamical version of the BSE (dBSE). \cite{Strinati_1988}
+In order to go beyond the static approximation, it is possible to consider the dynamical version of the BSE (dBSE) within the Tamm-Dancoff approximation. \cite{Strinati_1988}
 In this case, one must solve the (non-linear) dynamical eigenvalue problem
 \begin{equation}
-\label{eq:LR-RPA}
+\label{eq:dBSE}
 	\begin{pmatrix}
-		\bA{}{\dBSE}(\Om{S}{\dBSE})	&	\bB{}{\BSE}	\\
-		-\bB{}{\BSE}	&	-\bA{}{\dBSE}(-\Om{S}{\dBSE})	\\
+		\bA{}{\dBSE}(\Om{S}{})	&	\bB{}{\BSE}	\\
+		-\bB{}{\BSE}	&	-\bA{}{\dBSE}(-\Om{S}{})	\\
 	\end{pmatrix}
 	\cdot
 	\begin{pmatrix}
@@ -401,7 +401,7 @@ In this case, one must solve the (non-linear) dynamical eigenvalue problem
 		\bY{S}{\dBSE}	\\
 	\end{pmatrix}
 	=
-	\Om{S}{\dBSE}
+	\Om{S}{}
 	\begin{pmatrix}
 		\bX{S}{\dBSE}	\\
 		\bY{S}{\dBSE}	\\
@@ -409,9 +409,9 @@ In this case, one must solve the (non-linear) dynamical eigenvalue problem
 \end{equation}
 with 
 \begin{equation}
-	A_{ia,jb}^{\dBSE}(\omega) = \delta_{ij} \delta_{ab} (\e{a}{\GT} + \e{i}{\GT}) + \mel{ib}{}{aj} + \widetilde{T}_{ij,ba}(\omega)
+	A_{ia,jb}^{\dBSE}(\omega) = \delta_{ij} \delta_{ab} (\e{a}{\GT} - \e{i}{\GT}) + \mel{ib}{}{aj} + \widetilde{T}_{ij,ba}(\omega)
 \end{equation}
-where, following Strinati, \cite{Strinati_1988} one can derive the following expression for the elements of the dynamical $T$ matrix
+where, following Strinati's seminal work, \cite{Strinati_1988} one can derive the following expression for the elements of the dynamical $T$ matrix
 \begin{equation}
 \label{eq:dT}
 \begin{split}
@@ -421,10 +421,105 @@ where, following Strinati, \cite{Strinati_1988} one can derive the following exp
 		& + \sum_{n} \frac{\braket*{pq}{\chi_n^{N-2}}\braket*{rs}{\chi_n^{N-2}}}{\omega + \Om{n}{N-2} - (\e{a}{\GT} + \e{b}{\GT}) + i\eta}
 \end{split}
 \end{equation}
-Equation \eqref{eq:dT} highlights the interesting dynamical structure of the $T$ matrix, where, similarly to the dBSE@$GW$ scheme, the 2h2p configurations are downfolded on the 1h1p configurations.
-Because solving a non-linear eigenvalue problem is computationally challenging, here we rely on the dynamical perturbative scheme within the Tamm-Dancoff approximation.
+Equation \eqref{eq:dT} highlights the interesting dynamical structure of the $T$ matrix, where, similarly to the dBSE@$GW$ scheme, \cite{Strinati_1988,Romaniello_2009b,Loos_2020h} the 2h2p configurations are downfolded on the 1h1p configurations. 
+
+Because solving a non-linear eigenvalue problem is computationally challenging, here we rely on the perturbative scheme developed in Ref.~\onlinecite{Loos_2020h} in order to access corrected single excitations.
 \cite{Rohlfing_2000,Romaniello_2009b,Ma_2009a,Ma_2009b,Zhang_2013,Rebolini_2016,Olevano_2019,Loos_2020h,Authier_2020,Monino_2021}
-%lthough one can potentially access double excitations within this formalism (due to the dynamical nature of the equations), here we rely on the perturbative scheme developed in Ref.~\onlinecite{Loos_2020h} in order to access corrected single excitations.
+For the sake of self-containedness, we quickly recap this dynamical perturbative scheme below.
+
+Based on Rayleigh-Schr\"odinger perturbation theory, the non-linear eigenproblem \eqref{eq:dBSE} can be split as a zeroth-order static (hence linear) reference and a first-order dynamic (hence non-linear) perturbation, such that
+\begin{multline}
+\label{eq:LR-PT}
+	\begin{pmatrix}
+		\bA{}{\dBSE}(\Om{S}{})		&	\bB{}{\BSE}(\Om{S}{})	\\
+		-\bB{}{\BSE}(-\Om{S}{})	&	-\bA{}{\BSE}(-\Om{S}{})	\\
+	\end{pmatrix}
+	\\
+	=
+	\begin{pmatrix}
+		\bA{}{\BSE}	&	\bB{}{\BSE}	
+		\\
+		-\bB{}{\BSE}	&	-\bA{}{\BSE}	
+		\\
+	\end{pmatrix}
+	+
+	\begin{pmatrix}
+		\bA{}{(1)}(\Om{S}{})		&	\bO	\\
+		\bO	&	-\bA{}{(1)}(-\Om{S}{})	\\
+	\end{pmatrix}
+\end{multline}
+with
+\begin{equation}
+	\label{eq:BSE-A1}
+	A_{ia,jb}^{(1)}(\omega) = \widetilde{T}_{ij,ab}(\omega) - T_{ij,ab}(\omega = 0)
+\end{equation}
+
+Perturbation theory teaches us that the $S$th BSE excitation energy and its corresponding eigenvector can then be expanded as
+\begin{subequations}
+\begin{gather}
+	\Om{S}{} = \Om{S}{\BSE} + \Om{S}{(1)} + \ldots,
+	\\
+	\begin{pmatrix}
+		\bX{S}{}	\\
+		\bY{S}{}	\\
+	\end{pmatrix}
+	= 
+	\begin{pmatrix}
+		\bX{S}{\BSE}	\\
+		\bY{S}{\BSE}	\\
+	\end{pmatrix}
+	+
+	\begin{pmatrix}
+		\bX{S}{(1)}	\\
+		\bY{S}{(1)}	\\
+	\end{pmatrix}
+	+ \ldots
+\end{gather}
+\end{subequations}
+Solving the static BSE [see Eq.~\eqref{eq:BSE}] yields the zeroth-order (static) $\Om{S}{\BSE}$ excitation energies and their corresponding eigenvectors $\bX{S}{\BSE}$ and $\bY{S}{\BSE}$. 
+Thanks to first-order perturbation theory, the first-order correction to the $S$th excitation energy is, within the Tamm-Dancoff approximation,
+\begin{equation}
+\label{eq:Om1-TDA}
+	\Om{S}{(1)} = \T{(\bX{S}{\BSE})} \cdot \bA{}{(1)}(\Om{S}{\BSE}) \cdot \bX{S}{\BSE}
+\end{equation}
+This correction can be renormalized by computing, at basically no extra cost, the renormalization factor which reads
+\begin{equation}
+\label{eq:Z}
+	\zeta_{S} = \qty[ 1 - \T{(\bX{S}{\BSE})} \cdot \left. \pdv{\bA{}{(1)}(\Om{S}{})}{\Om{S}{}} \right|_{\Om{S}{} = \Om{S}{\BSE}} \cdot \bX{S}{\BSE} ]^{-1}
+\end{equation}
+This finally yields
+\begin{equation}
+	\Om{S}{\text{dyn}} = \Om{S}{\text{stat}} + \Delta\Om{S}{\text{dyn}} = \Om{S}{\BSE} + \zeta_{S} \Om{S}{(1)}
+\end{equation}
+with $\Om{S}{\text{stat}} \equiv \Om{S}{\BSE}$ and $\Delta\Om{S}{\text{dyn}} = \zeta_{S} \Om{S}{(1)}$.
+Note that the present perturbative scheme does not allow to access double excitations as only excitations calculated within the static approach can be dynamically corrected.
+
+%In terms of computational cost, if one decides to compute the dynamical correction of the $M$ lowest excitation energies, one must perform, first, a conventional (static) BSE calculation and extract the $M$ lowest eigenvalues and their corresponding eigenvectors [see Eq.~\eqref{eq:LR-BSE-stat}].
+%These are then used to compute the first-order correction from Eq.~\eqref{eq:Om1-TDA}, which also require to construct and evaluate the dynamical part of the BSE Hamiltonian for each excitation one wants to dynamically correct. 
+%The static BSE Hamiltonian is computed once during the static BSE calculation and does not dependent on the targeted excitation.
+%
+%Searching iteratively for the lowest eigenstates, via Davidson's algorithm for instance, can be performed in $\order*{\Norb^4}$ computational cost.
+%Constructing the static and dynamic BSE Hamiltonians is much more expensive as it requires the complete diagonalization of the $(\Nocc \Nvir \times \Nocc \Nvir)$ RPA linear response matrix [see Eq.~\eqref{eq:LR-RPA}], which corresponds to a $\order*{\Nocc^3 \Nvir^3} = \order*{\Norb^6}$ computational cost. 
+%Although it might be reduced to $\order*{\Norb^4}$ operations with standard resolution-of-the-identity techniques, \cite{Duchemin_2019,Duchemin_2020} this step is the computational bottleneck in the current implementation.
+%
+%
+%All systems under investigation have a closed-shell singlet ground state.
+%We then adopt a restricted formalism throughout this work.
+%The $GW$ calculations performed to obtain the screened Coulomb operator and the quasiparticle energies are done using a (restricted) HF starting point.
+%Perturbative $GW$ (or {\GOWO}) \cite{Hybertsen_1985a,Hybertsen_1986,vanSetten_2013} quasiparticle energies are employed as starting points to compute the BSE neutral excitations.
+%These quasiparticle energies are obtained by linearizing the frequency-dependent quasiparticle equation, and the entire set of orbitals is corrected.
+%Further details about our implementation of {\GOWO} can be found in Refs.~\onlinecite{Loos_2018b,Veril_2018}.
+%Note that, for the present (small) molecular systems, {\GOWO}@HF and ev$GW$@HF yield similar quasiparticle energies and fundamental gap. 
+%Moreover, {\GOWO} allows to avoid rather laborious iterations as well as the significant additional computational effort of ev$GW$.
+%In the present study, the zeroth-order Hamiltonian [see Eq.~\eqref{eq:LR-PT}] is always the ``full'' BSE static Hamiltonian, \ie, without TDA.
+%The dynamical correction, however, is computed in the dTDA throughout.
+%As one-electron basis sets, we employ the Dunning families cc-pVXZ and aug-cc-pVXZ (X = D, T, and Q) defined with cartesian Gaussian functions. 
+%Finally, the infinitesimal $\eta$ is set to $100$ meV for all calculations.
+%It is important to mention that the small molecular systems considered here are particularly challenging for the BSE formalism, \cite{Hirose_2015,Loos_2018b} which is known to work best for larger systems where the amount of screening is more important. \cite{Jacquemin_2017b,Rangel_2017}
+%
+%For comparison purposes, we employ the theoretical best estimates (TBEs) and geometries of Refs.~\onlinecite{Loos_2018a,Loos_2019,Loos_2020b} from which CIS(D), \cite{Head-Gordon_1994,Head-Gordon_1995} ADC(2), \cite{Trofimov_1997,Dreuw_2015} CC2, \cite{Christiansen_1995a} CCSD, \cite{Purvis_1982} and CC3 \cite{Christiansen_1995b} excitation energies are also extracted. 
+%Various statistical quantities are reported in the following: the mean signed error (MSE), mean absolute error (MAE), root-mean-square error (RMSE), and the maximum positive [Max($+$)] and maximum negative [Max($-$)] errors.
+%All the static and dynamic BSE calculations have been performed with the software \texttt{QuAcK}, \cite{QuAcK} freely available on \texttt{github}, where the present perturbative correction has been implemented.
 
 The present formalism has been implemented in QuAcK \cite{QuAcK} and we consider here only systems with closed-shell singlet ground states.
 The $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are employed.
