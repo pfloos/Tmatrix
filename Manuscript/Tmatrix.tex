@@ -213,22 +213,25 @@ The performance of the (static) BSE@$GT$ scheme and its perturbative dynamical c
 
 \maketitle
 
-The $GW$ approximation \cite{Hedin_1965} is an elegant resummation of all direct ring diagrams from the particle-hole (ph) channel and is justified in the high-density or weakly-correlated regime. 
-Within the $GW$ approximation, a key quantity of many-body perturbation theory, the self-energy $\Sigma$, reads
+The $GW$ approximation \cite{Hedin_1965} is becoming a method of choice to target charged excitations (\ie, ionization potentials and electron affinities) in molecular systems. \cite{Aryasetiawan_1998,Onida_2002,Martin_2016,Reining_2017,Golze_2019} 
+These so-called quasiparticle energies can be experimentally measured from direct and inverse photoemission spectroscopies.
+From a more theoretical point of view, it corresponds to an elegant resummation of all direct ring diagrams from the particle-hole (ph) channel which is particularly justified in the high-density or weakly-correlated regime. \cite{Gell-Mann_1957,Nozieres_1958}
+Within the $GW$ approximation, the self-energy --- one of the key quantity of Hedin's equations \cite{Hedin_1965} in many-body perturbation theory --- reads
 \begin{equation}
 	\Sigma^{GW}(1,2) = i G(1,2) W(1,2)
 \end{equation}
-where $G(1,2)$ is the one-body Green's function and $W(1,2)$ is the dynamically-screened Coulomb potential, while, \eg, $1 \equiv (\sigma_1,\br_1,t_1)$ is a composite coordinate gathering spin, space, and time variables.
+where $G$ is the one-body Green's function, $W$ is the dynamically-screened Coulomb potential, and, \eg, $1 \equiv (\sigma_1,\br_1,t_1)$ is a composite coordinate gathering spin, space, and time variables.
 
-Alternatives to $GW$ do exist. For example, the $T$-matrix (or Bethe-Goldstone) approximation, first introduced in nuclear physics and then in condensed matter physics, sums the ladder diagrams from the particle-particle (pp) channel
-and is justified in the low-density or strongly-correlated regime.
-While $GW$ considers a two-point interaction, the $T$-matrix approximation relies on a more complex (four-point) effective interaction --- the so-called $T$ matrix --- yielding the following self-energy: 
+Alternatives to $GW$ do exist. For example, the $T$-matrix (or Bethe-Goldstone) approximation, first introduced in nuclear physics, \cite{Bethe_1957,Baym_1961,Baym_1962,Danielewicz_1984a,Danielewicz_1984b} then in condensed matter physics \cite{Liebsch_1981,Bickers_1989,Bickers_1991,Katsnelson_1999,Katsnelson_2002,Zhukov_2005,vonFriesen_2010,Romaniello_2012,Gukelberger_2015} and more recently in quantum chemistry, \cite{Zhang_2017,Li_2021b} sums to infinity the ladder diagrams from the particle-particle (pp) channel and is justified in the low-density or strongly-correlated regime. \cite{Danielewicz_1984a,Danielewicz_1984b,Liebsch_1981,Shepherd_2014}
+While the two-point screened interaction $W$ is the cornerstone of $GW$, the $T$-matrix approximation relies on a more complex (four-point) effective interaction --- the so-called $T$ matrix --- yielding the following self-energy: 
 \begin{equation}
 	\Sigma^{GT}(1,2) = i \int G(4,3) T(1,3;2,4) d3 d4
 \end{equation}
-Combining these two channels, which sounds like a natural thing to do, is also possible and has been explored in the Hubbard dimer. \cite{Romaniello_2012}
+The natural idea of combining these two channels is also possible and has been explored in the Hubbard dimer. \cite{Romaniello_2012}
+One of the key features of the $T$-matrix approximation is its exactness up to the second order thanks to the inclusion of second-order exchange diagrams.
+This class of diagrams, which are particularly important in molecular systems, are missing in the $GW$ approximation.
 
-Let us consider a closed-shell electronic system consisting of $N$ electrons and $K$ one-electron basis functions.
+Let us consider closed-shell electronic systems consisting of $N$ electrons and $K$ one-electron basis functions.
 The number of singly-occupied and virtual (\ie, unoccupied) spinorbitals are $O = N$ and $V = K - O$, respectively.
 Let us denote as $\SO{p}(\bx)$ the $p$th spinorbital and $\e{p}{}$ its one-electron energy.
 The composite variable $\bx = (\sigma,\br)$ gathers spin ($\sigma$) and spatial ($\br$) variables.
@@ -244,7 +247,7 @@ By definition, the one-body Green's function is \cite{Martin_2016}
 where $\eta$ is a positive infinitesimal, and its nature is completely defined by the set of orbitals and corresponding energies that are used to build it.
 For example, $G^{\HF}(\bx_1,\bx_2;\omega)$ is the Hartree-Fock (HF) Green's function built from the HF spinorbitals $\SO{p}^{\HF}(\bx)$ and energies $\e{p}{\HF}$.
 
-Contrary to the $GW$ approximation which relies on the (two-point) dynamically-screened Coulomb potential $W$ computed from a ph-random-phase approximation (ph-RPA) problem to target charged excitations (\ie, ionization potentials and electron affinities), \cite{Hedin_1965,Aryasetiawan_1998,Onida_2002,Martin_2016,Reining_2017,Golze_2019} here we consider the $GT$ approximation where one employs the (four-point) $T$ matrix obtained from solving the pp-RPA equations.
+Contrary to the $GW$ approximation which relies on the (two-point) dynamically-screened Coulomb potential $W$ computed from a ph-random-phase approximation (ph-RPA) problem to target charged excitations, \cite{Hedin_1965,Aryasetiawan_1998,Onida_2002,Martin_2016,Reining_2017,Golze_2019} here we consider the $GT$ approximation where one employs the (four-point) $T$ matrix obtained from solving the pp-RPA equations.
 The non-Hermitian pp-RPA problem reads \cite{Schuck_Book,vanAggelen_2013,Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,Yang_2014a}
 \begin{equation}
 \label{eq:LR-RPA}
@@ -317,8 +320,9 @@ Combining Eqs.~\eqref{eq:G} and \eqref{eq:T}, the correlation part of the $T$-ma
 	+ \sum_{an} \frac{\braket*{pa}{\chi_n^{N-2}}\braket*{qa}{\chi_n^{N-2}}}{\omega + \e{a}{} - \Om{n}{N-2} - i\eta}
 \end{equation}
 
-Within the (perturbative) one-shot $GT$ scheme (labeled as $G_0T_0$ in the following), the quasiparticle energies are obtained via linearization of the quasiparticle equation, \ie,
+Within the (perturbative) one-shot $GT$ scheme (labeled as $G_0T_0$ in the following), the quasiparticle energies are obtained via linearization of the quasiparticle equation, \cite{Strinati_1980,Hybertsen_1985a,Hybertsen_1986,Godby_1988,Linden_1988,Northrup_1991,Blase_1994,Rohlfing_1995,Shishkin_2007} \ie,
 \begin{equation}
+\label{eq:G0T0}
 	\e{p}{G_0T_0} = \e{p}{\HF} + Z_p \Sigma^{GT}_{pp}(\e{p}{\HF})
 \end{equation}
 where we have assumed a HF starting point and
@@ -326,9 +330,32 @@ where we have assumed a HF starting point and
 	Z_p = \qty[ 1 - \eval{\pdv{\Sigma^{T}_{pq}(\omega)}{\omega}}_{\omega = \e{p}{\HF}} ]^{-1}
 \end{equation}
 is the renormalization factor.
-Other levels of self-consistency can be considered like the partially self-consistent \textit{``eigenvalue''} $GT$ (ev$GT$) or the quasiparticle self-consistent $GT$ (qs$GT$) scheme.
+Other levels of self-consistency can be considered like the partially self-consistent \textit{``eigenvalue''} $GT$ (ev$GT$)  \cite{Hybertsen_1986,Shishkin_2007,Blase_2011,Faber_2011,Rangel_2016,Gui_2018} or the quasiparticle self-consistent $GT$ (qs$GT$) \cite{Faleev_2004,vanSchilfgaarde_2006,Kotani_2007,Ke_2011,Kaplan_2016} schemes.
 
-In order to target neutral (or optical) optical excitations, we now consider the static version of the Bethe-Salpeter equation (BSE) \cite{Salpeter_1951,Strinati_1988,Blase_2018,Blase_2020} employing the $GT$ quasiparticle energies as well as $T$-matrix kernel.
+Like the one-body Green's function is the pillar of the $GW$ and $GT$ approximations, the two-body Green's function $G_2$ is the key quantity of the Bethe-Salpeter equation (BSE) formalism of many-body perturbation theory \cite{Salpeter_1951,Strinati_1988,Blase_2018,Blase_2020} via its link with the two-body correlation function $L$ which satisfies the self-consistent BSE 
+\begin{multline}
+	 iL(1,2;1',2') = L_0(1,2;1',2') 
+	 \\
+	 + \int L_0(1,4;1',3) \Xi(3,5;4,6) L(6,2;5,2') d3d4d5d6
+\end{multline}
+where
+\begin{subequations}
+\begin{align}
+	 iL_0(1,4;1',3) & = G(1,3) G(4,1')
+	 \\
+	 iL(1,2;1',2') & = -G_2(1,2;1',2') + G(1,1')G(2,2')
+\end{align}
+\end{subequations}
+and 
+\begin{equation}
+\label{eq:Xi}
+	\Xi(3,5;4,6) = i \fdv{\Sigma(3,4)}{G(6,5)}
+\end{equation}
+is the so-called BSE kernel that takes into account the self-consistent variation of $\Sigma$ with respect to the variation of $G$.
+By taking into account the interaction of the excited electron and its hole left behind (the infamous excitonic effect), the BSE is able to faithfully model (neutral) optical excitations as measured by absorption spectroscopy. 
+The moderate cost of the BSE [which scales as $\order*{K^4}$ in its standard implementation] and its overall accuracy are the main reasons behind its growing popularity in the molecular electronic structure community. \cite{Rohlfing_1999a,Horst_1999,Puschnig_2002,Tiago_2003,Boulanger_2014,Jacquemin_2015a,Bruneval_2015,Jacquemin_2015b,Hirose_2015,Jacquemin_2017a,Jacquemin_2017b,Rangel_2017,Krause_2017,Gui_2018,Blase_2018,Liu_2020,Blase_2020,Holzer_2018a,Holzer_2018b,Loos_2020e,Loos_2021}
+
+In order to target neutral excited states, we first consider the static version of the Bethe-Salpeter equation (BSE) employing the $GT$ quasiparticle energies [see Eq.~\eqref{eq:G0T0}] as well as $T$-matrix kernel [\ie, $\Sigma^{\GT}$ in Eq.~\eqref{eq:Xi}].
 In this case, the BSE@$GT$ linear eigenvalue problem reads
 \begin{equation}
 \label{eq:BSE}
@@ -357,7 +384,8 @@ with
 \end{align}
 \end{subequations}
 The eigenvalues of Eq.~\eqref{eq:BSE} provide $OV$ singlet and $OV$ triplet single excitations.
-Due to the frequency-independent nature of static BSE equations , it is well known that one cannot access higher excitations.
+Due to the frequency-independent nature of static BSE equations it is well known that one cannot access double (and higher) excitations.
+\cite{Loos_2019,Romaniello_2009b,Sangalli_2011,Loos_2020h,Authier_2020,Monino_2021}
 
 In order to go beyond the static approximation, it is possible to consider the dynamical version of the BSE (dBSE). \cite{Strinati_1988}
 In this case, one must solve the (non-linear) dynamical eigenvalue problem
@@ -399,7 +427,7 @@ Because solving a non-linear eigenvalue problem is computationally challenging, 
 %lthough one can potentially access double excitations within this formalism (due to the dynamical nature of the equations), here we rely on the perturbative scheme developed in Ref.~\onlinecite{Loos_2020h} in order to access corrected single excitations.
 
 The present formalism has been implemented in QuAcK \cite{QuAcK} and we consider here only systems with closed-shell singlet ground states.
-The $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are considered.
+The $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are employed.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
