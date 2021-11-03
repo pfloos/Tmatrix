@@ -214,12 +214,12 @@ The performance of the (static) BSE@$GT$ scheme and its perturbative dynamical c
 \maketitle
 
 Let us consider a closed-shell electronic system consisting of $N$ electrons and $K$ one-electron basis functions.
-The number of singly-occupied and virtual (\ie, unoccupied) orbitals are $O = N$ and $V = K - O$, respectively.
+The number of singly-occupied and virtual (\ie, unoccupied) spinorbitals are $O = N$ and $V = K - O$, respectively.
 Let us denote as $\SO{p}(\bx)$ the $p$th spinorbital and $\e{p}{}$ its one-electron energy.
 The composite variable $\bx = (\sigma,\br)$ gathers spin ($\sigma$) and spatial ($\br$) variables.
 We assume real quantities throughout this manuscript, $i$, $j$, $k$, and $l$ are occupied orbitals, $a$, $b$, $c$, and $d$ are unoccupied orbitals, $p$, $q$, $r$, and $s$ indicate arbitrary orbitals, $m$ labels single excitations, while $n$ labels double electron attachments or double electron detachments.
 
-By definition, the one-body Green's function is
+By definition, the one-body Green's function is \cite{Martin_2016}
 \begin{equation}
 \label{eq:G}
 	G(\bx_1,\bx_2;\omega) 
@@ -227,9 +227,10 @@ By definition, the one-body Green's function is
 	+ \sum_a \frac{\SO{a}(\bx_1) \SO{a}(\bx_2)}{\omega - \e{a}{} + i\eta}	
 \end{equation}
 where $\eta$ is a positive infinitesimal, and its nature is completely defined by the set of orbitals and corresponding energies that are used to build it.
+For example, $G^{\HF}(\bx_1,\bx_2;\omega)$ is the Hartree-Fock (HF) Green's function built from the HF spinorbitals $\SO{p}^{\HF}(\bx)$ and energies $\e{p}{\HF}$.
 
-Contrary to the $GW$ approximation which relies on the (two-point) dynamically-screened Coulomb potential $W$ computed from a particle-hole random-phase approximation (ph-RPA) problem to target charged excitations, here we consider the $GT$ approximation where one employs the (four-point) $T$ matrix obtained from solving the particle-particle RPA (pp-RPA) equations.
-The non-Hermitian pp-RPA problem reads
+Contrary to the $GW$ approximation which relies on the (two-point) dynamically-screened Coulomb potential $W$ computed from a particle-hole random-phase approximation (ph-RPA) problem to target charged excitations (\ie, ionization potentials and electron affinities), \cite{Hedin_1965,Aryasetiawan_1998,Onida_2002,Martin_2016,Reining_2017,Golze_2019} here we consider the $GT$ approximation where one employs the (four-point) $T$ matrix obtained from solving the particle-particle RPA (pp-RPA) equations.
+The non-Hermitian pp-RPA problem reads \cite{Schuck_Book,vanAggelen_2013,Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,Yang_2014a}
 \begin{equation}
 \label{eq:LR-RPA}
 	\begin{pmatrix}
@@ -283,7 +284,7 @@ In the spinorbital basis, the correlation part of the $T$ matrix has the followi
 \label{eq:T}
 	T_{pq,rs}(\omega) 
 		= \sum_{n} \frac{\braket*{pq}{\chi_n^{N+2}}\braket*{rs}{\chi_n^{N+2}}}{\omega - \Om{n}{N+2}}
-		\titou{-} \sum_{n} \frac{\braket*{pq}{\chi_n^{N-2}}\braket*{rs}{\chi_n^{N-2}}}{\omega - \Om{n}{N-2}}
+		+ \sum_{n} \frac{\braket*{pq}{\chi_n^{N-2}}\braket*{rs}{\chi_n^{N-2}}}{\omega - \Om{n}{N-2}}
 \end{equation}
 with
 \begin{subequations}
@@ -294,7 +295,7 @@ with
 \end{align}
 \end{subequations}
 
-Combining Eqs.~\eqref{eq:G} and \eqref{eq:T}, the correlation part of the $T$-matrix self-energy reads \cite{Zhang_2017}
+Combining Eqs.~\eqref{eq:G} and \eqref{eq:T}, the correlation part of the $T$-matrix self-energy reads \cite{Romaniello_2012,Martin_2016,Zhang_2017,Li_2021b}
 \begin{equation}
 	\Sigma^{T}_{pq}(\omega)
 	= \sum_{in} \frac{\braket*{pi}{\chi_n^{N+2}}\braket*{qi}{\chi_n^{N+2}}}{\omega + \e{i}{} - \Om{n}{N+2}}
@@ -307,15 +308,15 @@ Within the (perturbative) one-shot $GT$ scheme (labeled as $G_0T_0$ in the follo
 \end{equation}
 where we have assumed a HF starting point and
 \begin{equation}
-	Z_p = \qty[ 1 - \eval{\pdv{\Sigma^{T}_{pq}(\omega)}{\omega}}_{\omega = \e{p}{\HF}} ]
+	Z_p = \qty[ 1 - \eval{\pdv{\Sigma^{T}_{pq}(\omega)}{\omega}}_{\omega = \e{p}{\HF}} ]^{-1}
 \end{equation}
 is the renormalization factor.
 Other levels of self-consistency can be considered like the partially self-consistent \textit{``eigenvalue''} $GT$ (ev$GT$) or the quasiparticle self-consistent $GT$ (qs$GT$) scheme.
 
-In order to target neutral excited states, we now consider the static version of the Bethe-Salpeter equation (BSE) employing the $G_0T_0$ quasiparticle energies as well as $T$-matrix kernel.
-In this case, the BSE@$GT$ eigenvalue problem reads
+In order to target neutral (or optical) optical excitations, we now consider the static version of the Bethe-Salpeter equation (BSE) \cite{Salpeter_1951,Strinati_1988,Blase_2018,Blase_2020} employing the $GT$ quasiparticle energies as well as $T$-matrix kernel.
+In this case, the BSE@$GT$ linear eigenvalue problem reads
 \begin{equation}
-\label{eq:LR-RPA}
+\label{eq:BSE}
 	\begin{pmatrix}
 		\bA{}{\BSE}		&	\bB{}{\BSE}	\\
 		-\bB{}{\BSE}	&	-\bA{}{\BSE}	\\
@@ -340,9 +341,10 @@ with
 	B_{ia,jb}^{\BSE} & = \mel{ij}{}{ab} + T_{ib,ja}(\omega=0)
 \end{align}
 \end{subequations}
+The eigenvalues of Eq.~\eqref{eq:BSE} provide $OV$ singlet and $OV$ triplet single excitations.
+Due to the frequency-independent nature of static BSE equations , it is well known that one cannot access higher excitations.
 
-
-In order to go beyond the static approximation, it is possible to consider a dynamical correction of the BSE (dBSE) within the Tamm-Dancoff approximation:
+In order to go beyond the static approximation, it is possible to consider a dynamical correction of the BSE (dBSE) within the Tamm-Dancoff approximation: \cite{Rohlfing_2000,Romaniello_2009b,Ma_2009a,Ma_2009b,Zhang_2013,Rebolini_2016,Olevano_2019,Loos_2020h,Authier_2020,Monino_2021}
 \begin{equation}
 \label{eq:LR-RPA}
 	\begin{pmatrix}
