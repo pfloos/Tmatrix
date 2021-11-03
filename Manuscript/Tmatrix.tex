@@ -202,8 +202,10 @@
 	\affiliation{\ETSF}
 
 \begin{abstract}
-We report, for the first time, the static and dynamic Bethe-Salpeter equations (BSE) within the so-called $T$-matrix approximation (BSE@$GT$).
-The performance of the (static) BSE@$GT$ scheme and its perturbative dynamical correction (dBSE@$GT$) are assessed by computed the neutral excited states of molecular systems.
+While the well-established $GW$ approximation corresponds to a resummation of the direct ring diagrams and is particularly well suited for weakly-correlated systems, the $T$-matrix approximation does sum ladder diagrams up to infinity and is supposedly more appropriate in the presence of strong correlation.
+Here, we derive and implement, for the first time, the static and dynamic Bethe-Salpeter equations when one consider $T$-matrix quasiparticle energies as well as a $T$-matrix-based kernel.
+The performance of the static scheme and its perturbative dynamical correction are assessed by computed the neutral excited states of molecular systems.
+Comparison with more conventional schemes as well as other wave function methods are also performed.
 %\bigskip
 %\begin{center}
 %	\boxed{\includegraphics[width=0.5\linewidth]{TOC}}
@@ -384,9 +386,11 @@ with
 \end{align}
 \end{subequations}
 The eigenvalues of Eq.~\eqref{eq:BSE} provide $OV$ singlet (\ie, spin-conserved) and $OV$ triplet  (\ie, spin-flip) single excitations.
+Note that the spin structure of the BSE@$GT$ equations are completely analogous to the BSE@$GW$ version. \cite{Monino_2021}
+Therefore, one can compute separately singlet and triplet excitation energies.
+
 Due to the frequency-independent nature of static BSE, it is well known that one cannot access double (and higher) excitations.
 \cite{Loos_2019,Romaniello_2009b,Sangalli_2011,Loos_2020h,Authier_2020,Monino_2021}
-
 In order to go beyond the static approximation, it is possible to consider the dynamical version of the BSE (dBSE) within the Tamm-Dancoff approximation. \cite{Strinati_1988}
 In this case, one must solve the (non-linear) dynamical eigenvalue problem
 \begin{equation}
@@ -523,7 +527,7 @@ Note that the present perturbative scheme does not allow to access double excita
 
 The present formalism has been implemented in QuAcK \cite{QuAcK} and we consider here only systems with closed-shell singlet ground states.
 The $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are employed.
-
+\titou{Discuss the computational cost of the BSE@$GT$ equations.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{Tmatrix}
