@@ -203,9 +203,9 @@
 
 \begin{abstract}
 While the well-established $GW$ approximation corresponds to a resummation of the direct ring diagrams and is particularly well suited for weakly-correlated systems, the $T$-matrix approximation does sum ladder diagrams up to infinity and is supposedly more appropriate in the presence of strong correlation.
-Here, we derive and implement, for the first time, the static and dynamic Bethe-Salpeter equations when one consider $T$-matrix quasiparticle energies as well as a $T$-matrix-based kernel.
+Here, we derive and implement, for the first time, the static and dynamic Bethe-Salpeter equations when one considers $T$-matrix quasiparticle energies as well as a $T$-matrix-based kernel.
 The performance of the static scheme and its perturbative dynamical correction are assessed by computed the neutral excited states of molecular systems.
-Comparison with more conventional schemes as well as other wave function methods are also performed.
+Comparison with more conventional schemes as well as other wave function methods are also reported.
 %\bigskip
 %\begin{center}
 %	\boxed{\includegraphics[width=0.5\linewidth]{TOC}}
@@ -215,10 +215,10 @@ Comparison with more conventional schemes as well as other wave function methods
 
 \maketitle
 
-The $GW$ approximation \cite{Hedin_1965} is becoming a method of choice to target charged excitations (\ie, ionization potentials and electron affinities) in molecular systems. \cite{Aryasetiawan_1998,Onida_2002,Martin_2016,Reining_2017,Golze_2019} 
+The $GW$ approximation \cite{Hedin_1965} of many-body perturbation theory \cite{Martin_2016} is becoming a method of choice to target charged excitations (\ie, ionization potentials and electron affinities) in molecular systems. \cite{Aryasetiawan_1998,Onida_2002,Reining_2017,Golze_2019} 
 These so-called quasiparticle energies can be experimentally measured from direct and inverse photoemission spectroscopies.
 From a more theoretical point of view, $GW$ corresponds to an elegant resummation of all direct ring diagrams from the particle-hole (ph) channel which is particularly justified in the high-density or weakly-correlated regime. \cite{Gell-Mann_1957,Nozieres_1958}
-Within the $GW$ approximation, the self-energy --- one of the key quantity of Hedin's equations \cite{Hedin_1965} in many-body perturbation theory --- reads
+Within the $GW$ approximation, the self-energy --- one of the key quantities of Hedin's equations \cite{Hedin_1965} --- reads
 \begin{equation}
 	\Sigma^{GW}(1,2) = i G(1,2) W(1,2)
 \end{equation}
@@ -230,8 +230,9 @@ While the two-point screened interaction $W$ is the cornerstone of $GW$, the $T$
 	\Sigma^{GT}(1,2) = i \int G(4,3) T(1,3;2,4) d3 d4
 \end{equation}
 The natural idea of combining the ph and pp channels is also possible and has been explored in the Hubbard dimer. \cite{Romaniello_2012}
+
 One of the key features of the $T$-matrix approximation is its exactness up to the second order thanks to the inclusion of second-order exchange diagrams.
-This class of diagrams, which are particularly important in molecular systems and explain the improvement brought by the second-order screened exchange (SOSEX) correction applied on top of $GW$, \cite{Romaniello_2009a,Ren_2015,Loos_2018b} are known to be missing in the $GW$ approximation.
+This class of diagrams, which are particularly important in molecular systems and explain the improvement brought by the second-order screened exchange (SOSEX) correction applied to $GW$, \cite{Romaniello_2009a,Ren_2015,Loos_2018b} are well known to be missing in the $GW$ approximation.
 
 Let us consider closed-shell electronic systems consisting of $N$ electrons and $K$ one-electron basis functions.
 The number of singly-occupied and virtual (\ie, unoccupied) spinorbitals are $O = N$ and $V = K - O$, respectively.
@@ -250,7 +251,8 @@ where $\eta$ is a positive infinitesimal, and its nature is completely defined b
 For example, $G^{\HF}(\bx_1,\bx_2;\omega)$ is the Hartree-Fock (HF) Green's function built from the HF spinorbitals $\SO{p}^{\HF}(\bx)$ and energies $\e{p}{\HF}$.
 
 Contrary to the $GW$ approximation which relies on the (two-point) dynamically-screened Coulomb potential $W$ computed from a ph-random-phase approximation (ph-RPA) problem to target charged excitations, \cite{Hedin_1965,Aryasetiawan_1998,Onida_2002,Martin_2016,Reining_2017,Golze_2019} here we consider the $GT$ approximation where one employs the (four-point) $T$ matrix obtained from solving the pp-RPA equations.
-The non-Hermitian pp-RPA problem reads \cite{Schuck_Book,vanAggelen_2013,Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,Yang_2014a}
+
+The non-Hermitian pp-RPA problem reads \cite{Schuck_Book,vanAggelen_2013,Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,vanAggelen_2014,Yang_2014a,Zhang_2015,Zhang_2016}
 \begin{equation}
 \label{eq:LR-RPA}
 	\begin{pmatrix}
@@ -287,7 +289,7 @@ are two-electron integrals in the spinorbital basis, \ie,
 \begin{equation}
 	\braket{pq}{rs} = \iint \SO{p}(\bx_1) \SO{q}(\bx_1) \frac{1}{\abs{\br_1 - \br_2}} \SO{r}(\bx_2) \SO{s}(\bx_2)  d\bx_1 d\bx_2
 \end{equation}
-The pp-RPA problem yields, in the absence of instabilities, $V(V-1)/2$ positive eigenvalues $\Om{n}{N+2}$ and $O(O-1)/2$ negative eigenvalues $\Om{n}{N-2}$, which  correspond respectively to double attachments and double detachments.
+The pp-RPA problem yields, in the absence of instabilities (which should not appear in Coulombic systems with repulsive interactions only \cite{Scuseria_2013}), $V(V-1)/2$ positive eigenvalues $\Om{n}{N+2}$ and $O(O-1)/2$ negative eigenvalues $\Om{n}{N-2}$, which  correspond respectively to double attachments and double detachments.
 The pp-RPA correlation energies is given by \cite{Peng_2013,Scuseria_2013}
 \begin{equation}
 \begin{split}
@@ -360,7 +362,7 @@ By taking into account the interaction of the excited electron and its hole left
 The moderate cost of the BSE [which scales as $\order*{K^4}$ in its standard implementation] and its all-round accuracy are the main reasons behind its growing popularity in the molecular electronic structure community. \cite{Rohlfing_1999a,Horst_1999,Puschnig_2002,Tiago_2003,Boulanger_2014,Jacquemin_2015a,Bruneval_2015,Jacquemin_2015b,Hirose_2015,Jacquemin_2017a,Jacquemin_2017b,Rangel_2017,Krause_2017,Gui_2018,Blase_2018,Liu_2020,Blase_2020,Holzer_2018a,Holzer_2018b,Loos_2020e,Loos_2021}
 
 In order to target neutral (singly-)excited states, we first consider the static version of the BSE employing the $GT$ quasiparticle energies [see Eq.~\eqref{eq:G0T0}] as well as $T$-matrix kernel [\ie, $\Sigma^{\GT}$ in Eq.~\eqref{eq:Xi}].
-In this case, the BSE@$GT$ linear eigenvalue problem reads
+In this case, the BSE@$GT$ linear eigenvalue problem simply reads
 \begin{equation}
 \label{eq:BSE}
 	\begin{pmatrix}
@@ -387,13 +389,13 @@ with
 	B_{ia,jb}^{\BSE} & = \mel{ij}{}{ab} + T_{ib,ja}(\omega=0)
 \end{align}
 \end{subequations}
-The eigenvalues of Eq.~\eqref{eq:BSE} provide $OV$ singlet (\ie, spin-conserved) and $OV$ triplet  (\ie, spin-flip) single excitations.
+The eigenvalues $\Om{m}{\BSE}$ of Eq.~\eqref{eq:BSE} provide $OV$ singlet (\ie, spin-conserved) and $OV$ triplet  (\ie, spin-flip) single excitations.
 Note that the spin structure of the BSE@$GT$ equations are completely analogous to the BSE@$GW$ version. \cite{Monino_2021}
 Therefore, one can compute separately singlet and triplet excitation energies.
 
 Due to the frequency-independent nature of the static BSE, it is well known that one cannot access double (and higher) excitations.
 \cite{Loos_2019,Romaniello_2009b,Sangalli_2011,Loos_2020h,Authier_2020,Monino_2021}
-In order to go beyond the static approximation, it is possible to consider,  within the dynamical Tamm-Dancoff approximation (which neglects the frequency dependence of the coupling block) the dynamical version of the BSE (dBSE). \cite{Strinati_1988,Romaniello_2009b,Loos_2020h}
+In order to go beyond the static approximation, it is possible to consider,  within the dynamical Tamm-Dancoff approximation (which neglects the frequency dependence of the coupling block $\bB{}{}$), the dynamical version of the BSE (dBSE). \cite{Strinati_1988,Romaniello_2009b,Loos_2020h}
 In this case, one must solve the (non-linear) dynamical eigenvalue problem
 \begin{equation}
 \label{eq:dBSE}
@@ -431,7 +433,7 @@ Equation \eqref{eq:dT} highlights the interesting dynamical structure of the $T$
 
 Because solving a non-linear eigenvalue problem is computationally challenging, here we rely on the perturbative scheme developed in Ref.~\onlinecite{Loos_2020h} in order to access \textit{dynamically-corrected} single excitations for which additional relaxation effects coming from higher excitations are taken into account.
 \cite{Rohlfing_2000,Romaniello_2009b,Ma_2009a,Ma_2009b,Zhang_2013,Rebolini_2016,Olevano_2019,Loos_2020h,Authier_2020,Monino_2021}
-For the sake of self-containedness, we quickly recap this dynamical perturbative scheme below.
+Below, we quickly recap this dynamical perturbative scheme.
 
 Based on Rayleigh-Schr\"odinger perturbation theory, the non-linear eigenproblem \eqref{eq:dBSE} can be split as a zeroth-order static reference and a first-order dynamic perturbation, such that
 \begin{multline}
