@@ -152,6 +152,7 @@
 \newcommand{\bZ}[2]{\mathbf{Z}_{#1}^{#2}}
 \newcommand{\bK}{\mathbf{K}}
 \newcommand{\bP}[1]{\mathbf{P}^{#1}}
+\newcommand{\bM}[2]{\mathbf{M}_{#1}^{#2}}
 
 % units
 \newcommand{\IneV}[1]{#1 eV}
@@ -271,7 +272,7 @@ In the spatial orbital basis, the spin-$\sig$ component of the one-body Green's 
 %========================================================
 \subsection{Spin structure of pp-RPA problem}
 %========================================================
-
+One can cast the pp-RPA problem into the following matrix equation 
 
 \begin{equation}
 \label{eq:LR-RPA}
@@ -305,7 +306,8 @@ with
 \begin{equation}
 	\mel{pq}{}{rs} = \braket{pq}{rs} - \braket{pq}{sr}
 \end{equation}
-The pp-RPA problem yields, in general, $P^{\osp} + P^{\ssp}$ positive eigenvalues $\Om{n}{N+2}$ and $H^{\osp} + H^{\ssp}$ negative eigenvalues $\Om{n}{N-2}$, which  correspond respectively to the double attachments and double detachments.
+The pp-RPA problem yields, in general, $P^{\osp} + P^{\ssp}$ positive eigenvalues $\Om{n}{N+2}$ and $H^{\osp} + H^{\ssp}$ negative eigenvalues $\Om{n}{N-2}$, which correspond respectively to the double attachments and double detachments and the associated eigenvectors $\bX{m}{N\pm2}$, $\bY{m}{N\pm2}$.
+
 The present formula can be explicitly given for the different spin blocks ($\up\up\up\up$, $\up\dw\up\dw$, and $\dw\dw\dw\dw$)
 \begin{subequations}
 \begin{align}
@@ -326,6 +328,66 @@ The present formula can be explicitly given for the different spin blocks ($\up\
 	C_{i_\sig j_\bsig,k_\sig l_\bsig}^{\ppRPA} & = - \delta_{ik} \delta_{jl} (\e{i_\sig} + \e{j_\bsig}) + \braket{i_\sig j_\bsig}{k_\sig l_\bsig}
 \end{align}
 \end{subequations}
+
+One can write the spin structure of theses matrices 
+
+\begin{subequations}
+\begin{align}
+\bA{}{\spc} =
+ \begin{pmatrix}
+ \bA{}{\up\up\up\up} & \bO & \bO\\
+ \bO & \bO & \bO\\
+ \bO & \bO & \bA{}{\dw\dw\dw\dw}
+\end{pmatrix}
+&
+\bB{}{\spc}= \begin{pmatrix}
+ \bB{}{\up\up\up\up} & \bO & \bO\\
+ \bO & \bO & \bO\\
+\bO & \bO & \bB{}{\dw\dw\dw\dw}
+\end{pmatrix}
+& 
+\bC{}{\spc}= \begin{pmatrix}
+ \bC{}{\up\up\up\up} & \bO &\bO\\
+ \bO & \bO & \bO\\
+ \bO &\bO & \bC{}{\dw\dw\dw\dw}
+\end{pmatrix}
+\\
+\bA{}{\spf} =
+ \begin{pmatrix}
+\bO &\bO & \bO\\
+ \bO & \bA{}{\up\dw\up\dw} & \bO\\
+ \bO & \bO & \bO
+\end{pmatrix}
+&
+\bB{}{\spf}= \begin{pmatrix}
+ \bO &\bO & \bO\\
+ \bO& \bB{}{\up\dw\up\dw} &\bO\\
+ \bO & \bO & \bO
+\end{pmatrix}
+& 
+\bC{}{\spf}= \begin{pmatrix}
+ \bO & \bO& \bO\\
+\bO & \bC{}{\up\dw\up\dw} &\bO\\
+ \bO & \bO & \bO
+\end{pmatrix}
+\end{align}
+\end{subequations}
+
+And so, one have to diagonalize the matrices 
+
+\begin{equation}
+\bM{}{\spc} = 
+\begin{pmatrix}
+\bA{}{\spc} & \bB{}{\spc} \\
+(\bB{}{\spc})^{\text{T}} & \bC{}{\spc}
+\end{pmatrix}
+%
+\bM{}{\spf} = 
+\begin{pmatrix}
+\bA{}{\spf} & \bB{}{\spf} \\
+(\bB{}{\spf})^{\text{T}} & \bC{}{\spf}
+\end{pmatrix}
+\end{equation}
 
 
 %\begin{subequations}
