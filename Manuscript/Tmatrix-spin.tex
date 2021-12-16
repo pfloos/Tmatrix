@@ -335,41 +335,28 @@ One can write the spin structure of theses matrices
 \begin{align}
 \bA{}{\spc} =
  \begin{pmatrix}
- \bA{}{\up\up\up\up} & \bO & \bO\\
- \bO & \bO & \bO\\
- \bO & \bO & \bA{}{\dw\dw\dw\dw}
+ \bA{}{\up\up\up\up}  & \bO\\
+ \bO & \bA{}{\dw\dw\dw\dw}
 \end{pmatrix}
 &
 \bB{}{\spc}= \begin{pmatrix}
- \bB{}{\up\up\up\up} & \bO & \bO\\
- \bO & \bO & \bO\\
-\bO & \bO & \bB{}{\dw\dw\dw\dw}
+ \bB{}{\up\up\up\up} & \bO\\
+\bO &  \bB{}{\dw\dw\dw\dw}
 \end{pmatrix}
 & 
 \bC{}{\spc}= \begin{pmatrix}
- \bC{}{\up\up\up\up} & \bO &\bO\\
- \bO & \bO & \bO\\
- \bO &\bO & \bC{}{\dw\dw\dw\dw}
+ \bC{}{\up\up\up\up} &\bO\\
+ \bO & \bC{}{\dw\dw\dw\dw}
 \end{pmatrix}
 \\
 \bA{}{\spf} =
- \begin{pmatrix}
-\bO &\bO & \bO\\
- \bO & \bA{}{\up\dw\up\dw} & \bO\\
- \bO & \bO & \bO
-\end{pmatrix}
-&
-\bB{}{\spf}= \begin{pmatrix}
- \bO &\bO & \bO\\
- \bO& \bB{}{\up\dw\up\dw} &\bO\\
- \bO & \bO & \bO
-\end{pmatrix}
+  \bA{}{\up\dw\up\dw} 
 & 
-\bC{}{\spf}= \begin{pmatrix}
- \bO & \bO& \bO\\
-\bO & \bC{}{\up\dw\up\dw} &\bO\\
- \bO & \bO & \bO
-\end{pmatrix}
+\bB{}{\spf}= 
+ \bB{}{\up\dw\up\dw}
+& 
+\bC{}{\spf}= 
+ \bC{}{\up\dw\up\dw} 
 \end{align}
 \end{subequations}
 
@@ -379,13 +366,13 @@ And so, one have to diagonalize the matrices
 \bM{}{\spc} = 
 \begin{pmatrix}
 \bA{}{\spc} & \bB{}{\spc} \\
-(\bB{}{\spc})^{\text{T}} & \bC{}{\spc}
+(-\bB{}{\spc})^{\text{T}} & -\bC{}{\spc}
 \end{pmatrix}
 %
 \bM{}{\spf} = 
 \begin{pmatrix}
 \bA{}{\spf} & \bB{}{\spf} \\
-(\bB{}{\spf})^{\text{T}} & \bC{}{\spf}
+(-\bB{}{\spf})^{\text{T}} & -\bC{}{\spf}
 \end{pmatrix}
 \end{equation}
 
