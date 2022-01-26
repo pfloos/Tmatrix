@@ -215,7 +215,7 @@ Comparison with more conventional schemes as well as other wave function methods
 
 \maketitle
 
-The $GW$ approximation \cite{Hedin_1965} of many-body perturbation theory \cite{Martin_2016} is becoming a method of choice to target charged excitations (\ie, ionization potentials and electron affinities) in molecular systems. \cite{Aryasetiawan_1998,Onida_2002,Reining_2017,Golze_2019} 
+The $GW$ approximation \cite{Hedin_1965} of many-body perturbation theory \cite{Martin_2016} is becoming a method of choice to target charged excitations (\ie, ionization potentials and electron affinities) in molecular systems. \cite{Aryasetiawan_1998,Onida_2002,Reining_2017,Golze_2019,Bruneval_2021} 
 These so-called quasiparticle energies can be experimentally measured from direct and inverse photoemission spectroscopies.
 From a more theoretical point of view, $GW$ corresponds to an elegant resummation of all direct ring diagrams from the particle-hole (ph) channel which is particularly justified in the high-density or weakly-correlated regime. \cite{Gell-Mann_1957,Nozieres_1958}
 Within the $GW$ approximation, the self-energy --- one of the key quantities of Hedin's equations \cite{Hedin_1965} --- reads
@@ -229,7 +229,7 @@ While the two-point screened interaction $W$ is the cornerstone of $GW$, the $T$
 \begin{equation}
 	\Sigma^{GT}(1,2) = i \int G(4,3) T(1,3;2,4) d3 d4
 \end{equation}
-The natural idea of combining the ph and pp channels is also possible and has been explored in the Hubbard dimer. \cite{Romaniello_2012}
+The natural idea of combining the ph and pp channels is also possible and has been explored, for example, in the Hubbard dimer within many-body perturbation theory \cite{Romaniello_2012} and the uniform electron gas \cite{Loos_2016} within coupled-cluster theory. \cite{Shepherd_2014}
 
 One of the key features of the $T$-matrix approximation is its exactness up to the second order thanks to the inclusion of second-order exchange diagrams.
 This class of diagrams, which are particularly important in molecular systems and explain the improvement brought by the second-order screened exchange (SOSEX) correction applied to $GW$, \cite{Romaniello_2009a,Ren_2015,Loos_2018b} are well known to be missing in the $GW$ approximation.
@@ -301,7 +301,7 @@ The pp-RPA correlation energies is given by \cite{Peng_2013,Scuseria_2013}
 \end{equation}
 
 Based on the knowledge of the pp-RPA eigenvalues and eigenvectors, one can then construct the $T$ matrix.
-In the spinorbital basis, the correlation part of the $T$ matrix has the following expression
+In the spinorbital basis, the correlation part of the $T$ matrix has the following expression \cite{Zhang_2016}
 \begin{equation}
 \label{eq:T}
 	T_{pq,rs}(\omega) 
@@ -322,7 +322,7 @@ Combining Eqs.~\eqref{eq:G} and \eqref{eq:T}, the correlation part of the $T$-ma
 \label{eq:SigGT}
 	\Sigma^{GT}_{pq}(\omega)
 	= \sum_{in} \frac{\braket*{pi}{\chi_n^{N+2}}\braket*{qi}{\chi_n^{N+2}}}{\omega + \e{i}{} - \Om{n}{N+2} + i\eta}
-	+ \sum_{an} \frac{\braket*{pa}{\chi_n^{N-2}}\braket*{qa}{\chi_n^{N-2}}}{\omega + \e{a}{} - \Om{n}{N-2} - i\eta}
+	- \sum_{an} \frac{\braket*{pa}{\chi_n^{N-2}}\braket*{qa}{\chi_n^{N-2}}}{\omega + \e{a}{} - \Om{n}{N-2} - i\eta}
 \end{equation}
 While the dynamical $GW$ self-energy corresponds to the downfolding of the 2h1p and 2p1h configurations on the 1h and 1p configurations via their coupling with the 1h1p configurations, respectively, \cite{Bintrim_2021a} Eq.~\eqref{eq:SigGT} shows that, in the case of the $T$-matrix approximation, the same 2h1p and 2p1h configurations are downfolded on the 1p and 1h configurations via their coupling with the 2h and 2p configurations, respectively.
 
@@ -333,7 +333,7 @@ Within the (perturbative) one-shot $GT$ scheme (labeled as $G_0T_0$ in the follo
 \end{equation}
 where we have assumed a HF starting point and
 \begin{equation}
-	Z_p = \qty[ 1 - \eval{\pdv{\Sigma^{T}_{pq}(\omega)}{\omega}}_{\omega = \e{p}{\HF}} ]^{-1}
+	Z_p = \qty[ 1 - \eval{\pdv{\Sigma^{T}_{pp}(\omega)}{\omega}}_{\omega = \e{p}{\HF}} ]^{-1}
 \end{equation}
 is the renormalization factor.
 Other levels of self-consistency can be considered like the partially self-consistent \textit{``eigenvalue''} $GT$ (ev$GT$)  \cite{Hybertsen_1986,Shishkin_2007,Blase_2011,Faber_2011,Rangel_2016,Gui_2018} or the quasiparticle self-consistent $GT$ (qs$GT$) \cite{Faleev_2004,vanSchilfgaarde_2006,Kotani_2007,Ke_2011,Kaplan_2016} schemes.
@@ -384,14 +384,13 @@ In this case, the BSE@$GT$ linear eigenvalue problem simply reads
 with 
 \begin{subequations}
 \begin{align}
-	A_{ia,jb}^{\BSE} & = \delta_{ij} \delta_{ab} (\e{a}{\GT} - \e{i}{\GT}) + \mel{ib}{}{aj} + T_{ij,ba}(\omega=0)
+	A_{ia,jb}^{\BSE} & = \delta_{ij} \delta_{ab} (\e{a}{\GT} - \e{i}{\GT}) + \mel{ib}{}{aj} - T_{ib,aj}(\omega=0)
 	\\ 
-	B_{ia,jb}^{\BSE} & = \mel{ij}{}{ab} + T_{ib,ja}(\omega=0)
+	B_{ia,jb}^{\BSE} & = \mel{ij}{}{ab} - T_{ij,ab}(\omega=0)
 \end{align}
 \end{subequations}
 The eigenvalues $\Om{m}{\BSE}$ of Eq.~\eqref{eq:BSE} provide $OV$ singlet (\ie, spin-conserved) and $OV$ triplet  (\ie, spin-flip) single excitations.
-Note that the spin structure of the BSE@$GT$ equations are completely analogous to the BSE@$GW$ version. \cite{Monino_2021}
-Therefore, one can compute separately singlet and triplet excitation energies.
+Note that the spin structure of the BSE@$GT$ equations is analogous to the BSE@$GW$ version, \cite{Monino_2021} and one can compute separately singlet and triplet excitation energies.
 
 Due to the frequency-independent nature of the static BSE, it is well known that one cannot access double (and higher) excitations.
 \cite{Loos_2019,Romaniello_2009b,Sangalli_2011,Loos_2020h,Authier_2020,Monino_2021}
@@ -417,7 +416,7 @@ In this case, one must solve the (non-linear) dynamical eigenvalue problem
 \end{equation}
 with 
 \begin{equation}
-	A_{ia,jb}^{\dBSE}(\omega) = \delta_{ij} \delta_{ab} (\e{a}{\GT} - \e{i}{\GT}) + \mel{ib}{}{aj} + \widetilde{T}_{ij,ba}(\omega)
+	A_{ia,jb}^{\dBSE}(\omega) = \delta_{ij} \delta_{ab} (\e{a}{\GT} - \e{i}{\GT}) + \mel{ib}{}{aj} - \widetilde{T}_{ib,aj}(\omega)
 \end{equation}
 where, following Strinati's seminal work, \cite{Strinati_1988} one can derive the following expression for the elements of the dynamical $T$ matrix
 \begin{equation}
@@ -429,6 +428,7 @@ where, following Strinati's seminal work, \cite{Strinati_1988} one can derive th
 		& + \sum_{n} \frac{\braket*{pq}{\chi_n^{N-2}}\braket*{rs}{\chi_n^{N-2}}}{\omega + \Om{n}{N-2} - (\e{a}{\GT} + \e{b}{\GT}) + i\eta}
 \end{split}
 \end{equation}
+from which, one can check that we recover the static expression \eqref{eq:T} in the limit $\Om{n}{N\pm2} \to \infty$.
 Equation \eqref{eq:dT} highlights the interesting dynamical structure of the $T$ matrix, where, similarly to the dBSE@$GW$ scheme, \cite{Strinati_1988,Romaniello_2009b,Loos_2020h} the 2h2p configurations are downfolded on the 1h1p configurations. \cite{Bintrim_2021b}
 
 Because solving a non-linear eigenvalue problem is computationally challenging, here we rely on the perturbative scheme developed in Ref.~\onlinecite{Loos_2020h} in order to access \textit{dynamically-corrected} single excitations for which additional relaxation effects coming from higher excitations are taken into account.
@@ -459,7 +459,7 @@ Based on Rayleigh-Schr\"odinger perturbation theory, the non-linear eigenproblem
 with
 \begin{equation}
 	\label{eq:BSE-A1}
-	A_{ia,jb}^{(1)}(\omega) = \widetilde{T}_{ij,ab}(\omega) - T_{ij,ab}(\omega = 0)
+	A_{ia,jb}^{(1)}(\omega) = \widetilde{T}_{ib,aj}(\omega) - T_{ib,aj}(\omega = 0)
 \end{equation}
 As usual, one can naturally expand the $S$th BSE excitation energy and its corresponding eigenvector as
 \begin{subequations}
@@ -500,6 +500,17 @@ This yields our final expression for the dynamically-corrected BSE excitation en
 \end{equation}
 Note again that the present perturbative scheme does not allow to access double excitations as only excitations calculated within the static approach can be dynamically corrected.
 
+The present formalism has been implemented in the software package \texttt{QuAcK} \cite{QuAcK} that is freely available on \texttt{github}. 
+We consider here only systems with closed-shell singlet ground states.
+Thus, the $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are employed.
+Note that all quasiparticle energies which are obtained via Eq.~\eqref{eq:G0T0} are corrected in the same way.
+Finally, the infinitesimal $\eta$ is set to zero for all calculations.
+The ev$GT$ and qs$GT$ schemes have been also implemented but are not considered here.
+For the sake of completeness, implementable expressions in the spatial orbital basis are reported in the supporting information.
+
+
+In terms of computational, the overall scaling of BSE@$GT$ is equivalent to BSE@$GW$ as they both correspond to seeking the lowest eigenvalues of a matrix of size $(\Nocc \Nvir \times \Nocc \Nvir)$. 
+However, the prefactor corresponding to the calculations of the $T$-matrix and more specifically to the eigenvalue of the \titou{T2: Discuss the computational cost of the BSE@$GT$ equations, especially compare to BSE@$GW$.}
 %In terms of computational cost, if one decides to compute the dynamical correction of the $M$ lowest excitation energies, one must perform, first, a conventional (static) BSE calculation and extract the $M$ lowest eigenvalues and their corresponding eigenvectors [see Eq.~\eqref{eq:LR-BSE-stat}].
 %These are then used to compute the first-order correction from Eq.~\eqref{eq:Om1-TDA}, which also require to construct and evaluate the dynamical part of the BSE Hamiltonian for each excitation one wants to dynamically correct. 
 %The static BSE Hamiltonian is computed once during the static BSE calculation and does not dependent on the targeted excitation.
@@ -507,29 +518,16 @@ Note again that the present perturbative scheme does not allow to access double 
 %Searching iteratively for the lowest eigenstates, via Davidson's algorithm for instance, can be performed in $\order*{\Norb^4}$ computational cost.
 %Constructing the static and dynamic BSE Hamiltonians is much more expensive as it requires the complete diagonalization of the $(\Nocc \Nvir \times \Nocc \Nvir)$ RPA linear response matrix [see Eq.~\eqref{eq:LR-RPA}], which corresponds to a $\order*{\Nocc^3 \Nvir^3} = \order*{\Norb^6}$ computational cost. 
 %Although it might be reduced to $\order*{\Norb^4}$ operations with standard resolution-of-the-identity techniques, \cite{Duchemin_2019,Duchemin_2020} this step is the computational bottleneck in the current implementation.
-%
-%
-%All systems under investigation have a closed-shell singlet ground state.
-%We then adopt a restricted formalism throughout this work.
-%The $GW$ calculations performed to obtain the screened Coulomb operator and the quasiparticle energies are done using a (restricted) HF starting point.
-%Perturbative $GW$ (or {\GOWO}) \cite{Hybertsen_1985a,Hybertsen_1986,vanSetten_2013} quasiparticle energies are employed as starting points to compute the BSE neutral excitations.
-%These quasiparticle energies are obtained by linearizing the frequency-dependent quasiparticle equation, and the entire set of orbitals is corrected.
-%Further details about our implementation of {\GOWO} can be found in Refs.~\onlinecite{Loos_2018b,Veril_2018}.
-%Note that, for the present (small) molecular systems, {\GOWO}@HF and ev$GW$@HF yield similar quasiparticle energies and fundamental gap. 
-%Moreover, {\GOWO} allows to avoid rather laborious iterations as well as the significant additional computational effort of ev$GW$.
-%In the present study, the zeroth-order Hamiltonian [see Eq.~\eqref{eq:LR-PT}] is always the ``full'' BSE static Hamiltonian, \ie, without TDA.
-%The dynamical correction, however, is computed in the dTDA throughout.
-%As one-electron basis sets, we employ the Dunning families cc-pVXZ and aug-cc-pVXZ (X = D, T, and Q) defined with cartesian Gaussian functions. 
-%Finally, the infinitesimal $\eta$ is set to $100$ meV for all calculations.
-%It is important to mention that the small molecular systems considered here are particularly challenging for the BSE formalism, \cite{Hirose_2015,Loos_2018b} which is known to work best for larger systems where the amount of screening is more important. \cite{Jacquemin_2017b,Rangel_2017}
-%
+
 %For comparison purposes, we employ the theoretical best estimates (TBEs) and geometries of Refs.~\onlinecite{Loos_2018a,Loos_2019,Loos_2020b} from which CIS(D), \cite{Head-Gordon_1994,Head-Gordon_1995} ADC(2), \cite{Trofimov_1997,Dreuw_2015} CC2, \cite{Christiansen_1995a} CCSD, \cite{Purvis_1982} and CC3 \cite{Christiansen_1995b} excitation energies are also extracted. 
 %Various statistical quantities are reported in the following: the mean signed error (MSE), mean absolute error (MAE), root-mean-square error (RMSE), and the maximum positive [Max($+$)] and maximum negative [Max($-$)] errors.
-%All the static and dynamic BSE calculations have been performed with the software \texttt{QuAcK}, \cite{QuAcK} freely available on \texttt{github}, where the present perturbative correction has been implemented.
 
-The present formalism has been implemented in QuAcK \cite{QuAcK} and we consider here only systems with closed-shell singlet ground states.
-The $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are employed.
-\titou{Discuss the computational cost of the BSE@$GT$ equations.}
+
+To conclude, the BSE@$GT$ formalism seems to be, overall, less accurate than BSE@$GW$ in the context of the computation of molecular excitation energies.
+However, it still outperforms conventional methods such CIS and TDHF.
+It would be interesting to investigate its performance for the computation of ground-state correlation energies within the adiabatic connection fluctuation dissipation formalism where BSE@$GW$ has been shown to be particularly outstanding. \cite{Maggio_2016,Holzer_2018b,Loos_2020e}
+The combination of $GT$ and $GW$ via the range separation of the Coulomb operator to avoid double counting of the low-order diagrams is also a promising avenue.
+Work along these lines are currently under progress.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{Tmatrix}
