@@ -1,5 +1,5 @@
 \documentclass[aip,jcp,reprint,noshowkeys,superscriptaddress]{revtex4-1}
-\usepackage{graphicx,dcolumn,bm,xcolor,microtype,multirow,amscd,amsmath,amssymb,amsfonts,physics,longtable,wrapfig,txfonts}
+\usepackage{graphicx,dcolumn,bm,xcolor,microtype,multirow,amscd,amsmath,amssymb,amsfonts,physics,longtable,wrapfig,txfonts,siunitx}
 \usepackage[version=4]{mhchem}
 
 \usepackage[utf8]{inputenc}
@@ -26,7 +26,7 @@
 \newcommand{\fnm}{\footnotemark}
 \newcommand{\fnt}{\footnotetext}
 \newcommand{\tabc}[1]{\multicolumn{1}{c}{#1}}
-\newcommand{\SI}{\textcolor{blue}{supporting information}}
+\newcommand{\SupInf}{\textcolor{blue}{supporting information}}
 \newcommand{\QP}{\textsc{quantum package}}
 \newcommand{\T}[1]{#1^{\intercal}}
 
@@ -196,6 +196,9 @@
 \author{Pierre-Fran\c{c}ois \surname{Loos}}
 	\email{loos@irsamc.ups-tlse.fr}
 	\affiliation{\LCPQ}
+%\author{Roberto Orlando}
+%	\affiliation{\LCPQ}
+%	\affiliation{\LPT}
 \author{Pina Romaniello}
 	\email{romaniello@irsamc.ups-tlse.fr}
 	\affiliation{\LPT}
@@ -215,6 +218,10 @@ Comparison with more conventional schemes as well as other wave function methods
 
 \maketitle
 
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%
 The $GW$ approximation \cite{Hedin_1965} of many-body perturbation theory \cite{Martin_2016} is becoming a method of choice to target charged excitations (\ie, ionization potentials and electron affinities) in molecular systems. \cite{Aryasetiawan_1998,Onida_2002,Reining_2017,Golze_2019,Bruneval_2021} 
 These so-called quasiparticle energies can be experimentally measured from direct and inverse photoemission spectroscopies.
 From a more theoretical point of view, $GW$ corresponds to an elegant resummation of all direct ring diagrams from the particle-hole (ph) channel which is particularly justified in the high-density or weakly-correlated regime. \cite{Gell-Mann_1957,Nozieres_1958}
@@ -240,6 +247,10 @@ Let us denote as $\SO{p}(\bx)$ the $p$th spinorbital and $\e{p}{}$ its one-elect
 The composite variable $\bx = (\sigma,\br)$ gathers spin ($\sigma$) and spatial ($\br$) variables.
 We assume real quantities throughout this manuscript, $i$, $j$, $k$, and $l$ are occupied orbitals, $a$, $b$, $c$, and $d$ are unoccupied orbitals, $p$, $q$, $r$, and $s$ indicate arbitrary orbitals, $m$ labels single excitations, while $n$ labels double electron attachments or double electron detachments.
 
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Charged excitations}
+\label{sec:charged}
+%%%%%%%%%%%%%%%%%%%%%%
 By definition, the one-body Green's function is \cite{Martin_2016}
 \begin{equation}
 \label{eq:G}
@@ -338,6 +349,10 @@ where we have assumed a HF starting point and
 is the renormalization factor.
 Other levels of self-consistency can be considered like the partially self-consistent \textit{``eigenvalue''} $GT$ (ev$GT$)  \cite{Hybertsen_1986,Shishkin_2007,Blase_2011,Faber_2011,Rangel_2016,Gui_2018} or the quasiparticle self-consistent $GT$ (qs$GT$) \cite{Faleev_2004,vanSchilfgaarde_2006,Kotani_2007,Ke_2011,Kaplan_2016} schemes.
 
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Neutral excitations}
+\label{sec:neutral}
+%%%%%%%%%%%%%%%%%%%%%%
 Like the one-body Green's function is the pillar of the $GW$ and $GT$ approximations, the two-body Green's function $G_2$ is the key quantity of the Bethe-Salpeter equation (BSE) formalism of many-body perturbation theory \cite{Salpeter_1951,Strinati_1988,Blase_2018,Blase_2020} via its link with the two-body correlation function $L$ which satisfies the self-consistent BSE 
 \begin{multline}
 	 iL(1,2;1',2') = L_0(1,2;1',2') 
@@ -500,8 +515,12 @@ This yields our final expression for the dynamically-corrected BSE excitation en
 \end{equation}
 Note again that the present perturbative scheme does not allow to access double excitations as only excitations calculated within the static approach can be dynamically corrected.
 
-The present formalism has been implemented in the software package \texttt{QuAcK} \cite{QuAcK} that is freely available on \texttt{github}. 
-We consider here only systems with closed-shell singlet ground states.
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Computational details}
+\label{sec:compdet}
+%%%%%%%%%%%%%%%%%%%%%%
+The present formalism has been implemented in the electronic structure package \texttt{QuAcK} \cite{QuAcK} that is freely available on \texttt{github}. 
+We consider here only systems with closed-shell singlet ground states. 
 Thus, the $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are employed.
 Note that all quasiparticle energies which are obtained via Eq.~\eqref{eq:G0T0} are corrected in the same way.
 Finally, the infinitesimal $\eta$ is set to zero for all calculations.
@@ -523,11 +542,62 @@ However, the prefactor corresponding to the calculations of the $T$-matrix and m
 %Various statistical quantities are reported in the following: the mean signed error (MSE), mean absolute error (MAE), root-mean-square error (RMSE), and the maximum positive [Max($+$)] and maximum negative [Max($-$)] errors.
 
 
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Results and discussion}
+\label{sec:res}
+%%%%%%%%%%%%%%%%%%%%%%
+
+First, we study the excited states of the hydrogen molecule \ce{H2} upon dissociation.
+Examples: hydrogem molecules, breaking the double bond of ethylene, BeH2, 
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Excited states of the hydrogen molecule}
+\label{sec:h2}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%% FIGURE 1 %%%
+\begin{figure*}
+	\includegraphics[width=\textwidth]{H2}
+	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2} as a function of the interelectronic distance $R_{\ce{H-H}}$ (in \si{\angstrom}) obtained at the FCI/cc-pVDZ (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels.}
+\end{figure*}
+%%% %%% %%% %%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Diatomics}
+\label{sec:diatomics}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%% TABLE I %%%
+\begin{table*}
+	\begin{ruledtabular}
+		\begin{tabular}{lcccccc}
+					&			&	\mc{5}{c}{Methods}																\\
+			\cline{3-7}
+			Mol.	&	State	&	CIS		&	CIS(D)	&	TDHF	&	BSE@$GW$	&	BSE@$GT$	\\
+			\hline
+			\ce{H2}	&			&	\\
+			\ce{LiH}	&			&	\\
+			\ce{LiF}	&			&	\\
+			\ce{BF}	&			&	\\
+			\ce{CO}	&			&	\\
+			\ce{N2}	&			&	\\
+			\ce{F2}	&			&	\\
+			\ce{FH}	&			&	\\
+		\end{tabular}
+	\end{ruledtabular}
+\end{table*}
+%%% %%% %%% %%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+\label{sec:ccl}
+%%%%%%%%%%%%%%%%%%%%%%
 To conclude, the BSE@$GT$ formalism seems to be, overall, less accurate than BSE@$GW$ in the context of the computation of molecular excitation energies.
 However, it still outperforms conventional methods such CIS and TDHF.
 It would be interesting to investigate its performance for the computation of ground-state correlation energies within the adiabatic connection fluctuation dissipation formalism where BSE@$GW$ has been shown to be particularly outstanding. \cite{Maggio_2016,Holzer_2018b,Loos_2020e}
 The combination of $GT$ and $GW$ via the range separation of the Coulomb operator to avoid double counting of the low-order diagrams is also a promising avenue.
 Work along these lines are currently under progress.
+Finally, the unrestricted and spin-flip extensions of the present formalism is currently developed.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{Tmatrix}
