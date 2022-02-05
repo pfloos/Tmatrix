@@ -196,9 +196,6 @@
 \author{Pierre-Fran\c{c}ois \surname{Loos}}
 	\email{loos@irsamc.ups-tlse.fr}
 	\affiliation{\LCPQ}
-%\author{Roberto Orlando}
-%	\affiliation{\LCPQ}
-%	\affiliation{\LPT}
 \author{Pina Romaniello}
 	\email{romaniello@irsamc.ups-tlse.fr}
 	\affiliation{\LPT}
@@ -547,20 +544,38 @@ However, the prefactor corresponding to the calculations of the $T$-matrix and m
 \label{sec:res}
 %%%%%%%%%%%%%%%%%%%%%%
 
-First, we study the excited states of the hydrogen molecule \ce{H2} upon dissociation.
-Examples: hydrogem molecules, breaking the double bond of ethylene, BeH2, 
-
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Excited states of the hydrogen molecule}
 \label{sec:h2}
 %%%%%%%%%%%%%%%%%%%%%%
+As a first didactical example, we consider the excited states of the hydrogen molecule \ce{H2} and the variation of the excitation energies upon dissociation.
+The excitation energies for some low-lying singlet and triplet excited states are represented in Fig.~\ref{fig:H2} as a function of the internuclear distance $R_{\ce{H-H}}$ at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
 
 %%% FIGURE 1 %%%
 \begin{figure*}
 	\includegraphics[width=\textwidth]{H2}
-	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2} as a function of the interelectronic distance $R_{\ce{H-H}}$ (in \si{\angstrom}) obtained at the FCI/cc-pVDZ (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels.}
+	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
+	Raw data are reported in {\SupInf}.}
+	\label{fig:H2}
 \end{figure*}
 %%% %%% %%% %%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Excited states of beryllium hydride}
+\label{sec:beh2}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%% FIGURE 2 %%%
+\begin{figure*}
+	\includegraphics[width=\textwidth]{BeH2}
+	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{BeH2} as a function of the distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels.
+	The dynamically-corrected BSE excitation energies are represented as thin lines for dBSE@$G_0W_0$ (blue), and dBSE@$G_0T_0$ (red) with the cc-pVDZ basis.
+	Raw data are reported in {\SupInf}.}
+	\label{fig:H2}
+\end{figure*}
+%%% %%% %%% %%%
+
+
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diatomics}
 \label{sec:diatomics}
@@ -568,11 +583,14 @@ Examples: hydrogem molecules, breaking the double bond of ethylene, BeH2,
 
 %%% TABLE I %%%
 \begin{table*}
+	\caption{Singlet and triplet excitation energies (in \si{\eV}) of various molecular systems at equilibrium geometry computed at various levels of theory with the cc-pVDZ basis set.
+	The corresponding experimental equilibrium geometries have been extracted from the computational chemistry comparison and benchmark database (CCCBDB) at \url{https://cccbdb.nist.gov}.}
+	\label{fig:mol}
 	\begin{ruledtabular}
-		\begin{tabular}{lcccccc}
+		\begin{tabular}{lcccccccc}
 					&			&	\mc{5}{c}{Methods}																\\
 			\cline{3-7}
-			Mol.	&	State	&	CIS		&	CIS(D)	&	TDHF	&	BSE@$GW$	&	BSE@$GT$	\\
+			Mol.	&	State	&	CIS		&	CIS(D)	&	TDHF	&	BSE@$GW$	&	dBSE@$GW$	&	BSE@$GT$	&	dBSE@$GT$	\\
 			\hline
 			\ce{H2}	&			&	\\
 			\ce{LiH}	&			&	\\
@@ -597,6 +615,24 @@ It would be interesting to investigate its performance for the computation of gr
 The combination of $GT$ and $GW$ via the range separation of the Coulomb operator to avoid double counting of the low-order diagrams is also a promising avenue.
 Work along these lines are currently under progress.
 Finally, the unrestricted and spin-flip extensions of the present formalism is currently developed.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{acknowledgements}
+The authors thank Roberto Orlando for useful discussions.
+PFL thanks the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation programme (Grant agreement No.~863481) for funding.
+This project has also received financial support from the CNRS through the 80|Prime program and has been supported through the EUR grant NanoX ANR-17-EURE-0009 in the framework of the ``Programme des Investissements d’Avenir''.
+\end{acknowledgements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{$T$-matrix self-energy in the spatial orbital basis}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Here, we provide implementable expressions for the $T$-matrix self-energy in the spatial orbital basis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
