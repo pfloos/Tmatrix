@@ -548,16 +548,20 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 \subsection{Excited states of the hydrogen molecule}
 \label{sec:h2}
 %%%%%%%%%%%%%%%%%%%%%%
-As a first didactical example, we consider the lowest singlet and triplet excited states of the hydrogen molecule \ce{H2} and the variation of their respective excitation energies upon dissociation.
+As a first didactical example, we consider the lowest singlet and triplet excited states of the hydrogen molecule \ce{H2} and the variation of their respective vertical transition energies upon dissociation.
 The excitation energies associated with these low-lying excited states are represented in Fig.~\ref{fig:H2} as a function of the internuclear distance $R_{\ce{H-H}}$ at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
 The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:H2_gap}
 This shows that, as already observed in the Hubbard dimer, \cite{Romaniello_2012} the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
 
-The performances of BSE@$G_0W_0$ and BSE@$G_0T_0$ are very similar for this system.
+Overall, as evidenced by Fig.~\ref{fig:H2}, the performances of BSE@$G_0W_0$ and BSE@$G_0T_0$ are very similar for this system.
 For the lowest singlet excited state $B{}^1\Sigma_u^+$, the $T$-matrix-based formalism is slightly better when $R_{\ce{H-H}}$ increases but fails ultimately to reproduce the FCI results.
-For the $E{}^1\Sigma_g^+$ state, BSE@$G_0T_0$
-Note that both formalisms cannot see the $F{}^1\Sigma_g^+$ doubly-excited states and cannot model properly the avoided crossing between $E{}^1\Sigma_g^+$ and $F{}^1\Sigma_g^+$.
-Similar observations can be done for the triplet states.
+For the $E{}^1\Sigma_g^+$ state, BSE@$G_0T_0$ is more accurate than BSE@$G_0W_0$ for small bond length and the scenario is reversed after the avoided crossing with the doubly-excited state of $F{}^1\Sigma_g^+$ symmetry.
+Of course, both formalisms cannot ``see'' the $F{}^1\Sigma_g^+$ states as the static BSE formlism is bind to double excitations.
+Therefore, it cannot model properly the avoided crossing between $E{}^1\Sigma_g^+$ and $F{}^1\Sigma_g^+$.
+For the $B'{}^1\Sigma_u^+$ and $C{}^1\Pi_u$ states, BSE@$G_0W_0$ and BSE@$G_0T_0$ reproduces fairly well the potential energy curves with a modest preference for the latter.
+
+Similar observations can be made for the triplet states, the $GW$- and $GT$-based formalisms yielding very similar excitation energies, except maybe for the $c{}^3\Pi_u$ state for which BSE@$G_0W_0$ has clearly the edge.
+Moreover, triplet instabilities seems to affect BSE@$G_0T_0$ slightly earlier than BSE@$G_0W_0$.
 
 %%% FIGURE 1 %%%
 \begin{figure*}
@@ -582,9 +586,8 @@ Similar observations can be done for the triplet states.
 \label{sec:beh2}
 %%%%%%%%%%%%%%%%%%%%%%
 As a second example, we consider the symmetric dissociation of the linear molecule beryllium hydride \ce{BeH2}.
-The variation in excitation energies as a function of the distance $R_{\ce{Be-H}}$ is shown in Fig.~\ref{fig:BeH2}.
-The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:BeH2_gap}
-Again, the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
+The variation of the lowest singlet and triplet excitation energies as a function of the distance $R_{\ce{Be-H}}$ is shown in Fig.~\ref{fig:BeH2}, while the quasiparticle energies of the frontier orbitals and the associated (fundamental) gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:BeH2_gap}
+Again, one notes that the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
 
 Dynamical corrections slightly improves the agreement between BSE and FCI.
 
@@ -665,7 +668,7 @@ This project has also received financial support from the CNRS through the 80|Pr
 \appendix
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{BSE with a dynamical kernel}
+\section{BSE with a dynamical $T$-matrix kernel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 To recast the BSE with a dynamical $T$-matrix kernel as an eigenvalue equation, we follow Ref.~\onlinecite{Strinati_1980} (see also Ref.~\onlinecite{Loos_2020e}) and start from the equation for the BSE amplitude 
