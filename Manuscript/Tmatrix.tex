@@ -670,25 +670,25 @@ The so-called $T$-matrix self-energy $\Sigma$ is given by Eq.~\eqref{eq:SigGT} w
 \begin{equation}
 \label{eq:T-matrix}
 	T(3,8,4,7) =
-	- v_c(3,8)\delta(3,4)\delta(7,8)
-	+ v_c(3,8)\delta(4,8)\delta(3,7)
-	+ i \int d1'd2' v_c(3,8)G(3,1')G(8,2')T(1',2',4,7)
+	- v(3,8)\delta(3,4)\delta(7,8)
+	+ v(3,8)\delta(4,8)\delta(3,7)
+	+ i \int d1'd2' v(3,8)G(3,1')G(8,2')T(1',2',4,7)
 \end{equation}  
-where \titou{$v_c$ is the bare Coulomb operator} and we neglect the functional derivative $\delta T/\delta G$ in the kernel $\Xi$.
+where $v$ is the bare Coulomb operator and we neglect the functional derivative $\delta T/\delta G$ in the kernel $\Xi$.
 Making the time dependence of Eq.~\eqref{eq:Strinati_1} explicit and defining $T(3,5,4,6)=- \delta(\tau^+_{35})\delta(\tau^+_{64})\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})$, one gets 
 \begin{equation}
-\label{eqn:DYN_T}
+\label{eq:DYN_T}
 	\chi_S(\bx_1,\bx_{1'},\tau_{11'})e^{-i\omega_S(t_1+t_{1'})/2}
 	=-i\int d3d4d5d6 G(\bx_1,\bx_3;\tau_{13})G(\bx_4,\bx_{1'};\tau_{11'})
 	\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})\chi_S(\bx_6,\bx_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}
 \end{equation}
-[where \titou{$\tau_{ij}=t_i-t_j$} and $\tau^+_{ij}=t^+_i-t_j$ with $t^+_i=t_i+\eta$ ($\eta \to 0^+$)] and
+[where $\tau_{ij}=t_i-t_j$ and $\tau^+_{ij}=t^+_i-t_j$ with $t^+_i=t_i+\eta$ ($\eta \to 0^+$)] and
 \begin{multline}
 \label{eq:T_bar}
 	\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34}) 
-	= v_c(\bx_3,\bx_5)\delta(\tau_{34})\delta(\bx_3,\bx_4)\delta(\bx_6,\bx_5)-v_c(\bx_3,\bx_5)\delta(\tau_{34})	\delta(\bx_3,\bx_6)\delta(\bx_4,\bx_5)
+	= v(\bx_3,\bx_5)\delta(\tau_{34})\delta(\bx_3,\bx_4)\delta(\bx_6,\bx_5)-v(\bx_3,\bx_5)\delta(\tau_{34})	\delta(\bx_3,\bx_6)\delta(\bx_4,\bx_5)
 	\\
-	+ i \int d7 d8 v_c(\bx_3,x_5)G(\bx_3,\bx_7;\tau_{38})G(\bx_5,\bx_8;\tau^+_{38})\Bar{T}(\bx_7,\bx_8,\bx_4,\bx_6;\tau_{84})
+	+ i \int d7 d8 v(\bx_3,x_5)G(\bx_3,\bx_7;\tau_{38})G(\bx_5,\bx_8;\tau^+_{38})\Bar{T}(\bx_7,\bx_8,\bx_4,\bx_6;\tau_{84})
 \end{multline}
 Using the Fourier transform $G(\tau)=\int \frac{d\omega}{2\pi}G(\omega)e^{-i\omega\tau}$, changing variable from $t_3$ to $\tau_{34}$ and taking the limit $t_{1'}=t_1^+$, we have
 \begin{multline}
@@ -715,7 +715,7 @@ and multiply the left- and right-hand sides by $(\e{a}{}-\e{i}{}-\omega_S)\int d
 
 We now consider the resonant case, \ie, $\omega_S>0$, for which 
 \begin{equation}
-\label{Eqn:chi_tau}
+\label{eq:chi_tau}
 	\chi_S(\bx_1,\bx_{1'},\tau_1) 
 	=-e^{i\omega_S\abs{\tau_1}/2} \sum_{pq}\SO{p}(\bx_1)\SO{q}(\bx_{1'}) \mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}
   	\qty[\Theta(\tau_1)e^{-i\e{p}{}\tau_1}+\Theta(-\tau_1)e^{-i\e{q}{}\tau_1} ]
@@ -730,7 +730,7 @@ After some algebraic steps, one gets
 \end{multline}
 where we have defined 
 \begin{equation}
-	\Bar{T}_{iq,pa}(\tau_{34})=\int d\bx_3 d\bx_4 d\bx_5 d\bx_6 \SO{a}(\bx_3) \SO{i}(\bx_4)\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34}) \psi_p(\bx_6)\psi^*_{q}(\bx_5)
+	\Bar{T}_{iq,pa}(\tau_{34})=\int d\bx_3 d\bx_4 d\bx_5 d\bx_6 \SO{a}(\bx_3) \SO{i}(\bx_4)\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34}) \SO{p}(\bx_6)\SO{q}(\bx_5)
 \end{equation}
 Using the definition $X_{qp,S}=\mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}$, we arrive at
 
@@ -742,7 +742,7 @@ where the spectral representation of the dynamical $T$-matrix is
 \begin{equation}
 	\widetilde{T}_{iq,pa}(\omega_S)
 	= \frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\Bar{T}_{iq,pa}(\omega)e^{-i\omega\eta} \left[\frac{1}{\omega_S-\omega+\e{q}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{p}{}-\e{a}{}+i\eta}\right] 
- \label{Eqn:H2preso_eigen_2_T}
+ \label{eq:H2preso_eigen_2_T}
 \end{equation}
 Equation \eqref{eq:egval} represents a non-linear eigenvalue equation to calculate the positive excitation energies of a system, which can be rewritten as
 \begin{equation}
@@ -755,7 +755,7 @@ with
 \end{equation}
 Here $H_{ia,jb}(\omega_S)=A_{ia,jb}(\omega_S)$ and $H_{ia,bj}(\omega_S)=B_{ia,jb}(\omega_S)$.
 If one drops the correlation part of $\Bar{T}$ [the first two terms on the right-hand side of Eq.~\eqref{eq:T_bar}], one ends up the usual time-dependent Hartree-Fock (TDHF) equations. 
-To calculate the correlation contribution, one must employ \eqref{eq:T} in Eq.~\eqref{Eqn:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
+To calculate the correlation contribution, one must employ \eqref{eq:T} in Eq.~\eqref{eq:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \twocolumngrid
