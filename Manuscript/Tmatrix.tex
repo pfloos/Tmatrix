@@ -186,6 +186,8 @@
 \newcommand{\ssp}{\text{ss}}
 \newcommand{\osp}{\text{os}}
 
+\DeclareSIUnit\angstrom{\text{\AA}}
+
 % addresses
 \newcommand{\LCPQ}{Laboratoire de Chimie et Physique Quantiques (UMR 5626), Universit\'e de Toulouse, CNRS, UPS, France}
 \newcommand{\LPT}{Laboratoire de Physique Th\'eorique, Universit\'e de Toulouse, CNRS, UPS, France}
@@ -224,6 +226,7 @@ These so-called quasiparticle energies can be experimentally measured from direc
 From a more theoretical point of view, $GW$ corresponds to an elegant resummation of all direct ring diagrams from the particle-hole (ph) channel which is particularly justified in the high-density or weakly-correlated regime. \cite{Gell-Mann_1957,Nozieres_1958}
 Within the $GW$ approximation, the self-energy --- one of the key quantities of Hedin's equations \cite{Hedin_1965} --- reads
 \begin{equation}
+\label{eq:SigGW}
 	\Sigma^{GW}(1,2) = i G(1,2) W(1,2)
 \end{equation}
 where $G$ is the one-body Green's function, $W$ is the dynamically-screened Coulomb potential, and, \eg, $1 \equiv (\sigma_1,\br_1,t_1)$ is a composite coordinate gathering spin, space, and time variables.
@@ -231,6 +234,7 @@ where $G$ is the one-body Green's function, $W$ is the dynamically-screened Coul
 Alternatives to $GW$ do exist. For example, the $T$-matrix (or Bethe-Goldstone) approximation, first introduced in nuclear physics, \cite{Bethe_1957,Baym_1961,Baym_1962,Danielewicz_1984a,Danielewicz_1984b} then in condensed matter physics, \cite{Liebsch_1981,Bickers_1989,Bickers_1991,Katsnelson_1999,Katsnelson_2002,Zhukov_2005,vonFriesen_2010,Romaniello_2012,Gukelberger_2015} and more recently in quantum chemistry, \cite{Zhang_2017,Li_2021b} sums to infinity the ladder diagrams from the particle-particle (pp) channel and is justified in the low-density or strongly-correlated regime. \cite{Danielewicz_1984a,Danielewicz_1984b,Liebsch_1981,Shepherd_2014}
 While the two-point screened interaction $W$ is the cornerstone of $GW$, the $T$-matrix approximation relies on a more complex (four-point) effective interaction --- the so-called $T$ matrix --- yielding the following self-energy: 
 \begin{equation}
+\label{eq:SigGT}
 	\Sigma^{GT}(1,2) = i \int G(4,3) T(1,3;2,4) d3 d4
 \end{equation}
 The natural idea of combining the ph and pp channels is also possible and has been explored, for example, in the Hubbard dimer within many-body perturbation theory \cite{Romaniello_2012} and the uniform electron gas \cite{Loos_2016} within coupled-cluster theory. \cite{Shepherd_2014}
@@ -359,8 +363,10 @@ Like the one-body Green's function is the pillar of the $GW$ and $GT$ approximat
 where
 \begin{subequations}
 \begin{align}
+\label{eq:L0}
 	 iL_0(1,4;1',3) & = G(1,3) G(4,1')
 	 \\
+\label{eq:L}
 	 iL(1,2;1',2') & = -G_2(1,2;1',2') + G(1,1')G(2,2')
 \end{align}
 \end{subequations}
@@ -650,109 +656,108 @@ This project has also received financial support from the CNRS through the 80|Pr
 \section{BSE with a dynamical kernel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-To recast the BSE with a dynamical $T$-matrix kernel as an eigenvalue equation, we follow Ref.~\onlinecite{Strinati_1980} and start from the equation for the BSE amplitude 
+To recast the BSE with a dynamical $T$-matrix kernel as an eigenvalue equation, we follow Ref.~\onlinecite{Strinati_1980} (see also Ref.~\onlinecite{Loos_2020e}) and start from the equation for the BSE amplitude 
 \begin{equation}
 \label{eq:Strinati_1}
-	X_S(1,1^\prime) = \int d3d4d5d6L_0(1,4,1^\prime,3)\Xi(3,5,4,6) X_S(6,5)
+	\chi_S(1,1') = \int d3d4d5d6L_0(1,4,1',3)\Xi(3,5,4,6) \chi_S(6,5)
 \end{equation}
-with 
+where $L_0$ is given by Eq.~\eqref{eq:L0} and the $T$-matrix kernel is
 \begin{align}
 \label{eq:T-matrix_kernel}
-	L_0(1,4,1^\prime,3) & =-iG(1,3)G(4,1^\prime)
-	&
 	\Xi(3,5,4,6) & =  i\frac{\delta \Sigma(3,4)}{\delta G(6,5)}\approx -T(3,5,4,6)
 \end{align}
-where we consider the so-called $T$-matrix self-energy \cite{Martin_2016,Romaniello_2012} $\Sigma(3,4)=iG(7,8)T(3,8,4,7)$ with
+The so-called $T$-matrix self-energy $\Sigma$ is given by Eq.~\eqref{eq:SigGT} with \cite{Martin_2016,Romaniello_2012}
 \begin{equation}
 \label{eq:T-matrix}
 	T(3,8,4,7) =
 	- v_c(3,8)\delta(3,4)\delta(7,8)
 	+ v_c(3,8)\delta(4,8)\delta(3,7)
-	+ iv_c(3,8)G(3,1')G(8,2')T(1',2',4,7)
+	+ i \int d1'd2' v_c(3,8)G(3,1')G(8,2')T(1',2',4,7)
 \end{equation}  
-and where we neglect the functional derivative $\delta T/\delta G$ in the kernel $\Xi$.
+where \titou{$v_c$ is the bare Coulomb operator} and we neglect the functional derivative $\delta T/\delta G$ in the kernel $\Xi$.
 Making the time dependence of Eq.~\eqref{eq:Strinati_1} explicit, one gets 
 \begin{multline}
 \label{eqn:DYN_T}
-	X_S(x_1,x_{1^\prime},\tau_{11'})e^{-i\omega_S(t_1+t_{1^\prime})/2}
-	=-i\int d3d4d5d6 G(x_1,x_3;\tau_{13})G(x_4,x_{1^\prime};\tau_{11^\prime})
-	\\
-	\times \bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}
+	\chi_S(\bx_1,\bx_{1'},\tau_{11'})e^{-i\omega_S(t_1+t_{1'})/2}
+	=-i\int d3d4d5d6 G(\bx_1,\bx_3;\tau_{13})G(\bx_4,\bx_{1'};\tau_{11'})
+	\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})\chi_S(\bx_6,\bx_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}
 \end{multline}
-where $\tau^+_{ij}=t^+_i-t_j$ with $t^+_i=t_i+\eta$ ($\eta \to 0^+$) and $T(3,5,4,6)=- \delta(\tau^+_{35})\delta(\tau^+_{64})\bar{T}(x_3,x_5,x_4,x_6;\tau_{34})$ with 
+[where \titou{$\tau_{ij}=t_i-t_j$} and $\tau^+_{ij}=t^+_i-t_j$ with $t^+_i=t_i+\eta$ ($\eta \to 0^+$)] with $T(3,5,4,6)=- \delta(\tau^+_{35})\delta(\tau^+_{64})\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})$ and
 \begin{multline}
 \label{eq:T_bar}
-	\bar{T}(x_3,x_5,x_4,x_6;\tau_{34}) 
-	= v_c(x_3,x_5)\delta(\tau_{34})\delta(x_3,x_4)\delta(x_6,x_5)-v_c(x_3,x_5)\delta(\tau_{34})	\delta(x_3,x_6)\delta(x_4,x_5)
+	\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34}) 
+	= v_c(\bx_3,\bx_5)\delta(\tau_{34})\delta(\bx_3,\bx_4)\delta(\bx_6,\bx_5)-v_c(\bx_3,\bx_5)\delta(\tau_{34})	\delta(\bx_3,\bx_6)\delta(\bx_4,\bx_5)
 	\\
-	+ iv_c(x_3,x_5)G(x_3,x_7;\tau_{38})G(x_5,x_8;\tau^+_{38})\bar{T}(x_7,x_8,x_4,x_6;\tau_{84})
+	+ iv_c(\bx_3,x_5)G(\bx_3,\bx_7;\tau_{38})G(\bx_5,\bx_8;\tau^+_{38})\Bar{T}(\bx_7,\bx_8,\bx_4,\bx_6;\tau_{84})
 \end{multline}
-Using the Fourier transform $G(\tau)=\int \frac{d\omega}{2\pi}G(\omega)e^{-i\omega\tau}$, changing variable from $t_3$ to $\tau_{34}$ and taking the limit $t_{1^\prime}=t_1^+$ we arrive at
+Using the Fourier transform $G(\tau)=\int \frac{d\omega}{2\pi}G(\omega)e^{-i\omega\tau}$, changing variable from $t_3$ to $\tau_{34}$ and taking the limit $t_{1'}=t_1^+$, we have
 \begin{multline}
-	X_S(x_1,x_{1^\prime},0^-)
-	= -i\int dx_3 dx_4 dx_5 dx_6\int d\tau_{34} \int \frac{d\nu'}{2\pi}G(x_1,x_3;\nu'+\omega_S)G(x_4,x_{1^\prime};\nu')e^{i\nu'\tau_{34}}
+	\chi_S(\bx_1,\bx_{1'},0^-)
+	= -i\int d\bx_3 d\bx_4 d\bx_5 d\bx_6\int d\tau_{34} \int \frac{d\omega'}{2\pi}G(\bx_1,\bx_3;\omega'+\omega_S)G(\bx_4,\bx_{1'};\omega')e^{i\omega'\tau_{34}}
 	\\
-	 \times \bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}.
+	 \times \Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})\chi_S(\bx_6,\bx_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}
 \end{multline}
-Using the Lehman representation of the one-body Green's function in the quasiparticle approximation, i.e.
-$$G(x_1,x_2;\omega)=\sum_{p}\frac{\psi_p(x_1)\psi_p^*(x_2)}{\omega-\epsilon_p+ i\eta \text{sgn}(\epsilon_p-\mu)},$$ where $\psi_p$ and $\epsilon_p$ are single-particle wavefunctions and energies, respectively, and $\mu$ the chemical potential, and multiply left- and right-hand sides by $(\epsilon_a-\epsilon_i-\omega_S)\int dx_1dx^{\prime}_1 \psi^*_a(x_1)\psi_i(x_1^\prime)$.  
-Using the fact that
-\begin{equation}
-	\Theta(\pm\tau)e^{-i\alpha \tau}=\mp\frac{1}{2\pi i}\lim_{\eta\to 0^+}\int d\omega \frac{1}{\omega-\alpha\pm i\eta}e^{-i\omega\tau}
-\end{equation}
+Using the Lehman representation of the one-body Green's function in the quasiparticle approximation given by Eq.~\eqref{eq:G},
+%$$G(x_1,x_2;\omega)=\sum_{p}\frac{\psi_p(x_1)\psi_p^*(x_2)}{\omega-\epsilon_p+ i\eta \text{sgn}(\epsilon_p-\mu)},$$ where $\psi_p$ and $\epsilon_p$ are single-particle wavefunctions and energies, respectively, and $\mu$ the chemical potential, 
+and multiply the left- and right-hand sides by $(\e{a}{}-\e{i}{}-\omega_S)\int d\bx_1 d\bx^{\prime}_1 \SO{a}(\bx_1)\SO{i}(\bx_1')$.  
 we then arrive at
 \begin{multline}
 \label{eq:General_DYN}
-	(\epsilon_a-\epsilon_i-\omega_S)\int dx_1dx^{\prime}_1 \psi^*_a(x_1)\psi_i(x_1^\prime)  X_S(x_1,x_{1^\prime},0^-) =
+	\qty(\e{a}{}-\e{i}{}-\omega_S)\int d\bx_1d\bx^{\prime}_1 \psi^*_a(\bx_1)\psi_i(\bx_1')  \chi_S(\bx_1,\bx_{1'},0^-) =
 	\\
-	-\int dx_3 dx_4 dx_5 dx_6\int d\tau_{34}\psi_a^*(x_3)\psi_i(x_4)
+	-\int d\bx_3 d\bx_4 d\bx_5 d\bx_6\int d\tau_{34}\psi_a(\bx_3)\psi_i(\bx_4)
 	\qty[\Theta(\tau_{34})e^{i\epsilon_{i}\tau_{34}}+\Theta(-\tau_{34})e^{i(\epsilon_{a}-\omega_S)\tau_{34}} ]
 	\\
-	\times \bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{i\omega_S\tau_{34}/2}
+	\times \Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})\chi_S(\bx_6,\bx_5;-\tau_{34})e^{i\omega_S\tau_{34}/2}
 \end{multline}
+(where $\Theta$ is the Heaviside step function) using the fact that
+\begin{equation}
+	\Theta(\pm\tau)e^{-i\alpha \tau}=\mp\frac{1}{2\pi i}\lim_{\eta\to 0^+}\int d\omega \frac{1}{\omega-\alpha\pm i\eta}e^{-i\omega\tau}
+\end{equation}
 
-We now consider the resonant case $\omega_m>0$, for which 
+
+We now consider the resonant case $\omega_S>0$, for which 
 \begin{equation}
 \label{Eqn:chi_tau}
-	X_S(x_1,x_{1^\prime},\tau_1) 
-	=-e^{i\omega_S\abs{\tau_1}/2} \sum_{pq}\psi_p(x_1)\psi^*_{q}(x_{1^\prime}) \mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}
-  	\qty[\Theta(\tau_1)e^{-i\epsilon_p\tau_1}+\Theta(-\tau_1)e^{-i\epsilon_{q}\tau_1} ]
+	\chi_S(\bx_1,\bx_{1'},\tau_1) 
+	=-e^{i\omega_S\abs{\tau_1}/2} \sum_{pq}\SO{p}(\bx_1)\SO{q}(\bx_{1'}) \mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}
+  	\qty[\Theta(\tau_1)e^{-i\e{p}{}\tau_1}+\Theta(-\tau_1)e^{-i\e{q}{}\tau_1} ]
 \end{equation}
   where $\hat{c}^\dagger_{q}$ and $\hat{c}_p$ are creation and annihilation operators, respectively, and $\ket{N}$ and $\ket{N,S}$ are the ground state and the $S$-th excited state, respectively, of the $N$-electron system.
-After some algebraic steps we arrive at 
+After some algebraic steps, one gets
 \begin{multline}
-	-(\epsilon_a-\epsilon_i-\omega_S)\mel{N}{\hat{c}^\dagger_{i}\hat{c}_a}{N,S}
+	-\qty(\e{a}{}-\e{i}{}-\omega_S)\mel{N}{\hat{c}^\dagger_{i}\hat{c}_a}{N,S}
 	\\
     = -\sum_{pq}\mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}
-    \qty{ -\frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\ \bar{T}_{iq,pa}(\omega) e^{-i\omega\eta}\left[\frac{1}{\omega_S-\omega+\epsilon_{q}+\epsilon_i+i\eta}+\frac{1}{\omega_S+\omega-\epsilon_p-\epsilon_a+i\eta}\right] }
+    \qty{ -\frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\ \Bar{T}_{iq,pa}(\omega) e^{-i\omega\eta} \qty[\frac{1}{\omega_S-\omega+\e{q}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{p}{}-\e{a}{}+i\eta} ] }
 \end{multline}
 where we define 
 \begin{equation}
-	\bar{T}_{iq,pa}(\tau_{34})=\int dx_3x_4x_5x_6\int \psi_a^*(x_3)\psi_i(x_4)\bar{T}(x_3,x_5,x_4,x_6;\tau_{34}) \psi_p(x_6)\psi^*_{q}(x_5)
+	\Bar{T}_{iq,pa}(\tau_{34})=\int d\bx_3 d\bx_4 d\bx_5 d\bx_6\int \SO{a}(\bx_3) \SO{i}(\bx_4)\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34}) \psi_p(\bx_6)\psi^*_{q}(\bx_5)
 \end{equation}
-Using the definition $A_S^{(qp)}=\langle N|\hat{c}^\dagger_{q}\hat{c}_p|N,S\rangle$, we arrive at
+Using the definition $X_{qp,S}=\mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}$, we arrive at
 
 \begin{equation}
-	\qty(\epsilon_a-\epsilon_i-\omega_S)A_S^{(ia)}+\sum_{pq}A_S^{(q p)}\widetilde{T}_{iq,pa}(\omega_S)=0,
+	\qty(\e{a}{}-\e{i}{}-\omega_S) X_{ia,S}+\sum_{pq}X_{qp,S}\widetilde{T}_{iq,pa}(\omega_S)=0,
 \end{equation}
-where we defined
+where we define
 \begin{equation}
 	\widetilde{T}_{iq,pa}(\omega_S)
-	= \qty{ \frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\bar{T}_{iq,pa}(\omega)e^{-i\omega\eta} \left[\frac{1}{\omega_S-\omega+\epsilon_{q}+\epsilon_i+i\eta}+\frac{1}{\omega_S+\omega-\epsilon_p-\epsilon_a+i\eta}\right]  }
+	= \frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\Bar{T}_{iq,pa}(\omega)e^{-i\omega\eta} \left[\frac{1}{\omega_S-\omega+\e{q}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{p}{}-\e{a}{}+i\eta}\right] 
  \label{Eqn:H2preso_eigen_2_T}
 \end{equation}
 
 This is an eigenvalue equation to calculate the positive excitation energies of a system, which can be rewritten as,
 \begin{equation}
 \label{eq:H2preso_eigen}
-	H^{2p,reso}_{ia,qp}(\omega_S)A_S^{(qp)}=\omega_S A^{(ia)}_S,
+	H_{ia,qp}(\omega_S) X_{qp,S}=\omega_S X_{ia,S}
 \end{equation}
 with
 \begin{equation}
-	H^{2p,reso}_{ia,qp}(\omega_S)=(\epsilon_a-\epsilon_i)\delta_{iq}\delta_{ap} + \mel{ip}{}{aq}+\widetilde{T}_{iq,pa}(\omega_S).
+	H_{ia,qp}(\omega_S)=(\e{a}{}-\e{i}{})\delta_{iq}\delta_{ap} + \mel{ip}{}{aq}+\widetilde{T}_{iq,pa}(\omega_S).
 \end{equation}
-Here $H^{2p,reso}_{ia,jb}(\omega_S)=A_{ia,jb}(\omega_S)$ and $H^{2p,reso}_{ia,bj}(\omega_S)=B_{ia,jb}(\omega_S)$.
-If we drop the correlation part of $\bar{T}$ [the first two terms on the right-hand side of Eq.~\eqref{eq:T_bar}] we obtain the TDHF equations. To calculate the correlation contribution we use \alert{Eq.~(9)} in Eq.~\eqref{Eqn:H2preso_eigen_2_T}, and after integration over the frequency we arrive at \alert{Eq.~(21).}
+Here $H_{ia,jb}(\omega_S)=A_{ia,jb}(\omega_S)$ and $H_{ia,bj}(\omega_S)=B_{ia,jb}(\omega_S)$.
+If we drop the correlation part of $\Bar{T}$ [the first two terms on the right-hand side of Eq.~\eqref{eq:T_bar}] we obtain the TDHF equations. To calculate the correlation contribution we use \alert{Eq.~(9)} in Eq.~\eqref{Eqn:H2preso_eigen_2_T}, and after integration over the frequency we arrive at \alert{Eq.~(21).}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \twocolumngrid
 \section*{Data availability statement}
