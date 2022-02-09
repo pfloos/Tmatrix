@@ -403,10 +403,11 @@ with
 \end{subequations}
 The eigenvalues $\Om{m}{\BSE}$ of Eq.~\eqref{eq:BSE} provide $OV$ singlet (\ie, spin-conserved) and $OV$ triplet  (\ie, spin-flip) single excitations.
 Note that the spin structure of the BSE@$GT$ equations is analogous to the BSE@$GW$ version, \cite{Monino_2021} and one can compute separately singlet and triplet excitation energies.
+Neglecting the coupling between excitations and deexcitations, \ie, $\bB{}{\BSE} = \bO$, is known as the Tamm-Dancoff approximation (TDA).
 
 Due to the frequency-independent nature of the static BSE, it is well known that one cannot access double (and higher) excitations.
 \cite{Loos_2019,Romaniello_2009b,Sangalli_2011,Loos_2020h,Authier_2020,Monino_2021}
-In order to go beyond the static approximation, it is possible to consider,  within the dynamical Tamm-Dancoff approximation (which neglects the frequency dependence of the coupling block $\bB{}{}$), the dynamical version of the BSE (dBSE). \cite{Strinati_1988,Romaniello_2009b,Loos_2020h}
+In order to go beyond the static approximation, it is possible to consider, within the dynamical TDA (dTDA) that neglects the frequency dependence of the coupling block $\bB{}{}$, the dynamical version of the BSE (dBSE). \cite{Strinati_1988,Romaniello_2009b,Loos_2020h}
 In this case, one must solve the (non-linear) dynamical eigenvalue problem
 \begin{equation}
 \label{eq:dBSE}
@@ -516,28 +517,21 @@ Note again that the present perturbative scheme does not allow to access double 
 \section{Computational details}
 \label{sec:compdet}
 %%%%%%%%%%%%%%%%%%%%%%
-The present formalism has been implemented in the electronic structure package \texttt{QuAcK} \cite{QuAcK} that is freely available on \texttt{github}. 
+The present formalism has been implemented in the electronic structure package \texttt{QuAcK} \cite{QuAcK} which is freely available at \url{https://github.com/pfloos/QuAcK}. 
 We consider here only systems with closed-shell singlet ground states. 
 Thus, the $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are employed.
 Note that all quasiparticle energies which are obtained via Eq.~\eqref{eq:G0T0} are corrected in the same way.
 Finally, the infinitesimal $\eta$ is set to zero for all calculations.
 The ev$GT$ and qs$GT$ schemes have been also implemented but are not considered here.
-For the sake of completeness, implementable expressions in the spatial orbital basis are reported in the supporting information.
+Although the dynamical correction is computed in the dTDA throughout, the zeroth-order excitonic Hamiltonian [see Eq.~\eqref{eq:BSE}] is always the ``full'' BSE static Hamiltonian, i.e., without TDA. 
 
-
-In terms of computational, the overall scaling of BSE@$GT$ is equivalent to BSE@$GW$ as they both correspond to seeking the lowest eigenvalues of a matrix of size $(\Nocc \Nvir \times \Nocc \Nvir)$. 
-However, the prefactor corresponding to the calculations of the $T$-matrix and more specifically to the eigenvalue of the \titou{T2: Discuss the computational cost of the BSE@$GT$ equations, especially compare to BSE@$GW$.}
-%In terms of computational cost, if one decides to compute the dynamical correction of the $M$ lowest excitation energies, one must perform, first, a conventional (static) BSE calculation and extract the $M$ lowest eigenvalues and their corresponding eigenvectors [see Eq.~\eqref{eq:LR-BSE-stat}].
-%These are then used to compute the first-order correction from Eq.~\eqref{eq:Om1-TDA}, which also require to construct and evaluate the dynamical part of the BSE Hamiltonian for each excitation one wants to dynamically correct. 
-%The static BSE Hamiltonian is computed once during the static BSE calculation and does not dependent on the targeted excitation.
-%
-%Searching iteratively for the lowest eigenstates, via Davidson's algorithm for instance, can be performed in $\order*{\Norb^4}$ computational cost.
-%Constructing the static and dynamic BSE Hamiltonians is much more expensive as it requires the complete diagonalization of the $(\Nocc \Nvir \times \Nocc \Nvir)$ RPA linear response matrix [see Eq.~\eqref{eq:LR-RPA}], which corresponds to a $\order*{\Nocc^3 \Nvir^3} = \order*{\Norb^6}$ computational cost. 
-%Although it might be reduced to $\order*{\Norb^4}$ operations with standard resolution-of-the-identity techniques, \cite{Duchemin_2019,Duchemin_2020} this step is the computational bottleneck in the current implementation.
-
-%For comparison purposes, we employ the theoretical best estimates (TBEs) and geometries of Refs.~\onlinecite{Loos_2018a,Loos_2019,Loos_2020b} from which CIS(D), \cite{Head-Gordon_1994,Head-Gordon_1995} ADC(2), \cite{Trofimov_1997,Dreuw_2015} CC2, \cite{Christiansen_1995a} CCSD, \cite{Purvis_1982} and CC3 \cite{Christiansen_1995b} excitation energies are also extracted. 
-%Various statistical quantities are reported in the following: the mean signed error (MSE), mean absolute error (MAE), root-mean-square error (RMSE), and the maximum positive [Max($+$)] and maximum negative [Max($-$)] errors.
-
+In terms of computational cost, the overall scaling of BSE@$GT$ is equivalent to BSE@$GW$ as they both correspond to seeking the lowest eigenvalues of a matrix of size $(2OV \times 2OV)$. 
+Searching iteratively for the lowest eigenstates can be routinely performed via Davidson's algorithm with a $\order*{K^4}$ computational cost. \cite{Davidson_1975}
+The cost of the dynamical correction, which is thoroughly discussed in Ref.~\onlinecite{Loos_2020h}, is more expensive but is again equivalent in both formalisms.
+The computational cost associated with the computation of the $T$-matrix and the screening $W$ both scale as $\order*{K^6}$ as one must obtain all the eigenvalues and eigenvectors of the pp-RPA and ph-RPA problem, respectively.
+However, the prefactor of the pp-RPA calculation is significantly larger than its ph-RPA counterpart due to the larger size of the pp-RPA matrices and its non-Hermitian nature. \cite{Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,Yang_2014a,Zhang_2015,Zhang_2016}
+Moreover, within the $T$-matrix formalism, one must compute both the singlet and triplet contributions of the $T$-matrix, while for singlet states, only the singlet contribution of $W$ contributes to the self-energy.
+Although similar approaches remain to be developed for the $T$-matrix formalism, contour deformation and density fitting techniques can be efficiently implemented in the case of $GW$ to reduce the scaling to $\order*{K^3}$. \cite{Duchemin_2019,Duchemin_2020,Duchemin_2021}
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Results and discussion}
@@ -560,12 +554,21 @@ The excitation energies for some low-lying singlet and triplet excited states ar
 \end{figure*}
 %%% %%% %%% %%%
 
+%%% FIGURE 2 %%%
+\begin{figure}
+	\includegraphics[width=\linewidth]{H2_gap}
+	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the BSE@$G_0W_0$ (blue) and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
+	Raw data are reported in {\SupInf}.}
+	\label{fig:H2}
+\end{figure}
+%%% %%% %%% %%%
+
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Excited states of beryllium hydride}
 \label{sec:beh2}
 %%%%%%%%%%%%%%%%%%%%%%
 
-%%% FIGURE 2 %%%
+%%% FIGURE 3 %%%
 \begin{figure*}
 	\includegraphics[width=\textwidth]{BeH2}
 	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{BeH2} as a function of the distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels.
@@ -575,6 +578,14 @@ The excitation energies for some low-lying singlet and triplet excited states ar
 \end{figure*}
 %%% %%% %%% %%%
 
+%%% FIGURE 4 %%%
+\begin{figure}
+	\includegraphics[width=\linewidth]{BeH2_gap}
+	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{BeH2} as a function of the internuclear distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the BSE@$G_0W_0$ (blue) and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
+	Raw data are reported in {\SupInf}.}
+	\label{fig:H2}
+\end{figure}
+%%% %%% %%% %%%
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diatomics}
@@ -588,8 +599,8 @@ The excitation energies for some low-lying singlet and triplet excited states ar
 	\label{fig:mol}
 	\begin{ruledtabular}
 		\begin{tabular}{lcccccccc}
-					&			&	\mc{5}{c}{Methods}																\\
-			\cline{3-7}
+					&			&	\mc{7}{c}{Methods}																\\
+			\cline{3-9}
 			Mol.	&	State	&	CIS		&	CIS(D)	&	TDHF	&	BSE@$GW$	&	dBSE@$GW$	&	BSE@$GT$	&	dBSE@$GT$	\\
 			\hline
 			\ce{H2}	&			&	\\
@@ -618,24 +629,126 @@ Finally, the unrestricted and spin-flip extensions of the present formalism is c
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{acknowledgements}
-The authors thank Roberto Orlando for useful discussions.
+%The authors thank Roberto Orlando for useful discussions.
 PFL thanks the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation programme (Grant agreement No.~863481) for funding.
 This project has also received financial support from the CNRS through the 80|Prime program and has been supported through the EUR grant NanoX ANR-17-EURE-0009 in the framework of the ``Programme des Investissements d’Avenir''.
 \end{acknowledgements}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-%\appendix
+\onecolumngrid
+\appendix
 %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{BSE with a dynamical kernel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To recast the BSE with a dynamical $T$-matrix kernel as an eigenvalue equation, we follow Ref.~\onlinecite{Strinati_1980} and start from the equation for the BSE amplitude 
+\begin{equation}
+\label{eq:Strinati_1}
+	X_S(1,1^\prime) = \int d3d4d5d6L_0(1,4,1^\prime,3)\Xi(3,5,4,6) X_S(6,5)
+\end{equation}
+with 
+\begin{align}
+\label{eq:T-matrix_kernel}
+	L_0(1,4,1^\prime,3) & =-iG(1,3)G(4,1^\prime)
+	&
+	\Xi(3,5,4,6) & =  i\frac{\delta \Sigma(3,4)}{\delta G(6,5)}\approx -T(3,5,4,6)
+\end{align}
+where we consider the so-called $T$-matrix self-energy \cite{Martin_2016,Romaniello_2012} $\Sigma(3,4)=iG(7,8)T(3,8,4,7)$ with
+\begin{equation}
+\label{eq:T-matrix}
+	T(3,8,4,7) =
+	- v_c(3,8)\delta(3,4)\delta(7,8)
+	+ v_c(3,8)\delta(4,8)\delta(3,7)
+	+ iv_c(3,8)G(3,1')G(8,2')T(1',2',4,7)
+\end{equation}  
+and where we neglect the functional derivative $\delta T/\delta G$ in the kernel $\Xi$.
+Making the time dependence of Eq.~\eqref{eq:Strinati_1} explicit, one gets 
+\begin{multline}
+\label{eqn:DYN_T}
+	X_S(x_1,x_{1^\prime},\tau_{11'})e^{-i\omega_S(t_1+t_{1^\prime})/2}
+	=-i\int d3d4d5d6 G(x_1,x_3;\tau_{13})G(x_4,x_{1^\prime};\tau_{11^\prime})
+	\\
+	\times \bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}
+\end{multline}
+where $\tau^+_{ij}=t^+_i-t_j$ with $t^+_i=t_i+\eta$ ($\eta \to 0^+$) and $T(3,5,4,6)=- \delta(\tau^+_{35})\delta(\tau^+_{64})\bar{T}(x_3,x_5,x_4,x_6;\tau_{34})$ with 
+\begin{multline}
+\label{eq:T_bar}
+	\bar{T}(x_3,x_5,x_4,x_6;\tau_{34}) 
+	= v_c(x_3,x_5)\delta(\tau_{34})\delta(x_3,x_4)\delta(x_6,x_5)-v_c(x_3,x_5)\delta(\tau_{34})	\delta(x_3,x_6)\delta(x_4,x_5)
+	\\
+	+ iv_c(x_3,x_5)G(x_3,x_7;\tau_{38})G(x_5,x_8;\tau^+_{38})\bar{T}(x_7,x_8,x_4,x_6;\tau_{84})
+\end{multline}
+Using the Fourier transform $G(\tau)=\int \frac{d\omega}{2\pi}G(\omega)e^{-i\omega\tau}$, changing variable from $t_3$ to $\tau_{34}$ and taking the limit $t_{1^\prime}=t_1^+$ we arrive at
+\begin{multline}
+	X_S(x_1,x_{1^\prime},0^-)
+	= -i\int dx_3 dx_4 dx_5 dx_6\int d\tau_{34} \int \frac{d\nu'}{2\pi}G(x_1,x_3;\nu'+\omega_S)G(x_4,x_{1^\prime};\nu')e^{i\nu'\tau_{34}}
+	\\
+	 \times \bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}.
+\end{multline}
+Using the Lehman representation of the one-body Green's function in the quasiparticle approximation, i.e.
+$$G(x_1,x_2;\omega)=\sum_{p}\frac{\psi_p(x_1)\psi_p^*(x_2)}{\omega-\epsilon_p+ i\eta \text{sgn}(\epsilon_p-\mu)},$$ where $\psi_p$ and $\epsilon_p$ are single-particle wavefunctions and energies, respectively, and $\mu$ the chemical potential, and multiply left- and right-hand sides by $(\epsilon_a-\epsilon_i-\omega_S)\int dx_1dx^{\prime}_1 \psi^*_a(x_1)\psi_i(x_1^\prime)$.  
+Using the fact that
+\begin{equation}
+	\Theta(\pm\tau)e^{-i\alpha \tau}=\mp\frac{1}{2\pi i}\lim_{\eta\to 0^+}\int d\omega \frac{1}{\omega-\alpha\pm i\eta}e^{-i\omega\tau}
+\end{equation}
+we then arrive at
+\begin{multline}
+\label{eq:General_DYN}
+	(\epsilon_a-\epsilon_i-\omega_S)\int dx_1dx^{\prime}_1 \psi^*_a(x_1)\psi_i(x_1^\prime)  X_S(x_1,x_{1^\prime},0^-) =
+	\\
+	-\int dx_3 dx_4 dx_5 dx_6\int d\tau_{34}\psi_a^*(x_3)\psi_i(x_4)
+	\qty[\Theta(\tau_{34})e^{i\epsilon_{i}\tau_{34}}+\Theta(-\tau_{34})e^{i(\epsilon_{a}-\omega_S)\tau_{34}} ]
+	\\
+	\times \bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{i\omega_S\tau_{34}/2}
+\end{multline}
+
+We now consider the resonant case $\omega_m>0$, for which 
+\begin{equation}
+\label{Eqn:chi_tau}
+	X_S(x_1,x_{1^\prime},\tau_1) 
+	=-e^{i\omega_S\abs{\tau_1}/2} \sum_{pq}\psi_p(x_1)\psi^*_{q}(x_{1^\prime}) \mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}
+  	\qty[\Theta(\tau_1)e^{-i\epsilon_p\tau_1}+\Theta(-\tau_1)e^{-i\epsilon_{q}\tau_1} ]
+\end{equation}
+  where $\hat{c}^\dagger_{q}$ and $\hat{c}_p$ are creation and annihilation operators, respectively, and $\ket{N}$ and $\ket{N,S}$ are the ground state and the $S$-th excited state, respectively, of the $N$-electron system.
+After some algebraic steps we arrive at 
+\begin{multline}
+	-(\epsilon_a-\epsilon_i-\omega_S)\mel{N}{\hat{c}^\dagger_{i}\hat{c}_a}{N,S}
+	\\
+    = -\sum_{pq}\mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}
+    \qty{ -\frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\ \bar{T}_{iq,pa}(\omega) e^{-i\omega\eta}\left[\frac{1}{\omega_S-\omega+\epsilon_{q}+\epsilon_i+i\eta}+\frac{1}{\omega_S+\omega-\epsilon_p-\epsilon_a+i\eta}\right] }
+\end{multline}
+where we define 
+\begin{equation}
+	\bar{T}_{iq,pa}(\tau_{34})=\int dx_3x_4x_5x_6\int \psi_a^*(x_3)\psi_i(x_4)\bar{T}(x_3,x_5,x_4,x_6;\tau_{34}) \psi_p(x_6)\psi^*_{q}(x_5)
+\end{equation}
+Using the definition $A_S^{(qp)}=\langle N|\hat{c}^\dagger_{q}\hat{c}_p|N,S\rangle$, we arrive at
+
+\begin{equation}
+	\qty(\epsilon_a-\epsilon_i-\omega_S)A_S^{(ia)}+\sum_{pq}A_S^{(q p)}\widetilde{T}_{iq,pa}(\omega_S)=0,
+\end{equation}
+where we defined
+\begin{equation}
+	\widetilde{T}_{iq,pa}(\omega_S)
+	= \qty{ \frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\bar{T}_{iq,pa}(\omega)e^{-i\omega\eta} \left[\frac{1}{\omega_S-\omega+\epsilon_{q}+\epsilon_i+i\eta}+\frac{1}{\omega_S+\omega-\epsilon_p-\epsilon_a+i\eta}\right]  }
+ \label{Eqn:H2preso_eigen_2_T}
+\end{equation}
+
+This is an eigenvalue equation to calculate the positive excitation energies of a system, which can be rewritten as,
+\begin{equation}
+\label{eq:H2preso_eigen}
+	H^{2p,reso}_{ia,qp}(\omega_S)A_S^{(qp)}=\omega_S A^{(ia)}_S,
+\end{equation}
+with
+\begin{equation}
+	H^{2p,reso}_{ia,qp}(\omega_S)=(\epsilon_a-\epsilon_i)\delta_{iq}\delta_{ap} + \mel{ip}{}{aq}+\widetilde{T}_{iq,pa}(\omega_S).
+\end{equation}
+Here $H^{2p,reso}_{ia,jb}(\omega_S)=A_{ia,jb}(\omega_S)$ and $H^{2p,reso}_{ia,bj}(\omega_S)=B_{ia,jb}(\omega_S)$.
+If we drop the correlation part of $\bar{T}$ [the first two terms on the right-hand side of Eq.~\eqref{eq:T_bar}] we obtain the TDHF equations. To calculate the correlation contribution we use \alert{Eq.~(9)} in Eq.~\eqref{Eqn:H2preso_eigen_2_T}, and after integration over the frequency we arrive at \alert{Eq.~(21).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-%\section{$T$-matrix self-energy in the spatial orbital basis}
-%%%%%%%%%%%%%%%%%%%%%%%%
-
-%Here, we provide implementable expressions for the $T$-matrix self-energy in the spatial orbital basis.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%
+\twocolumngrid
 \bibliography{Tmatrix}
 %%%%%%%%%%%%%%%%%%%%%%%%
 
