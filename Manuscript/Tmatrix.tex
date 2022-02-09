@@ -206,7 +206,7 @@
 \begin{abstract}
 While the well-established $GW$ approximation corresponds to a resummation of the direct ring diagrams and is particularly well suited for weakly-correlated systems, the $T$-matrix approximation does sum ladder diagrams up to infinity and is supposedly more appropriate in the presence of strong correlation.
 Here, we derive and implement, for the first time, the static and dynamic Bethe-Salpeter equations when one considers $T$-matrix quasiparticle energies as well as a $T$-matrix-based kernel.
-The performance of the static scheme and its perturbative dynamical correction are assessed by computed the neutral excited states of molecular systems.
+The performance of the static scheme and its perturbative dynamical correction are assessed by computing the neutral excited states of molecular systems.
 Comparison with more conventional schemes as well as other wave function methods are also reported.
 %\bigskip
 %\begin{center}
@@ -549,8 +549,15 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 \label{sec:h2}
 %%%%%%%%%%%%%%%%%%%%%%
 As a first didactical example, we consider the lowest singlet and triplet excited states of the hydrogen molecule \ce{H2} and the variation of their respective excitation energies upon dissociation.
-The excitation energies associated with these low-lying singlet and triplet excited states are represented in Fig.~\ref{fig:H2} as a function of the internuclear distance $R_{\ce{H-H}}$ at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
+The excitation energies associated with these low-lying excited states are represented in Fig.~\ref{fig:H2} as a function of the internuclear distance $R_{\ce{H-H}}$ at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
 The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:H2_gap}
+This shows that, as already observed in the Hubbard dimer, \cite{Romaniello_2012} the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
+
+The performances of BSE@$G_0W_0$ and BSE@$G_0T_0$ are very similar for this system.
+For the lowest singlet excited state $B{}^1\Sigma_u^+$, the $T$-matrix-based formalism is slightly better when $R_{\ce{H-H}}$ increases but fails ultimately to reproduce the FCI results.
+For the $E{}^1\Sigma_g^+$ state, BSE@$G_0T_0$
+Note that both formalisms cannot see the $F{}^1\Sigma_g^+$ doubly-excited states and cannot model properly the avoided crossing between $E{}^1\Sigma_g^+$ and $F{}^1\Sigma_g^+$.
+Similar observations can be done for the triplet states.
 
 %%% FIGURE 1 %%%
 \begin{figure*}
@@ -577,6 +584,11 @@ The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO g
 As a second example, we consider the symmetric dissociation of the linear molecule beryllium hydride \ce{BeH2}.
 The variation in excitation energies as a function of the distance $R_{\ce{Be-H}}$ is shown in Fig.~\ref{fig:BeH2}.
 The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:BeH2_gap}
+Again, the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
+
+Dynamical corrections slightly improves the agreement between BSE and FCI.
+
+
 
 %%% FIGURE 3 %%%
 \begin{figure*}
