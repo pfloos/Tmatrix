@@ -528,7 +528,7 @@ Although the dynamical correction is computed in the dTDA throughout, the zeroth
 In terms of computational cost, the overall scaling of BSE@$GT$ is equivalent to BSE@$GW$ as they both correspond to seeking the lowest eigenvalues of a matrix of size $(2OV \times 2OV)$. 
 Searching iteratively for the lowest eigenstates can be routinely performed via Davidson's algorithm with a $\order*{K^4}$ computational cost. \cite{Davidson_1975}
 The cost of the dynamical correction, which is thoroughly discussed in Ref.~\onlinecite{Loos_2020h}, is more expensive but is again equivalent in both formalisms.
-The computational cost associated with the computation of the $T$-matrix and the screening $W$ both scale as $\order*{K^6}$ as one must obtain all the eigenvalues and eigenvectors of the pp-RPA and ph-RPA problem, respectively.
+The computational cost associated with the computation of the $T$-matrix and the screening $W$ both scale as $\order*{K^6}$ as one must obtain, respectively, all the eigenvalues and eigenvectors of the pp-RPA and ph-RPA problems.
 However, the prefactor of the pp-RPA calculation is significantly larger than its ph-RPA counterpart due to the larger size of the pp-RPA matrices and its non-Hermitian nature. \cite{Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,Yang_2014a,Zhang_2015,Zhang_2016}
 Moreover, within the $T$-matrix formalism, one must compute both the singlet and triplet contributions of the $T$-matrix, while for singlet states, only the singlet contribution of $W$ contributes to the self-energy.
 Although similar approaches remain to be developed for the $T$-matrix formalism, contour deformation and density fitting techniques can be efficiently implemented in the case of $GW$ to reduce the scaling to $\order*{K^3}$. \cite{Duchemin_2019,Duchemin_2020,Duchemin_2021}
@@ -542,8 +542,9 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 \subsection{Excited states of the hydrogen molecule}
 \label{sec:h2}
 %%%%%%%%%%%%%%%%%%%%%%
-As a first didactical example, we consider the excited states of the hydrogen molecule \ce{H2} and the variation of the excitation energies upon dissociation.
-The excitation energies for some low-lying singlet and triplet excited states are represented in Fig.~\ref{fig:H2} as a function of the internuclear distance $R_{\ce{H-H}}$ at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
+As a first didactical example, we consider the lowest singlet and triplet excited states of the hydrogen molecule \ce{H2} and the variation of their respective excitation energies upon dissociation.
+The excitation energies associated with these low-lying singlet and triplet excited states are represented in Fig.~\ref{fig:H2} as a function of the internuclear distance $R_{\ce{H-H}}$ at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
+The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:H2_gap}
 
 %%% FIGURE 1 %%%
 \begin{figure*}
@@ -557,9 +558,9 @@ The excitation energies for some low-lying singlet and triplet excited states ar
 %%% FIGURE 2 %%%
 \begin{figure}
 	\includegraphics[width=\linewidth]{H2_gap}
-	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the BSE@$G_0W_0$ (blue) and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
+	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the $G_0W_0$ (blue) and $G_0T_0$ (red) levels with the cc-pVTZ basis.
 	Raw data are reported in {\SupInf}.}
-	\label{fig:H2}
+	\label{fig:H2_gap}
 \end{figure}
 %%% %%% %%% %%%
 
@@ -567,6 +568,9 @@ The excitation energies for some low-lying singlet and triplet excited states ar
 \subsection{Excited states of beryllium hydride}
 \label{sec:beh2}
 %%%%%%%%%%%%%%%%%%%%%%
+As a second example, we consider the symmetric dissociation of the linear molecule beryllium hydride \ce{BeH2}.
+The variation in excitation energies as a function of the distance $R_{\ce{Be-H}}$ is shown in Fig.~\ref{fig:BeH2}.
+The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:BeH2_gap}
 
 %%% FIGURE 3 %%%
 \begin{figure*}
@@ -574,7 +578,7 @@ The excitation energies for some low-lying singlet and triplet excited states ar
 	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{BeH2} as a function of the distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels.
 	The dynamically-corrected BSE excitation energies are represented as thin lines for dBSE@$G_0W_0$ (blue), and dBSE@$G_0T_0$ (red) with the cc-pVDZ basis.
 	Raw data are reported in {\SupInf}.}
-	\label{fig:H2}
+	\label{fig:BeH2}
 \end{figure*}
 %%% %%% %%% %%%
 
@@ -583,20 +587,23 @@ The excitation energies for some low-lying singlet and triplet excited states ar
 	\includegraphics[width=\linewidth]{BeH2_gap}
 	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{BeH2} as a function of the internuclear distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the BSE@$G_0W_0$ (blue) and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
 	Raw data are reported in {\SupInf}.}
-	\label{fig:H2}
+	\label{fig:BeH2_gap}
 \end{figure}
 %%% %%% %%% %%%
 
 %%%%%%%%%%%%%%%%%%%%%%
-\subsection{Diatomics}
-\label{sec:diatomics}
+\subsection{Molecules at equilibrium}
+\label{sec:mol}
 %%%%%%%%%%%%%%%%%%%%%%
+
+Table \ref{tab:mol} reports singlet and triplet vertical excitation energies for various molecular systems at equilibrium geometry.
+In addition to the BSE-based models studied in the present manuscript, we have selected well-known methods \titou{(CIS, CIS(D), TDHF and FCI)}.
 
 %%% TABLE I %%%
 \begin{table*}
 	\caption{Singlet and triplet excitation energies (in \si{\eV}) of various molecular systems at equilibrium geometry computed at various levels of theory with the cc-pVDZ basis set.
 	The corresponding experimental equilibrium geometries have been extracted from the computational chemistry comparison and benchmark database (CCCBDB) at \url{https://cccbdb.nist.gov}.}
-	\label{fig:mol}
+	\label{tab:mol}
 	\begin{ruledtabular}
 		\begin{tabular}{lcccccccc}
 					&			&	\mc{7}{c}{Methods}																\\
