@@ -1,0 +1,220 @@
+\documentclass[a4paper,superscriptaddress,twocolumn,aps,prb,floatfix,citeautoscript]{revtex4-1}\usepackage[utf8]{inputenc}
+\usepackage{times} 
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{lscape}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{bm}
+\usepackage{url}
+%\usepackage{ulem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+%\usepackage{subcaption}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+
+
+
+\begin{document}
+
+\section{BSE with a dynamical  kernel}
+\subsection{T-matrix kernel}
+To recast the Bethe-Salpeter equation with a dynamical T-matrix kernel as an eigenvalue equation we follow Ref.[Strinati]. We start from the equation for the Bethe-Salpeter amplitude $X_S$
+\begin{equation}
+X_S(1,1^\prime)=\int d3d4d5d6L_0(1,4,1^\prime,3)\Xi(3,5,4,6) X_S(6,5),
+\label{Eqn:Strinati_1}
+\end{equation}
+with 
+\bea
+L_0(1,4,1^\prime,3)&=&-iG(1,3)G(4,1^\prime)\\
+\Xi(3,5,4,6)&=&i\frac{\delta \Sigma(3,4)}{\delta G(6,5)}\approx -T(3,5,4,6),
+\label{Eqn:T-matrix_kernel}
+\eea
+where we considered $\Sigma(3,4)=iG(7,8)T(3,8,4,7)$  \cite{Lucia_book,pina_PRB2012}with
+\bea
+T(3,8,4,7) &=&-v_c(3,8)\delta(3,4)\delta(7,8)+v_c(3,8)\delta(4,8)\delta(3,7)\nonumber\\
+&+&iv_c(3,8)G(3,1')G(8,2')T(1',2',4,7)
+\label{Eqn:T-matrix}
+\eea
+and we neglect the functional derivative $\delta T/\delta G$ in the kernel $\Xi$.
+We now make explicit the time dependence of Eq.\ (\ref{Eqn:Strinati_1}). We get 
+\begin{widetext}
+\begin{eqnarray}
+  X_S(x_1,x_{1^\prime},\tau_{11'})e^{-i\omega_S(t_1+t_{1^\prime})/2}&=&-i\int d3456 G(x_1,x_3;\tau_{13})G(x_4,x_{1^\prime};\tau_{11^\prime})\times\nonumber\\
+  &&\bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2},
+  \label{Eqn:DYN_T}
+  \end{eqnarray}
+  \end{widetext}
+  where we used the notation $\tau^+_{ij}=t^+_i-t_j$, with $t^+_i=t_i+\eta$ ($\eta\rightarrow 0^+$), and we considered $T(3,5,4,6)=- \delta(\tau^+_{35})\delta(\tau^+_{64})\bar{T}(x_3,x_5,x_4,x_6;\tau_{34})$ \cite{Lucia_book}, with 
+\begin{widetext}
+  \begin{eqnarray}
+\bar{T}(x_3,x_5,x_4,x_6;\tau_{34}) &=&v_c(x_3,x_5)\delta(\tau_{34})\delta(x_3,x_4)\delta(x_6,x_5)-v_c(x_3,x_5)\delta(\tau_{34})\delta(x_3,x_6)\delta(x_4,x_5)\nonumber\\
+&+&iv_c(x_3,x_5)G(x_3,x_7;\tau_{38})G(x_5,x_8;\tau^+_{38})\bar{T}(x_7,x_8,x_4,x_6;\tau_{84}).
+\label{Eqn:T_bar}
+\end{eqnarray}
+\end{widetext}
+Using the Fourier transform $G(\tau)=\int \frac{d\omega}{2\pi}G(\omega)e^{-i\omega\tau}$, changing variable from $t_3$ to $\tau_{34}$ and taking the limit $t_{1^\prime}=t_1^+$ we arrive at
+\begin{widetext}
+\begin{eqnarray}
+X_S(x_1,x_{1^\prime},0^-)
+  &=&-i\int dx_3x_4x_5x_6\int d\tau_{34} \int \frac{d\nu'}{2\pi}G(x_1,x_3;\nu'+\omega_S)G(x_4,x_{1^\prime};\nu')e^{i\nu'\tau_{34}}\times\nonumber\\
+  &&\bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}.
+\end{eqnarray}
+ \end{widetext}
+ We now use  the Lehman representation of the one-body Green's function in the quasiparticle approximation, i.e.
+$$G(x_1,x_2;\omega)=\sum_{p}\frac{\psi_p(x_1)\psi_p^*(x_2)}{\omega-\epsilon_p+ i\eta \text{sgn}(\epsilon_p-\mu)},$$ where $\psi_p$ and $\epsilon_p$ are single-particle wavefunctions and energies, respectively, and $\mu$ the chemical potential, and multiply left- and right-hand sides by $(\epsilon_a-\epsilon_i-\omega_m)\int dx_1dx^{\prime}_1 \psi^*_a(x_1)\psi_i(x_1^\prime)$.  
+Using the fact that
+\begin{equation}
+\Theta(\pm\tau)e^{-i\alpha \tau}=\mp\frac{1}{2\pi i}\lim_{\eta\rightarrow 0^+}\int d\omega \frac{1}{\omega-\alpha\pm i\eta}e^{-i\omega\tau},
+\end{equation}
+
+%$$\frac{-i}{2\pi} \int  d\nu'\frac{1}{\nu'+\omega_m-\epsilon_{c}+ i\eta}e^{i\nu'\tau_{34}}=\frac{1}{2\pi i}\int  d\nu'\frac{1}{\nu'+\omega_m-\epsilon_{c}+ i\eta}e^{-i\nu'(-\tau_{34}})=-\Theta(-\tau_{34})e^{i(\epsilon_{c}-\omega_m)\tau_{34}}$$
+%and
+%$$\frac{i}{2\pi} \int  d\nu'\frac{1}{\nu'-\epsilon_{v}- i\eta}e^{i\nu'\tau_{34}}=\frac{-1}{2\pi i}\int  d\nu'\frac{1}{\nu'-\epsilon_{v}- i\eta}e^{-i\nu'(-\tau_{34}})=-\Theta(\tau_{34})e^{i\epsilon_{v}\tau_{34}},$$
+we then arrive at
+ \begin{eqnarray}
+&&(\epsilon_a-\epsilon_i-\omega_S)\int dx_1dx^{\prime}_1 \psi^*_a(x_1)\psi_i(x_1^\prime)  X_S(x_1,x_{1^\prime},0^-)=\nonumber\\
+  &-&\int dx_3x_4x_5x_6\int d\tau_{34}\psi_a^*(x_3)\psi_i(x_4)\nonumber\\
+  &\times&\left[\Theta(\tau_{34})e^{i\epsilon_{i}\tau_{34}}+\Theta(-\tau_{34})e^{i(\epsilon_{a}-\omega_S)\tau_{34}}\right]\nonumber\\
+&\times&\bar{T}(x_3,x_5,x_4,x_6;\tau_{34})X_S(x_6,x_5;-\tau_{34})e^{i\omega_S\tau_{34}/2}.
+\label{Eqn:General_DYN}
+\end{eqnarray}
+%
+%
+%
+% RESONANT
+We now consider the resonant case $\omega_m>0$, for which 
+\begin{eqnarray}
+X_S(x_1,x_{1^\prime},\tau_1)   &=&-e^{i\omega_S|\tau_1|/2} \sum_{pq}\psi_p(x_1)\psi^*_{q}(x_{1^\prime})\langle N|\hat{c}^\dagger_{q}\hat{c}_p|N,S\rangle\nonumber\\
+  &\times&\left[\Theta(\tau_1)e^{-i\epsilon_p\tau_1}+\Theta(-\tau_1)e^{-i\epsilon_{q}\tau_1}\right],
+  \label{Eqn:chi_tau}
+  \end{eqnarray}
+  where $\hat{c}^\dagger_{q}$ and $\hat{c}_p$ are creation and annihilation operators, respectively, and $|N\rangle$ and $|N,m\rangle$ are the ground state and the $i$-th excited state, respectively, of the $N$-electron system.
+After some algebraic steps we arrive at 
+\begin{widetext}
+ \begin{eqnarray}
+&-&(\epsilon_a-\epsilon_i-\omega_S)\langle N|\hat{c}^\dagger_{i}\hat{c}_a|N,S\rangle\nonumber\\
+    &=& -\sum_{pq}\langle N|\hat{c}^\dagger_{q}\hat{c}_p|N,S\rangle\left\{-\frac{i}{2\pi}\int d\omega \lim_{\eta\rightarrow 0^+}\ \bar{T}_{iq,pa}(\omega) e^{-i\omega\eta}\left[\frac{1}{\omega_S-\omega+\epsilon_{q}+\epsilon_i+i\eta}+\frac{1}{\omega_S+\omega-\epsilon_p-\epsilon_a+i\eta}\right]\right\}\nonumber\\
+  \end{eqnarray}
+\end{widetext}
+where we defined $ \bar{T}_{iq,pa}(\tau_{34})=\int dx_3x_4x_5x_6\int \psi_a^*(x_3)\psi_i(x_4)\bar{T}(x_3,x_5,x_4,x_6;\tau_{34}) \psi_p(x_6)\psi^*_{q}(x_5)$. Using the definition $A_S^{(qp)}=\langle N|\hat{c}^\dagger_{q}\hat{c}_p|N,S\rangle$, we arrive at
+
+ \begin{eqnarray}
+(\epsilon_a-\epsilon_i-\omega_S)A_S^{(ia)}+\sum_{pq}A_S^{(q p)}\widetilde{T}_{iq,pa}(\omega_S)=0,
+  \end{eqnarray}
+where we defined
+\begin{widetext}
+\be
+\widetilde{T}_{iq,pa}(\omega_S)=\left\{\frac{i}{2\pi}\int d\omega \lim_{\eta\rightarrow 0^+}\bar{T}_{iq,pa}(\omega)e^{-i\omega\eta} \left[\frac{1}{\omega_S-\omega+\epsilon_{q}+\epsilon_i+i\eta}+\frac{1}{\omega_S+\omega-\epsilon_p-\epsilon_a+i\eta}\right]\right\}\nonumber.
+ \label{Eqn:H2preso_eigen_2_T}
+\ee
+\end{widetext}
+
+This is an eigenvalue equation to calculate the positive excitation energies of a system, which can be rewritten as,
+  \begin{equation}
+ H^{2p,reso}_{ia,qp}(\omega_S)A_S^{(qp)}=\omega_S A^{(ia)}_S,
+ \label{Eqn:H2preso_eigen}
+ \end{equation}
+ with
+\begin{eqnarray}
+ H^{2p,reso}_{ia,qp}(\omega_S)&=&(\epsilon_a-\epsilon_i)\delta_{iq}\delta_{ap} +\langle ip||aq\rangle+\widetilde{T}_{iq,pa}(\omega_S).
+% \label{Eqn:H2preso_eigen_2_T}
+  \end{eqnarray}
+  Here  $H^{2p,reso}_{ia,jb}(\omega_S)=A_{ia,jb}(\omega_S)$ and $H^{2p,reso}_{ia,bj}(\omega_S)=B_{ia,jb}(\omega_S)$.
+ If we drop the correlation part of $\bar{T}$ (the first two terms on the right-hand side of Eq.~(\ref{Eqn:T_bar})) we obtain the TDHF equations. To calculate the correlation contribution we use Eq. (9) 
+ in  Eq.~(\ref{Eqn:H2preso_eigen_2_T}), and after integration over the frequency we arrive at Eq. (21).
+
+%\begin{eqnarray}
+% H^{2p,reso}_{(vc)(n^\prime n)}(\omega_m)&=&(\epsilon_a-\epsilon_i)\delta_{vn^\prime}\delta_{cn} +\langle cn'|v|vn\rangle -\langle cn'|v|nv\rangle\nonumber\\
+% &+&\sum_m\frac{B^m_{(vc)(n'n)}}{\omega_m-\omega_m^{N+2}+\epsilon_{n'}+\epsilon_i+i\eta}+ \sum_m\frac{C^m_{(vc)(n'n)}}{\omega_m+\omega_m^{N-2}-\epsilon_n-\epsilon_a+i\eta}.
+%\label{Eqn:H2preso_eigen_check2}
+%  \end{eqnarray}
+%
+%In the resonant block, $n'n=v'c'$, we get hence $\omega_m=\omega_m^{N+2}-\epsilon_{v'}-\epsilon_i$ and $\omega_m=-\omega_m^{N-2}+\epsilon_{c'}+\epsilon_a$, which are double excitations.
+%
+%
+%
+%
+%%%%
+\subsubsection{Second-order kernel}
+%%%%%
+We consider the second-order BSE kernel given by Rebolini and Toulouse (Eq. 15 in JCP 144, 094107 (2016)), which reads (for the correlation part) 
+\begin{eqnarray}
+\Xi^{(2)}_c(1,4,2,3)&=&\delta(t_1,t_3)\delta(t_2,t_4)\Xi^{(2,ph/hp)}_c(x_1,x_4,x_2,x_3;\tau_{12})\nonumber\\
+&+&\delta(t_1,t_4)\delta(t_2,t_3)\Xi^{(2,pp/hh)}_c(x_1,x_4,x_2,x_3;\tau_{12}).\nonumber\\
+\label{Eqn:SOK}
+\end{eqnarray}
+This kernel is derived from the second-order self-energy, which corresponds to the self-energy obtained from the first iteration of the T-matrix equation (\ref{Eqn:T-matrix}). We notice that the contribution $\Xi^{(2,pp/hh)}_c$ corresponds to the first iteration of the T-matrix kernel in Eq.~ (\ref{Eqn:T-matrix_kernel}), whereas $\Xi^{(2,eh/ph)}_c$ are contributions coming from the derivative $\delta T/\delta G$ which we have neglected in  (\ref{Eqn:T-matrix_kernel}). 
+
+Using a similar derivation as for the frequency-dependent T-matrix kernel, we arrive at the following eigenvalue equation in the case of the frequency-dependent second-order kernel (\ref{Eqn:SOK})
+
+\begin{eqnarray}
+  H^{2p,reso}_{ia,qp}(\omega_S)&=&(\epsilon_a-\epsilon_i)\delta_{iq}\delta_{ap} +\langle ip||aq\rangle\nonumber\\
+ &-&\sum_{kc}\frac{\langle qc||ik\rangle\langle ka||cp\rangle}{\omega_S-(\epsilon_c+\epsilon_a-\epsilon_{q}-\epsilon_k)+i\eta}\nonumber\\
+ &-&\sum_{kc}\frac{\langle qk||ic\rangle\langle ca||kp\rangle}{\omega_S+(\epsilon_k+\epsilon_i-\epsilon_p-\epsilon_c)+i\eta}\nonumber\\
+ &+&\frac{1}{2}\sum_{kl}\frac{\langle aq||kl\rangle\langle lk||pi\rangle}{\omega_S-(\epsilon_p+\epsilon_a-\epsilon_k-\epsilon_l)+i\eta}\nonumber\\
+ &+&\frac{1}{2}\sum_{cd}\frac{\langle aq||cd\rangle\langle dc||pi\rangle}{
+\omega_S-(\epsilon_c+\epsilon_d-\epsilon_{q}-\epsilon_i)+i\eta}\nonumber\\
+%\label{Eqn:H2preso_eigen_check2}
+  \end{eqnarray}
+where we used 
+\begin{eqnarray}
+\Xi^{ph/hp}_{ia,qp}(\omega)&=&-\sum_{kc}\frac{\langle qc||ik\rangle\langle ka||cp\rangle}{\omega-(\epsilon_c-\epsilon_k)+i\eta}\nonumber\\
+&+&\sum_{kc}\frac{\langle qk||ic\rangle\langle ca||kp\rangle}{\omega+(\epsilon_c-\epsilon_k)-i\eta}\\
+\Xi^{pp/hh}_{ia,qp}(\omega)&=&-\frac{1}{2}\sum_{kl}\frac{\langle aq||kl\rangle\langle lk||pi\rangle}{\omega-(\epsilon_k+\epsilon_l)-i\eta}\nonumber\\
+&+&\frac{1}{2}\sum_{cd}\frac{\langle aq||cd\rangle\langle dc||pi\rangle}{\omega-(\epsilon_c+\epsilon_d)+i\eta}.
+\end{eqnarray}
+%\begin{eqnarray}
+%&-&(\epsilon_c-\epsilon_v-\omega_m)\langle N|\hat{c}^\dagger_{v}a_c|N,i\rangle\nonumber\\
+%  &=&\int dx_3x_4x_5x_6\int d\tau_{34}\psi_c^*(x_3)\psi_v(x_4)\nonumber\\
+%&&\Xi^{(2,ph/hp)}_c(x_3,x_5,x_4,x_6;\tau_{34}) e^{i\omega_m\tau_{34}/2} e^{i\omega_m|\tau_{34}|/2} \sum_{nn^\prime}\psi_n(x_6)\psi^*_{n^\prime}(x_5)\langle N|\hat{c}^\dagger_{n^\prime}\hat{c}_n|N,i\rangle\times\nonumber\\
+%  &&\left[\Theta(\tau_{34})e^{-i(\epsilon_n-\epsilon_v)\tau_{34}}+\Theta(-\tau_{34})e^{-i(\epsilon_{n^\prime}-\epsilon_c+\omega_m)\tau_{34}}\right]\nonumber\\
+%  &=&\int dx_3x_4x_5x_6\int d\tau_{34}\psi_c^*(x_3)\psi_v(x_4)\nonumber\\
+%&&\Xi^{(2,ph/hp)}_c(x_3,x_5,x_4,x_6;\tau_{34})  \sum_{nn^\prime}\psi_n(x_6)\psi^*_{n^\prime}(x_5)\langle N|\hat{c}^\dagger_{n^\prime}\hat{c}_n|N,i\rangle\times\nonumber\\
+%  &&\left[\Theta(\tau_{34})e^{i(\epsilon_n-\epsilon_v-\omega_m)\tau_{34}}+\Theta(-\tau_{34})e^{i(\epsilon_{n^\prime}-\epsilon_c+\omega_m)\tau_{34}}\right]\nonumber\\
+%  &=& \sum_{nn^\prime}\langle N|\hat{c}^\dagger_{n^\prime}\hat{c}_n|N,i\rangle\left\{\int d\tau_{34} \Xi^{(2,ph/hp)}_{c,(vc)(n'n)}(\tau_{34})\left[\Theta(\tau_{34})e^{i(\epsilon_n-\epsilon_v-\omega_m)\tau_{34}}+\Theta(-\tau_{34})e^{i(\epsilon_{n^\prime}-\epsilon_c+\omega_m)\tau_{34}}\right]\right\}\nonumber\\
+%  &=& \sum_{nn^\prime}\langle N|\hat{c}^\dagger_{n^\prime}\hat{c}_n|N,i\rangle\nonumber\\
+%  &&\left\{\frac{i}{2\pi}\int d\tau_{34}\int d\omega' \lim_{\eta\rightarrow 0^+}\Xi^{(2,ph/hp)}_{c,(vc)(n'n)}(\tau_{34}) \left[\frac{1}{\omega'-\epsilon_{n}+\epsilon_v+\omega_m+i\eta}-\frac{1}{\omega'-\epsilon_{n'}+\epsilon_c-\omega_m-i\eta}\right]\right\}e^{-i\omega'\tau_{34}}\nonumber\\
+%  &=&- \sum_{nn^\prime}\langle N|\hat{c}^\dagger_{n^\prime}\hat{c}_n|N,i\rangle\nonumber\\
+%  &&\left\{\frac{i}{2\pi}\int d\omega \lim_{\eta\rightarrow 0^+}\Xi^{(2,ph/hp)}_{c,(vc)(n'n)}(\omega) e^{-i\omega\eta}\left[\frac{1}{\omega_m+\omega-\epsilon_{n}+\epsilon_v+i\eta}+\frac{1}{\omega_m-\omega+\epsilon_{n'}-\epsilon_c+i\eta}\right]\right\}\nonumber\\
+%  \end{eqnarray}
+%
+%
+%We now use  the second-order kernel given by Rebolini and Toulouse in Eq. 29, which reads
+%\begin{eqnarray}
+%\Xi^{ph/hp}_{(vc)(n'n)}(\omega)=-\sum_{ka}\frac{B^{ka}_{(vc)(n'n)}}{\omega-(\epsilon_a-\epsilon_k)+i\eta}+\sum_{ka}\frac{C^{ka}_{(vc)(n'n)}}{\omega+(\epsilon_a-\epsilon_k)-i\eta}\\
+%%\Xi^{pp/hh}_{(vc)(n'n)}(\omega)=-\frac{1}{2}\sum_{kl}\frac{B^{',kl}_{(vc)(n'n)}}{\omega-(\epsilon_k+\epsilon_l)-i\eta}+\frac{1}{2}\sum_{ab}\frac{C^{',ab}_{(vc)(n'n)}}{\omega-(\epsilon_a+\epsilon_b)+i\eta}
+%\end{eqnarray}
+%Here the indices i, j, k, l refer to occupied spin orbitals and the indices a, b, c, d to virtual
+%spin orbitals.
+%We hence arrive at
+%\begin{eqnarray}
+% H^{2p,reso}_{(vc)(n^\prime n)}(\omega_m)&=&(\epsilon_c-\epsilon_v)\delta_{vn^\prime}\delta_{cn} +\langle cn'|v|vn\rangle -\langle cn'|v|nv\rangle\nonumber\\
+% &-&\sum_{ka}\frac{B^{ka}_{(vc)(n'n)}}{\omega_m-(\epsilon_a+\epsilon_c-\epsilon_{n^\prime}-\epsilon_k)+i\eta}-\sum_{ka}\frac{C^{ka}_{(vc)(n'n)}}{\omega_m+(\epsilon_k+\epsilon_v-\epsilon_n-\epsilon_a)+i\eta}
+%\label{Eqn:H2preso_eigen_check2}
+%  \end{eqnarray}
+%
+%In the resonant block, $n'n=v'c'$, we get hence double excitations.
+%
+%For the $\Xi^{(2,pp/hh)}_c(x_1,x_4,x_2,x_3;t_1-t_2)$ the derivation is the same as for the T matrix. If we use Eq. (30) given by Rebolini and Toulouse,  which reads
+%\begin{eqnarray}
+%%\Xi^{ph/hp}_{(vc)(n'n)}(\omega)=-\sum_{ka}\frac{B^{ka}_{(vc)(n'n)}}{\omega-(\epsilon_a-\epsilon_k)+i\eta}+\sum_{ka}\frac{C^{ka}_{(vc)(n'n)}}{\omega+(\epsilon_a-\epsilon_k)-i\eta}\\
+%\Xi^{pp/hh}_{(vc)(n'n)}(\omega)=-\frac{1}{2}\sum_{kl}\frac{B^{',kl}_{(vc)(n'n)}}{\omega-(\epsilon_k+\epsilon_l)-i\eta}+\frac{1}{2}\sum_{ab}\frac{C^{',ab}_{(vc)(n'n)}}{\omega-(\epsilon_a+\epsilon_b)+i\eta}
+%\end{eqnarray}
+%in Eq. (\ref{Eqn:H2preso_eigen_2}) we arrive at
+%
+%\begin{eqnarray}
+% H^{2p,reso}_{(vc)(n^\prime n)}(\omega_m)&=&(\epsilon_c-\epsilon_v)\delta_{vn^\prime}\delta_{cn} +\langle cn'|v|vn\rangle -\langle cn'|v|nv\rangle\nonumber\\
+% &+&\frac{1}{2}\sum_{ab}\frac{B^{',kl}_{(vc)(n'n)}}{\omega_m-(\epsilon_n+\epsilon_c-\epsilon_k-\epsilon_l)+i\eta}+\frac{1}{2}\sum_{kl}\frac{C^{',ab}_{(vc)(n'n)}}{
+%\omega_m-(\epsilon_a+\epsilon_c-\epsilon_{n^\prime}-\epsilon_v)+i\eta}\nonumber\\
+%\label{Eqn:H2preso_eigen_check3}
+%  \end{eqnarray}
+%In the resonant block, $n'n=v'c'$, we get hence double excitations.
+
+
+
+\end{document}
