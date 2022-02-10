@@ -45,7 +45,7 @@
 \newcommand{\x}{\text{x}}
 
 % 
-\newcommand{\Norb}{N_\text{orb}}
+\newcommand{\Norb}{K}
 \newcommand{\Nocc}{O}
 \newcommand{\Nvir}{V}
 
@@ -301,7 +301,7 @@ are two-electron integrals in the spinorbital basis, \ie,
 \begin{equation}
 	\braket{pq}{rs} = \iint \SO{p}(\bx_1) \SO{q}(\bx_1) \frac{1}{\abs{\br_1 - \br_2}} \SO{r}(\bx_2) \SO{s}(\bx_2)  d\bx_1 d\bx_2
 \end{equation}
-The pp-RPA problem yields, in the absence of instabilities (which should not appear in Coulombic systems with repulsive interactions only \cite{Scuseria_2013}), $V(V-1)/2$ positive eigenvalues $\Om{n}{N+2}$ and $O(O-1)/2$ negative eigenvalues $\Om{n}{N-2}$, which  correspond respectively to double attachments and double detachments.
+The pp-RPA problem yields, in the absence of instabilities (which should not appear in Coulombic systems with repulsive interactions only \cite{Scuseria_2013}), $\Nvir(\Nvir-1)/2$ positive eigenvalues $\Om{n}{N+2}$ and $\Nocc(\Nocc-1)/2$ negative eigenvalues $\Om{n}{N-2}$, which  correspond respectively to double attachments and double detachments.
 The pp-RPA correlation energies is given by \cite{Peng_2013,Scuseria_2013}
 \begin{equation}
 \begin{split}
@@ -407,7 +407,7 @@ with
 	B_{ia,jb}^{\BSE} & = \mel{ij}{}{ab} - T_{ij,ab}(\omega=0)
 \end{align}
 \end{subequations}
-The eigenvalues $\Om{m}{\BSE}$ of Eq.~\eqref{eq:BSE} provide $OV$ singlet (\ie, spin-conserved) and $OV$ triplet  (\ie, spin-flip) single excitations.
+The eigenvalues $\Om{m}{\BSE}$ of Eq.~\eqref{eq:BSE} provide $\Nocc\Nvir$ singlet (\ie, spin-conserved) and $\Nocc\Nvir$ triplet  (\ie, spin-flip) single excitations.
 Note that the spin structure of the BSE@$GT$ equations is analogous to the BSE@$GW$ version, \cite{Monino_2021} and one can compute separately singlet and triplet excitation energies.
 Neglecting the coupling between excitations and deexcitations, \ie, $\bB{}{\BSE} = \bO$, is known as the Tamm-Dancoff approximation (TDA).
 
@@ -531,13 +531,13 @@ Finally, the infinitesimal $\eta$ is set to zero for all calculations.
 The ev$GT$ and qs$GT$ schemes have been also implemented but are not considered here.
 Although the dynamical correction is computed in the dTDA throughout, the zeroth-order excitonic Hamiltonian [see Eq.~\eqref{eq:BSE}] is always the ``full'' BSE static Hamiltonian, i.e., without TDA. 
 
-In terms of computational cost, the overall scaling of BSE@$GT$ is equivalent to BSE@$GW$ as they both correspond to seeking the lowest eigenvalues of a matrix of size $(2OV \times 2OV)$. 
-Searching iteratively for the lowest eigenstates can be routinely performed via Davidson's algorithm with a $\order*{K^4}$ computational cost. \cite{Davidson_1975}
+In terms of computational cost, the overall scaling of BSE@$GT$ is equivalent to BSE@$GW$ as they both correspond to seeking the lowest eigenvalues of a matrix of size $(2\Nocc\Nvir \times 2\Nocc\Nvir)$. 
+Searching iteratively for the lowest eigenstates can be routinely performed via Davidson's algorithm with a $\order*{\Norb^4}$ computational cost. \cite{Davidson_1975}
 The cost of the dynamical correction, which is thoroughly discussed in Ref.~\onlinecite{Loos_2020h}, is more expensive but is again equivalent in both formalisms.
-The computational cost associated with the computation of the $T$-matrix and the screening $W$ both scale as $\order*{K^6}$ as one must obtain, respectively, all the eigenvalues and eigenvectors of the pp-RPA and ph-RPA problems.
+The computational cost associated with the computation of the $T$-matrix and the screening $W$ both scale as $\order*{\Norb^6}$ as one must obtain, respectively, all the eigenvalues and eigenvectors of the pp-RPA and ph-RPA problems.
 However, the prefactor of the pp-RPA calculation is significantly larger than its ph-RPA counterpart due to the larger size of the pp-RPA matrices and its non-Hermitian nature. \cite{Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,Yang_2014a,Zhang_2015,Zhang_2016}
 Moreover, within the $T$-matrix formalism, one must compute both the singlet and triplet contributions of the $T$-matrix, while for singlet states, only the singlet contribution of $W$ contributes to the self-energy.
-Although similar approaches remain to be developed for the $T$-matrix formalism, contour deformation and density fitting techniques can be efficiently implemented in the case of $GW$ to reduce the scaling to $\order*{K^3}$. \cite{Duchemin_2019,Duchemin_2020,Duchemin_2021}
+Although similar approaches remain to be developed for the $T$-matrix formalism, contour deformation and density fitting techniques can be efficiently implemented in the case of $GW$ to reduce the scaling to $\order*{\Norb^3}$. \cite{Duchemin_2019,Duchemin_2020,Duchemin_2021}
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Results and discussion}
@@ -551,16 +551,16 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 As a first didactical example, we consider the lowest singlet and triplet excited states of the hydrogen molecule \ce{H2} and the variation of their respective vertical transition energies upon dissociation.
 The excitation energies associated with these low-lying excited states are represented in Fig.~\ref{fig:H2} as a function of the internuclear distance $R_{\ce{H-H}}$ at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
 The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:H2_gap}
-This shows that, as already observed in the Hubbard dimer, \cite{Romaniello_2012} the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
+This shows that, as already observed in the Hubbard dimer \cite{Romaniello_2012} and in molecular systems, \cite{Zhang_2017} the $G_0W_0$ and $G_0T_0$ quasiparticle energies are similar near the Fermi level.
 
-Overall, as evidenced by Fig.~\ref{fig:H2}, the performances of BSE@$G_0W_0$ and BSE@$G_0T_0$ are very similar for this system.
-For the lowest singlet excited state $B{}^1\Sigma_u^+$, the $T$-matrix-based formalism is slightly better when $R_{\ce{H-H}}$ increases but fails ultimately to reproduce the FCI results.
-For the $E{}^1\Sigma_g^+$ state, BSE@$G_0T_0$ is more accurate than BSE@$G_0W_0$ for small bond length and the scenario is reversed after the avoided crossing with the doubly-excited state of $F{}^1\Sigma_g^+$ symmetry.
-Of course, both formalisms cannot ``see'' the $F{}^1\Sigma_g^+$ states as the static BSE formlism is bind to double excitations.
-Therefore, it cannot model properly the avoided crossing between $E{}^1\Sigma_g^+$ and $F{}^1\Sigma_g^+$.
-For the $B'{}^1\Sigma_u^+$ and $C{}^1\Pi_u$ states, BSE@$G_0W_0$ and BSE@$G_0T_0$ reproduces fairly well the potential energy curves with a modest preference for the latter.
+Overall, as evidenced by Fig.~\ref{fig:H2}, the performances of BSE@$G_0W_0$ and BSE@$G_0T_0$ are analogous for this system.
+For the lowest singlet excited state of $\text{B}\,{}^1\Sigma_u^+$ symmetry, the $T$-matrix-based formalism is slightly better when $R_{\ce{H-H}}$ increases but fails ultimately to reproduce the FCI results.
+For the $\text{E}\,{}^1\Sigma_g^+$ state, BSE@$G_0T_0$ is more accurate than BSE@$G_0W_0$ for small bond length and the scenario is reversed after the avoided crossing with the doubly-excited state of $\text{F}\,{}^1\Sigma_g^+$ symmetry.
+Of course, both formalisms cannot ``see'' the $\text{F}\,{}^1\Sigma_g^+$ states as the static BSE formalism is blind to double excitations.
+Therefore, it cannot model properly the avoided crossing between $\text{E}\,{}^1\Sigma_g^+$ and $\text{F}\,{}^1\Sigma_g^+$ states.
+For the $\text{B'}\,{}^1\Sigma_u^+$ and $\text{C}\,{}^1\Pi_u$ states, BSE@$G_0W_0$ and BSE@$G_0T_0$ reproduces fairly well the FCI potential energy curves with a modest preference for the latter.
 
-Similar observations can be made for the triplet states, the $GW$- and $GT$-based formalisms yielding very similar excitation energies, except maybe for the $c{}^3\Pi_u$ state for which BSE@$G_0W_0$ has clearly the edge.
+Similar observations can be made for the triplet states, the $GW$- and $GT$-based formalisms yielding very similar excitation energies, except maybe for the $\text{c}\,{}^3\Pi_u$ state for which BSE@$G_0W_0$ has clearly the edge.
 Moreover, triplet instabilities seems to affect BSE@$G_0T_0$ slightly earlier than BSE@$G_0W_0$.
 
 %%% FIGURE 1 %%%
@@ -581,13 +581,20 @@ Moreover, triplet instabilities seems to affect BSE@$G_0T_0$ slightly earlier th
 \end{figure}
 %%% %%% %%% %%%
 
+In Fig.~\ref{fig:H2_dBSE}, we show the energy shift provided by the dynamical correction for the lowest singlet and lowest triplet excited states of \ce{H2} as a function of $R_{\ce{H-H}}$. 
+These dynamically-corrected schemes are labeled dBSE@$G_0W_0$ and dBSE@$G_0T_0$.
+For the singlet state of $\text{B}\,{}^1\Sigma_u^+$ symmetry, the dynamical correction improves slightly the excitation energies at small internuclear distances for both schemes, while, for larger bond lengths, an improvement is only visible at the $T$-matrix level.
+Note that, for this system with few electrons, the dynamical corrections are quite small in magnitude.
+In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dynamical correction worsens the results compared to FCI, especially in the case of BSE@$G_0W_0$.
+
 %%% FIGURE 3 %%%
 \begin{figure*}
 	\includegraphics[width=0.4\linewidth]{H2_dBSE1}
 	\hspace{0.1\linewidth}
 	\includegraphics[width=0.4\linewidth]{H2_dBSE3}
 	\caption{
-	Error with respect to FCI for the lowest singlet (left) and lowest triplet (right) excitation energies of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed with and without dynamical correction at the BSE@$G_0W_0$ and BSE@$G_0T_0$ levels with the cc-pVTZ basis.
+	Error with respect to FCI for the lowest singlet (left) and the lowest triplet (right) excitation energies of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed within the static scheme (BSE@$G_0W_0$ and BSE@$G_0T_0$) and the dynamically-corrected scheme (dBSE@$G_0W_0$ and dBSE@$G_0T_0$) .
+	The cc-pVTZ basis is employed for all calculations.
 	Raw data are reported in {\SupInf}.}
 	\label{fig:H2_dBSE}
 \end{figure*}
@@ -597,11 +604,16 @@ Moreover, triplet instabilities seems to affect BSE@$G_0T_0$ slightly earlier th
 \subsection{Excited states of beryllium hydride}
 \label{sec:beh2}
 %%%%%%%%%%%%%%%%%%%%%%
-As a second example, we consider the symmetric dissociation of the linear molecule beryllium hydride \ce{BeH2}.
-The variation of the lowest singlet and triplet excitation energies as a function of the distance $R_{\ce{Be-H}}$ is shown in Fig.~\ref{fig:BeH2}, while the quasiparticle energies of the frontier orbitals and the associated (fundamental) gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:BeH2_gap}
+As a second example, we consider the symmetric dissociation of the linear molecule beryllium hydride (\ce{BeH2}), a system for which one can assume that the screening may play a more important role than in the previous example.
+The variation of the lowest singlet and triplet excitation energies as a function of the distance $R_{\ce{Be-H}}$ is shown in Fig.~\ref{fig:BeH2}, while the quasiparticle energies of the frontier orbitals and the associated (fundamental) gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:BeH2_gap}.
 Again, one notes that the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
+Therefore, one can safely assume that any significant variation of the excitation energies computed within the $GW$- and $GT$-based formalisms originates mainly from their distinct kernel.
+The excitation energies computed with the dynamical schemes, dBSE@$G_0W_0$ and dBSE@$G_0T_0$, are reported as thin solid lines.
+Here, one can show that dynamical corrections improves in most cases the agreement between BSE and FCI.
 
-Dynamical corrections slightly improves the agreement between BSE and FCI.
+For the four lowest singlet excited states (left panel of Fig.~\ref{fig:BeH2}), dBSE@$G_0T_0$ is clearly better than dBSE@$G_0W_0$, while the opposite trend is observed for the four lowest triplet states (right panel of Fig.~\ref{fig:BeH2}).
+Note that, for large $R_{\ce{Be-H}}$, the two BSE-based schemes provide only a qualitative description of the excited states with error of several \si{\eV}.
+Nonetheless, the overall ordering of the excited states are globally respected.
 
 %%% FIGURE 4 %%%
 \begin{figure*}
