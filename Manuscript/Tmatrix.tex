@@ -532,6 +532,7 @@ Note that all quasiparticle energies which are obtained via Eq.~\eqref{eq:G0T0} 
 Finally, the infinitesimal $\eta$ is set to zero for all calculations.
 The ev$GT$ and qs$GT$ schemes have been also implemented but are not considered here.
 Although the dynamical correction is computed in the dTDA throughout, the zeroth-order excitonic Hamiltonian [see Eq.~\eqref{eq:BSE}] is always the ``full'' BSE static Hamiltonian, i.e., without TDA. 
+Reference full configuration interaction (FCI) calculations have been performed with {\QP}. \cite{Garniron_2019}
 
 In terms of computational cost, the overall scaling of BSE@$GT$ is equivalent to BSE@$GW$ as they both correspond to seeking the lowest eigenvalues of a matrix of size $(2\Nocc\Nvir \times 2\Nocc\Nvir)$. 
 Searching iteratively for the lowest eigenstates can be routinely performed via Davidson's algorithm with a $\order*{\Norb^4}$ computational cost. \cite{Davidson_1975}
@@ -646,12 +647,12 @@ Nonetheless, the overall ordering of the excited states are globally respected.
 %%%%%%%%%%%%%%%%%%%%%%
 
 Table \ref{tab:mol} reports singlet and triplet vertical excitation energies for various molecular systems at equilibrium geometry.
-In addition to the BSE-based models studied in the present manuscript, we have selected well-known methods \titou{(CIS, CIS(D), TDHF and FCI)}.
+In addition to the BSE-based models studied in the present manuscript, we have selected well-known methods, namely CIS, CIS(D), TDHF, and FCI (taken as reference).
 
 %%% TABLE I %%%
 \begin{table*}
-	\caption{Singlet and triplet excitation energies (in \si{\eV}) of various molecular systems at equilibrium geometry computed at various levels of theory with the cc-pVDZ basis set.
-	The corresponding experimental equilibrium geometries have been extracted from the computational chemistry comparison and benchmark database (CCCBDB) at \url{https://cccbdb.nist.gov}.}
+	\caption{Singlet and triplet excitation energies (in \si{\eV}) of various molecular systems at equilibrium geometry computed at various levels of theory with the aug-cc-pVDZ basis set.
+	The corresponding equilibrium geometries as well as the reference FCI values have been extracted from the QUEST database. \cite{Veril_2021}}
 	\label{tab:mol}
 	\begin{ruledtabular}
 		\begin{tabular}{llccccccccc}
@@ -668,8 +669,8 @@ In addition to the BSE-based models studied in the present manuscript, we have s
 						&	$^1\Delta_u(\pps)$		&	Val.	&	6.62	&	6.97	&	6.44	&	7.61	&	7.33	&	5.87	&	5.81	&	7.51\\
 						&	$^3\Sigma_u^+(\pps)$	&	Val.	&	4.52	&	5.75	&	2.19	&	5.63	&	5.12	&	4.02	&	3.83	&	5.50\\
 						&	$^3\Delta_u(\pps)$		&	Val.	&	5.45	&	6.65	&	4.52	&	6.52	&	6.13	&	4.87	&	4.74	&	6.46\\
-			\ce{H2C=NH}	&	$^1A''(\nps)$			&	Val.	&	5.86	&	4.46	&	5.69	&	6.16	&	5.85	&	&	&	5.25\\
-						&	$^3A''(\nps)$			&	Val.	&	4.71	&	4.72	&	4.39	&	5.49	&	4.96	&	&	&	4.63\\
+			\ce{H2C=NH}	&	$^1A''(\nps)$			&	Val.	&	5.86	&	4.46	&	5.69	&	6.16	&	5.85	&	4.12	&	4.04	&	5.25\\
+						&	$^3A''(\nps)$			&	Val.	&	4.71	&	4.72	&	4.39	&	5.49	&	4.96	&	3.25	&	3.11	&	4.63\\
 		\end{tabular}
 	\end{ruledtabular}
 \end{table*}
