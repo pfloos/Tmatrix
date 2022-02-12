@@ -451,6 +451,7 @@ where, following Strinati's seminal work, \cite{Strinati_1988} one can derive th
 \end{equation}
 from which, one can check that we recover the static expression \eqref{eq:T} in the limit $\Om{n}{N\pm2} \to \infty$.
 Equation \eqref{eq:dT} highlights the interesting dynamical structure of the $T$ matrix, where, similarly to the dBSE@$GW$ scheme, \cite{Strinati_1988,Romaniello_2009b,Loos_2020h} the 2h2p configurations are downfolded on the 1h1p configurations. \cite{Bintrim_2021b}
+Additional details about the derivation of Eq.~\eqref{eq:dT} are reported in Appendix \ref{app:dBSE}.
 
 Because solving a non-linear eigenvalue problem is computationally challenging, here we rely on the perturbative scheme developed in Ref.~\onlinecite{Loos_2020h} in order to access \textit{dynamically-corrected} single excitations for which additional relaxation effects coming from higher excitations are taken into account.
 \cite{Rohlfing_2000,Romaniello_2009b,Ma_2009a,Ma_2009b,Zhang_2013,Rebolini_2016,Olevano_2019,Loos_2020h,Authier_2020,Monino_2021}
@@ -539,7 +540,7 @@ Searching iteratively for the lowest eigenstates can be routinely performed via 
 The cost of the dynamical correction, which is thoroughly discussed in Ref.~\onlinecite{Loos_2020h}, is more expensive but is again equivalent in both formalisms.
 The computational cost associated with the computation of the $T$-matrix and the screening $W$ both scale as $\order*{\Norb^6}$ as one must obtain, respectively, all the eigenvalues and eigenvectors of the pp-RPA and ph-RPA problems.
 However, the prefactor of the pp-RPA calculation is significantly larger than its ph-RPA counterpart due to the larger size of the pp-RPA matrices and its non-Hermitian nature. \cite{Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,Yang_2014a,Zhang_2015,Zhang_2016}
-Moreover, within the $T$-matrix formalism, one must compute both the singlet and triplet contributions of the $T$-matrix, while for singlet states, only the singlet contribution of $W$ contributes to the self-energy.
+Moreover, within the $T$-matrix formalism, one must compute both the singlet and triplet contributions of the $T$-matrix, while for singlet states, only the singlet part of $W$ is required.
 Although similar approaches remain to be developed for the $T$-matrix formalism, contour deformation and density fitting techniques can be efficiently implemented in the case of $GW$ to reduce the scaling to $\order*{\Norb^3}$. \cite{Duchemin_2019,Duchemin_2020,Duchemin_2021}
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -576,7 +577,7 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 	\hspace{0.1\linewidth}
 	\includegraphics[width=0.4\linewidth]{H2_dBSE3}
 	\caption{
-	Error with respect to FCI for the lowest singlet (left) and the lowest triplet (right) excitation energies of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed within the static scheme (BSE@$G_0W_0$ and BSE@$G_0T_0$) and the dynamically-corrected scheme (dBSE@$G_0W_0$ and dBSE@$G_0T_0$) .
+	Error with respect to FCI for the lowest singlet (left) and the lowest triplet (right) excitation energies of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed within the static schemes (BSE@$G_0W_0$ and BSE@$G_0T_0$) and the dynamically-corrected schemes (dBSE@$G_0W_0$ and dBSE@$G_0T_0$) .
 	The cc-pVTZ basis is employed for all calculations.
 	Raw data are reported in {\SupInf}.}
 	\label{fig:H2_dBSE}
@@ -585,7 +586,7 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 
 As a first didactical example, we consider the lowest singlet and triplet excited states of the hydrogen molecule \ce{H2} and the variation of their respective vertical transition energies upon dissociation.
 The excitation energies associated with these low-lying excited states are represented in Fig.~\ref{fig:H2} as a function of the internuclear distance $R_{\ce{H-H}}$ at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
-The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:H2_gap}
+The variation of the HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:H2_gap}.
 This shows that, as already observed in the Hubbard dimer \cite{Romaniello_2012} and in molecular systems, \cite{Zhang_2017} the $G_0W_0$ and $G_0T_0$ quasiparticle energies are similar near the Fermi level.
 
 Overall, as evidenced by Fig.~\ref{fig:H2}, the performances of BSE@$G_0W_0$ and BSE@$G_0T_0$ are analogous for this system.
@@ -613,8 +614,8 @@ In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dyn
 %%% FIGURE 4 %%%
 \begin{figure*}
 	\includegraphics[width=\textwidth]{BeH2}
-	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{BeH2} as a function of the distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels.
-	The dynamically-corrected BSE excitation energies are represented as thin lines for dBSE@$G_0W_0$ (blue), and dBSE@$G_0T_0$ (red) with the cc-pVDZ basis.
+	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{BeH2} as a function of the distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
+	The dynamically-corrected BSE excitation energies are represented as thin lines for dBSE@$G_0W_0$ (blue) and dBSE@$G_0T_0$ (red).
 	Raw data are reported in {\SupInf}.}
 	\label{fig:BeH2}
 \end{figure*}
@@ -629,7 +630,7 @@ In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dyn
 \end{figure}
 %%% %%% %%% %%%
 
-As a second example, we consider the symmetric dissociation of the linear molecule beryllium hydride (\ce{BeH2}), a system for which one can assume that the screening may play a more important role than in the previous example.
+As a second example, we consider the symmetric dissociation of the linear molecule beryllium hydride (\ce{BeH2}), a system for which one can assume that the screening plays a more important role than in the previous example.
 The variation of the lowest singlet and triplet excitation energies as a function of the distance $R_{\ce{Be-H}}$ is shown in Fig.~\ref{fig:BeH2}, while the quasiparticle energies of the frontier orbitals and the associated (fundamental) gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:BeH2_gap}.
 Again, one notes that the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
 Therefore, one can safely assume that any significant variation of the excitation energies computed within the $GW$- and $GT$-based formalisms originates mainly from their distinct kernel.
@@ -642,38 +643,53 @@ Note that, for large $R_{\ce{Be-H}}$, the two BSE-based schemes provide only a q
 Nonetheless, the overall ordering of the excited states are globally respected.
 
 %%%%%%%%%%%%%%%%%%%%%%
-\subsection{Molecules at equilibrium}
-\label{sec:mol}
+\subsection{Excited states of water}
+\label{sec:H2O}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Table \ref{tab:mol} reports singlet and triplet vertical excitation energies for various molecular systems at equilibrium geometry.
-In addition to the BSE-based models studied in the present manuscript, we have selected well-known methods, namely CIS, CIS(D), TDHF, and FCI (taken as reference).
+%%% FIGURE 6 %%%
+\begin{figure*}
+	\includegraphics[width=\linewidth]{H2O}
+	\caption{Error with respect to FCI for the singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2O} at equilibrium geometry computed at various levels of theory with the aug-cc-pVDZ basis.
+	The geometry as well as the reference FCI values have been extracted from the QUEST database. \cite{Veril_2021}
+	Raw data are reported in {\SupInf}.}
+	\label{fig:H2O}
+\end{figure*}
+%%% %%% %%% %%%
+
+As a third and final example, we compute the excitation energies associated with the two lowest singlet and two lowest triplet excited states of water at equilibrium geometry (see Fig.~\ref{fig:H2O}).
+Note that all these excited states are of Rydberg nature and correspond to $n \to 3s$ and $n \to 3p$ transitions for the $B_1$ and $A_2$ states, respectively.
+In addition to the BSE-based models studied in the present manuscript, we have selected well-known wave function methods, namely CIS, CIS(D), TDHF, and FCI (taken as reference) and computed the excitation energies for these transitions.
+Two key observations can be made:
+i) BSE@$G_0W_0$ is by far the best performer with a slight overestimation of the order of \SI{0.1}{eV} (as compared to FCI);
+ii) BSE@$G_0T_0$ systematically underestimates the excitation energies [similarly to CIS(D)] and outperforms CIS, CIS(D) and TDHF for the singlet states only. 
+These general trends are also observed for other systems and they nicely evidence the crucial role of the screening in $GW$, hinting that a screened version of the $T$-matrix formalism as proposed in Ref.~\onlinecite{Romaniello_2012} might be a promising way for improvement.
 
 %%% TABLE I %%%
-\begin{table*}
-	\caption{Singlet and triplet excitation energies (in \si{\eV}) of various molecular systems at equilibrium geometry computed at various levels of theory with the aug-cc-pVDZ basis set.
-	The corresponding equilibrium geometries as well as the reference FCI values have been extracted from the QUEST database. \cite{Veril_2021}}
-	\label{tab:mol}
-	\begin{ruledtabular}
-		\begin{tabular}{llccccccccc}
-					&			&		&	\mc{8}{c}{Methods}																\\
-			\cline{4-11}
-			Mol.	&	State	&	Nature						&	CIS		&	CIS(D)	&	TDHF	&	BSE@$G_0W_0$	&	dBSE@$G_0W_0$	&	BSE@$G_0T_0$	&	dBSE@$G_0T_0$	&	FCI	\\
-			\hline
-			\ce{H2O}	&	$^1B_1(n \to 3s)$		&	Ryd.	&	8.66	&	6.61	&	8.61	&	7.70	&	7.62	&	6.84	&	6.80	&	7.53\\
-						&	$^1A_2(n \to 3p)$		&	Ryd.	&	10.34	&	8.33	&	10.30	&	9.41	&	9.34	&	8.60	&	8.56	&	9.32\\
-						&	$^3B_1(n \to 3s)$		&	Ryd.	&	7.98	&	6.69	&	7.86	&	7.23	&	7.09	&	6.30	&	6.23	&	7.14\\
-						&	$^3A_2(n \to 3p)$		&	Ryd.	&	10.01	&	8.70	&	9.89	&	9.22	&	9.11	&	8.36	&	8.29	&	9.14\\
-			\ce{HCl}	&	$^1\Pi$					&	CT		&	8.36	&	7.87	&	8.31	&	8.04	&	7.95	&	7.42	&	7.38	&	7.82\\
-			\ce{HC#CH}	&	$^1\Sigma_u^-(\pps)$	&	Val.	&	6.28	&	6.29	&	5.91	&	7.27	&	6.96	&	5.64	&	5.55	&	7.20\\
-						&	$^1\Delta_u(\pps)$		&	Val.	&	6.62	&	6.97	&	6.44	&	7.61	&	7.33	&	5.87	&	5.81	&	7.51\\
-						&	$^3\Sigma_u^+(\pps)$	&	Val.	&	4.52	&	5.75	&	2.19	&	5.63	&	5.12	&	4.02	&	3.83	&	5.50\\
-						&	$^3\Delta_u(\pps)$		&	Val.	&	5.45	&	6.65	&	4.52	&	6.52	&	6.13	&	4.87	&	4.74	&	6.46\\
-			\ce{H2C=NH}	&	$^1A''(\nps)$			&	Val.	&	5.86	&	4.46	&	5.69	&	6.16	&	5.85	&	4.12	&	4.04	&	5.25\\
-						&	$^3A''(\nps)$			&	Val.	&	4.71	&	4.72	&	4.39	&	5.49	&	4.96	&	3.25	&	3.11	&	4.63\\
-		\end{tabular}
-	\end{ruledtabular}
-\end{table*}
+%\begin{table*}
+%	\caption{Singlet and triplet excitation energies (in \si{\eV}) of various molecular systems at equilibrium geometry computed at various levels of theory with the aug-cc-pVDZ basis set.
+%	The corresponding equilibrium geometries as well as the reference FCI values have been extracted from the QUEST database. \cite{Veril_2021}}
+%	\label{tab:mol}
+%	\begin{ruledtabular}
+%		\begin{tabular}{llccccccccc}
+%					&			&		&	\mc{8}{c}{Methods}																\\
+%			\cline{4-11}
+%			Mol.	&	State	&	Nature						&	CIS		&	CIS(D)	&	TDHF	&	BSE@$G_0W_0$	&	dBSE@$G_0W_0$	&	BSE@$G_0T_0$	&	dBSE@$G_0T_0$	&	FCI	\\
+%			\hline
+%			\ce{H2O}	&	$^1B_1(n \to 3s)$		&	Ryd.	&	8.66	&	6.61	&	8.61	&	7.70	&	7.62	&	6.84	&	6.80	&	7.53\\
+%						&	$^1A_2(n \to 3p)$		&	Ryd.	&	10.34	&	8.33	&	10.30	&	9.41	&	9.34	&	8.60	&	8.56	&	9.32\\
+%						&	$^3B_1(n \to 3s)$		&	Ryd.	&	7.98	&	6.69	&	7.86	&	7.23	&	7.09	&	6.30	&	6.23	&	7.14\\
+%						&	$^3A_2(n \to 3p)$		&	Ryd.	&	10.01	&	8.70	&	9.89	&	9.22	&	9.11	&	8.36	&	8.29	&	9.14\\
+%			\ce{HCl}	&	$^1\Pi$					&	CT		&	8.36	&	7.87	&	8.31	&	8.04	&	7.95	&	7.42	&	7.38	&	7.82\\
+%			\ce{HC#CH}	&	$^1\Sigma_u^-(\pps)$	&	Val.	&	6.28	&	6.29	&	5.91	&	7.27	&	6.96	&	5.64	&	5.55	&	7.20\\
+%						&	$^1\Delta_u(\pps)$		&	Val.	&	6.62	&	6.97	&	6.44	&	7.61	&	7.33	&	5.87	&	5.81	&	7.51\\
+%						&	$^3\Sigma_u^+(\pps)$	&	Val.	&	4.52	&	5.75	&	2.19	&	5.63	&	5.12	&	4.02	&	3.83	&	5.50\\
+%						&	$^3\Delta_u(\pps)$		&	Val.	&	5.45	&	6.65	&	4.52	&	6.52	&	6.13	&	4.87	&	4.74	&	6.46\\
+%			\ce{H2C=NH}	&	$^1A''(\nps)$			&	Val.	&	5.86	&	4.46	&	5.69	&	6.16	&	5.85	&	4.12	&	4.04	&	5.25\\
+%						&	$^3A''(\nps)$			&	Val.	&	4.71	&	4.72	&	4.39	&	5.49	&	4.96	&	3.25	&	3.11	&	4.63\\
+%		\end{tabular}
+%	\end{ruledtabular}
+%\end{table*}
 %%% %%% %%% %%%
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -681,15 +697,15 @@ In addition to the BSE-based models studied in the present manuscript, we have s
 \label{sec:ccl}
 %%%%%%%%%%%%%%%%%%%%%%
 To conclude, the BSE@$GT$ formalism seems to be, overall, less accurate than BSE@$GW$ in the context of the computation of molecular excitation energies.
-However, it still outperforms conventional methods such CIS and TDHF.
+However, it still outperforms conventional methods such CIS and TDHF for singlet states.
 It would be interesting to investigate its performance for the computation of ground-state correlation energies within the adiabatic connection fluctuation dissipation formalism where BSE@$GW$ has been shown to be particularly outstanding. \cite{Maggio_2016,Holzer_2018b,Loos_2020e}
 The combination of $GT$ and $GW$ via the range separation of the Coulomb operator to avoid double counting of the low-order diagrams is also a promising avenue.
 Work along these lines are currently under progress.
-Finally, the unrestricted and spin-flip extensions of the present formalism is currently developed.
+Finally, the unrestricted and spin-flip extensions of the present formalism are currently being developed.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{acknowledgements}
-%The authors thank Roberto Orlando for useful discussions.
+The authors thank Roberto Orlando for useful discussions.
 PFL thanks the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation programme (Grant agreement No.~863481) for funding.
 This project has also received financial support from the CNRS through the 80|Prime program and has been supported through the EUR grant NanoX ANR-17-EURE-0009 in the framework of the ``Programme des Investissements d’Avenir''.
 \end{acknowledgements}
@@ -701,6 +717,7 @@ This project has also received financial support from the CNRS through the 80|Pr
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{BSE with a dynamical $T$-matrix kernel}
+\label{app:dBSE}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In order to derive the dynamical kernel $\tilde{T}_{ib,aj}$ given in equation Eq.~\eqref{eq:dT}, we follow Ref.~\onlinecite{Strinati_1980} (see also Ref.~\onlinecite{Loos_2020e}) and start from the equation for the BSE right-hand side electron-hole amplitude 
@@ -805,9 +822,6 @@ with
 %Here $H_{ia,jb}(\omega_S)=A_{ia,jb}(\omega_S)$ and $H_{ia,bj}(\omega_S)=B_{ia,jb}(\omega_S)$.
 If one drops the dynamical part $\widetilde{T}$, one ends up with the usual time-dependent Hartree-Fock (TDHF) equations. 
 To calculate the correlation contribution, one must employ \eqref{eq:T} in Eq.~\eqref{eq:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
