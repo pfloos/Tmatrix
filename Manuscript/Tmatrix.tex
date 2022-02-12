@@ -554,7 +554,7 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 %%%%%%%%%%%%%%%%%%%%%%
 
 %%% FIGURE 1 %%%
-\begin{figure*}
+\begin{figure*}[t]
 	\includegraphics[width=\textwidth]{H2}
 	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
 	Raw data are reported in {\SupInf}.}
@@ -563,7 +563,7 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 %%% %%% %%% %%%
 
 %%% FIGURE 2 %%%
-\begin{figure}
+\begin{figure}[t]
 	\includegraphics[width=\linewidth]{H2_gap}
 	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the $G_0W_0$ (blue) and $G_0T_0$ (red) levels with the cc-pVTZ basis.
 	Raw data are reported in {\SupInf}.}
@@ -572,7 +572,7 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 %%% %%% %%% %%%
 
 %%% FIGURE 3 %%%
-\begin{figure*}
+\begin{figure*}[t]
 	\includegraphics[width=0.4\linewidth]{H2_dBSE1}
 	\hspace{0.1\linewidth}
 	\includegraphics[width=0.4\linewidth]{H2_dBSE3}
@@ -612,7 +612,7 @@ In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dyn
 %%%%%%%%%%%%%%%%%%%%%%
 
 %%% FIGURE 4 %%%
-\begin{figure*}
+\begin{figure*}[t]
 	\includegraphics[width=\textwidth]{BeH2}
 	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{BeH2} as a function of the distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
 	The dynamically-corrected BSE excitation energies are represented as thin lines for dBSE@$G_0W_0$ (blue) and dBSE@$G_0T_0$ (red).
@@ -622,7 +622,7 @@ In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dyn
 %%% %%% %%% %%%
 
 %%% FIGURE 5 %%%
-\begin{figure}
+\begin{figure}[t]
 	\includegraphics[width=\linewidth]{BeH2_gap}
 	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{BeH2} as a function of the internuclear distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the BSE@$G_0W_0$ (blue) and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
 	Raw data are reported in {\SupInf}.}
@@ -658,8 +658,8 @@ Nonetheless, the overall ordering of the excited states are globally respected.
 %%% %%% %%% %%%
 
 As a third and final example, we compute the excitation energies associated with the two lowest singlet and two lowest triplet excited states of water at equilibrium geometry (see Fig.~\ref{fig:H2O}).
-Note that all these excited states are of Rydberg nature and correspond to $n \to 3s$ and $n \to 3p$ transitions for the $B_1$ and $A_2$ states, respectively.
-In addition to the BSE-based models studied in the present manuscript, we have selected well-known wave function methods, namely CIS, CIS(D), TDHF, and FCI (taken as reference) and computed the excitation energies for these transitions.
+Note that all these excited states are of Rydberg nature and correspond to $n \to 3s$ and $n \to 3p$ transitions for the $B_1$ and $A_2$ states, respectively. \cite{Loos_2018a}
+In addition to the BSE-based models studied in the present manuscript, we have selected well-known wave function methods, \cite{Bene_1971,Head-Gordon_1994,Head-Gordon_1995,Dreuw_2005} namely CIS, CIS(D), TDHF, and FCI (taken as reference) and computed the excitation energies for these transitions.
 Two key observations can be made:
 i) BSE@$G_0W_0$ is by far the best performer with a slight overestimation of the order of \SI{0.1}{eV} (as compared to FCI);
 ii) BSE@$G_0T_0$ systematically underestimates the excitation energies [similarly to CIS(D)] and outperforms CIS, CIS(D) and TDHF for the singlet states only. 
@@ -696,7 +696,9 @@ These general trends are also observed for other systems and they nicely evidenc
 \section{Conclusion}
 \label{sec:ccl}
 %%%%%%%%%%%%%%%%%%%%%%
-To conclude, the BSE@$GT$ formalism seems to be, overall, less accurate than BSE@$GW$ in the context of the computation of molecular excitation energies.
+We have derived and implemented, for the first time, the static and dynamic Bethe-Salpeter equations when one considers $T$-matrix quasiparticle energies as well as a $T$-matrix-based kernel.
+The performance of the static scheme and its perturbative dynamical correction have been assessed by computing the neutral excited states of several molecular systems.
+Our results suggest that the BSE@$GT$ formalism seems to be, overall, less accurate than BSE@$GW$ in the context of the computation of molecular excitation energies.
 However, it still outperforms conventional methods such CIS and TDHF for singlet states.
 It would be interesting to investigate its performance for the computation of ground-state correlation energies within the adiabatic connection fluctuation dissipation formalism where BSE@$GW$ has been shown to be particularly outstanding. \cite{Maggio_2016,Holzer_2018b,Loos_2020e}
 The combination of $GT$ and $GW$ via the range separation of the Coulomb operator to avoid double counting of the low-order diagrams is also a promising avenue.
@@ -720,17 +722,17 @@ This project has also received financial support from the CNRS through the 80|Pr
 \label{app:dBSE}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In order to derive the dynamical kernel $\tilde{T}_{ib,aj}$ given in equation Eq.~\eqref{eq:dT}, we follow Ref.~\onlinecite{Strinati_1980} (see also Ref.~\onlinecite{Loos_2020e}) and start from the equation for the BSE right-hand side electron-hole amplitude 
+In order to derive the dynamical kernel $\tilde{T}_{ib,aj}$ given in Eq.~\eqref{eq:dT}, we follow Ref.~\onlinecite{Strinati_1980} (see also Ref.~\onlinecite{Loos_2020e}) and start \titou{from the equation for the BSE right-hand side electron-hole amplitude?!}
 \begin{equation}
 \label{eq:Strinati_1}
 	\chi_S(1,1') = \int d3d4d5d6L_0(1,4,1',3)\Xi(3,5,4,6) \chi_S(6,5)
 \end{equation}
 where $L_0$ is given by Eq.~\eqref{eq:L0} and the $T$-matrix kernel is
-\begin{align}
+\begin{equation}
 \label{eq:T-matrix_kernel}
-	\Xi(3,5,4,6) & =  i\frac{\delta \Sigma(3,4)}{\delta G(6,5)}\approx -T(3,5,4,6).
-\end{align}
-Equation (\ref{eq:Strinati_1}) is derived by assuming a particular (resonant) pole $\omega_S=E_S-E_0>0$ of $L$ to be isolated from the other poles, which is usually the case for neutral excitations in finite systems, and  by assuming the poles of $L_0$ to be different form $\omega_S$, which is in general the case.
+	\Xi(3,5,4,6) =  i\frac{\delta \Sigma(3,4)}{\delta G(6,5)}\approx -T(3,5,4,6)
+\end{equation}
+Equation (\ref{eq:Strinati_1}) is derived by assuming that i) the (resonant) pole $\omega_S=E_S-E_0>0$ of $L$ is isolated from the other poles (which is usually the case for neutral excitations in finite systems), and  ii) the poles of $L_0$ are different form $\omega_S$ (which is also generally the case).
 The so-called $T$-matrix self-energy $\Sigma$ is given by Eq.~\eqref{eq:SigGT} with \cite{Martin_2016,Romaniello_2012}
 \begin{equation}
 \label{eq:T-matrix}
@@ -739,7 +741,8 @@ The so-called $T$-matrix self-energy $\Sigma$ is given by Eq.~\eqref{eq:SigGT} w
 	+ v(3,8)\delta(4,8)\delta(3,7)
 	+ i \int d1'd2' v(3,8)G(3,1')G(8,2')T(1',2',4,7)
 \end{equation}  
-where $v$ is the bare Coulomb operator and we neglect the functional derivative $\delta T/\delta G$ in the kernel $\Xi$. We also notice that the first two terms on the right-hand side of Eq.~(\ref{eq:T-matrix}) Hartree and exchange contributions to the T matrix ($T^{\text{HF}}$), whereas the last term is the correlation contribution $T^c=T-T^{\text{HF}}$.
+where $v$ is the bare Coulomb operator and we neglect the functional derivative $\delta T/\delta G$ in the kernel $\Xi$. 
+The first two terms in the right-hand side of Eq.~\eqref{eq:T-matrix} are the Hartree and exchange contributions to the $T$-matrix, whereas the last term is the correlation contribution.
 Making the time dependence of Eq.~\eqref{eq:Strinati_1} explicit and defining $T(3,5,4,6)=- \delta(\tau^+_{35})\delta(\tau^+_{64})\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})$, one gets 
 \begin{equation}
 \label{eq:DYN_T}
@@ -775,7 +778,7 @@ and multiply the left- and right-hand sides by $(\e{a}{}-\e{i}{}-\omega_S)\int d
 \end{multline}
 (where $\Theta$ is the Heaviside step function) using the fact that
 \begin{equation}
-	\Theta(\pm\tau)e^{-i\alpha \tau}=\mp\frac{1}{2\pi i}\lim_{\eta\to 0^+}\int d\omega \frac{1}{\omega-\alpha\pm i\eta}e^{-i\omega\tau}.
+	\Theta(\pm\tau)e^{-i\alpha \tau}=\mp\frac{1}{2\pi i}\lim_{\eta\to 0^+}\int d\omega \frac{1}{\omega-\alpha\pm i\eta}e^{-i\omega\tau}
 \end{equation}
 
 For the resonant case, \ie, $\omega_S>0$, 
@@ -797,11 +800,11 @@ where we have defined
 \begin{equation}
 	\Bar{T}_{ib,aj}(\tau_{34})=\int d\bx_3 d\bx_4 d\bx_5 d\bx_6 \SO{a}(\bx_3) \SO{i}(\bx_4)\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34}) \SO{b}(\bx_6)\SO{j}(\bx_5).
 \end{equation}
-Using the definition $X_{qp,S}=\mel{N}{\hat{c}^\dagger_{q}\hat{c}_p}{N,S}$, we arrive at
+Using the definition $X_{ia,S}=\mel{N}{\hat{c}^\dagger_{i}\hat{c}_a}{N,S}$, we arrive at
 
 \begin{equation}
 	\label{eq:egval}
-	\qty(\e{a}{}-\e{i}{}-\omega_S) X_{ia,S}+\sum_{jb}X_{jb,S}\mel{ib}{}{aj}+\sum_{jb}X_{jb,S}\widetilde{T}_{ib,aj}(\omega_S)=0
+	\qty(\e{a}{}-\e{i}{}-\omega_S) X_{ia,S}+\sum_{jb}X_{jb,S}\mel{ib}{}{aj} \titou{-} \sum_{jb}X_{jb,S}\widetilde{T}_{ib,aj}(\omega_S)=0
 \end{equation}
 %with $$\langle ab|ij\rangle=\int d\bx_1d\bx_2 \SO{a}(\bx_1) \SO{b}(\bx_2)v(\bx_1,\bx_2) \SO{i}(\bx_1) \SO{j}(\bx_2),$$ 
 where the spectral representation of the dynamical $T$-matrix is
@@ -813,15 +816,15 @@ where the spectral representation of the dynamical $T$-matrix is
 Equation \eqref{eq:egval} represents a non-linear eigenvalue equation to calculate the positive excitation energies of a system, which can be rewritten as
 \begin{equation}
 \label{eq:H2preso_eigen}
-	A_{ia,jb}(\omega_S) X_{jb,S}=\omega_S X_{ia,S}
+	\titou{\sum_{jb}} A_{ia,jb}(\omega_S) X_{jb,S}=\omega_S X_{ia,S}
 \end{equation}
 with
 \begin{equation}
-	A_{ia,jb}(\omega_S)=(\e{a}{}-\e{i}{})\delta_{ij}\delta_{ab} +\mel{ib}{}{aj}+\widetilde{T}_{ib,aj}(\omega_S).
+	A_{ia,jb}(\omega_S)=(\e{a}{}-\e{i}{})\delta_{ij}\delta_{ab} + \mel{ib}{}{aj} \titou{-} \widetilde{T}_{ib,aj}(\omega_S).
 \end{equation}
 %Here $H_{ia,jb}(\omega_S)=A_{ia,jb}(\omega_S)$ and $H_{ia,bj}(\omega_S)=B_{ia,jb}(\omega_S)$.
-If one drops the dynamical part $\widetilde{T}$, one ends up with the usual time-dependent Hartree-Fock (TDHF) equations. 
-To calculate the correlation contribution, one must employ \eqref{eq:T} in Eq.~\eqref{eq:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
+If one drops the dynamical part $\widetilde{T}$, one ends up with the usual time-dependent Hartree-Fock (TDHF) equations. \cite{Dreuw_2005}
+To calculate the correlation contribution, one must employ Eq.~\eqref{eq:T} in Eq.~\eqref{eq:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
