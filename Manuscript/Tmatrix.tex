@@ -242,7 +242,7 @@ While the two-point screened interaction $W$ is the cornerstone of $GW$, the $T$
 The natural idea of combining the ph and pp channels is also possible and has been explored, for example, in the Hubbard dimer within many-body perturbation theory \cite{Romaniello_2012} and the uniform electron gas \cite{Loos_2016} within coupled-cluster theory. \cite{Shepherd_2014}
 
 One of the key features of the $T$-matrix approximation is its exactness up to the second order thanks to the inclusion of second-order exchange diagrams.
-This class of diagrams, which are particularly important in molecular systems and explain the improvement brought by the second-order screened exchange (SOSEX) correction applied to $GW$, \cite{Romaniello_2009a,Ren_2015,Loos_2018b} are well known to be missing in the $GW$ approximation.
+This class of diagrams, which are particularly important in few-electron molecular systems \cite{Casida_1991,Hirata_2015,Hirata_2017} and explain the improvement brought by the second-order screened exchange (SOSEX) correction applied to $GW$, \cite{Romaniello_2009a,Ren_2015,Loos_2018b} are well known to be missing in the $GW$ approximation.
 
 Let us consider closed-shell electronic systems consisting of $N$ electrons and $K$ one-electron basis functions.
 The number of singly-occupied and virtual (\ie, unoccupied) spinorbitals are $O = N$ and $V = K - O$, respectively.
@@ -304,7 +304,7 @@ are two-electron integrals in the spinorbital basis, \ie,
 	\braket{pq}{rs} = \iint \SO{p}(\bx_1) \SO{q}(\bx_2) \frac{1}{\abs{\br_1 - \br_2}} \SO{r}(\bx_1) \SO{s}(\bx_2)  d\bx_1 d\bx_2
 \end{equation}
 The pp-RPA problem yields, in the absence of instabilities (which should not appear in Coulombic systems with repulsive interactions only \cite{Scuseria_2013}), $\Nvir(\Nvir-1)/2$ positive eigenvalues $\Om{n}{N+2}$ and $\Nocc(\Nocc-1)/2$ negative eigenvalues $\Om{n}{N-2}$, which  correspond respectively to double attachments and double detachments.
-The pp-RPA correlation energies is given by \cite{Peng_2013,Scuseria_2013}
+The pp-RPA correlation energy is given by \cite{Peng_2013,Scuseria_2013}
 \begin{equation}
 \begin{split}
 	\Ec^\ppRPA 
@@ -349,14 +349,14 @@ where we have assumed a HF starting point and
 \begin{equation}
 	Z_p = \qty[ 1 - \eval{\pdv{\Sigma^{T}_{pp}(\omega)}{\omega}}_{\omega = \e{p}{\HF}} ]^{-1}
 \end{equation}
-is the renormalization factor.
-Other levels of self-consistency can be considered like the partially self-consistent \textit{``eigenvalue''} $GT$ (ev$GT$)  \cite{Hybertsen_1986,Shishkin_2007,Blase_2011,Faber_2011,Rangel_2016,Gui_2018} or the quasiparticle self-consistent $GT$ (qs$GT$) \cite{Faleev_2004,vanSchilfgaarde_2006,Kotani_2007,Ke_2011,Kaplan_2016} schemes.
+is the renormalization factor or weight of the quasiparticle solution.
+Other levels of (partial) self-consistency can be considered like the \textit{``eigenvalue''} self-consistent $GT$ (ev$GT$)  \cite{Hybertsen_1986,Shishkin_2007,Blase_2011,Faber_2011,Rangel_2016,Gui_2018} or the quasiparticle self-consistent $GT$ (qs$GT$) \cite{Faleev_2004,vanSchilfgaarde_2006,Kotani_2007,Ke_2011,Kaplan_2016} schemes.
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Neutral excitations}
 \label{sec:neutral}
 %%%%%%%%%%%%%%%%%%%%%%
-Like the one-body Green's function is the pillar of the $GW$ and $GT$ approximations, the two-body Green's function $G_2$ is the key quantity of the Bethe-Salpeter equation (BSE) formalism of many-body perturbation theory \cite{Salpeter_1951,Strinati_1988,Blase_2018,Blase_2020} via its link with the two-body correlation function $L$ which satisfies the self-consistent BSE 
+Like the one-body Green's function is the pillar of the $GW$ and $GT$ approximations, the two-body Green's function $G_2$ is the central quantity of the Bethe-Salpeter equation (BSE) formalism of many-body perturbation theory \cite{Salpeter_1951,Strinati_1988,Blase_2018,Blase_2020} via its link with the two-body correlation function $L$ which satisfies the self-consistent BSE 
 \begin{multline}
 	 iL(1,2;1',2') = L_0(1,2;1',2') 
 	 \\
@@ -506,7 +506,7 @@ As usual, one can naturally expand the $S$th BSE excitation energy and its corre
 \end{gather}
 \end{subequations}
 Solving the static BSE [see Eq.~\eqref{eq:BSE}] yields the (zeroth-order) static $\Om{S}{\BSE}$ excitation energies and their corresponding eigenvectors $\bX{S}{\BSE}$ and $\bY{S}{\BSE}$. 
-The first-order correction to the $S$th excitation energy is, within the dynamical Tamm-Dancoff approximation,
+The first-order correction to the $S$th excitation energy is, within the dTDA,
 \begin{equation}
 \label{eq:Om1-TDA}
 	\Om{S}{(1)} = \T{(\bX{S}{\BSE})} \cdot \bA{}{(1)}(\Om{S}{\BSE}) \cdot \bX{S}{\BSE}
