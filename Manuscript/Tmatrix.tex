@@ -514,7 +514,7 @@ The first-order correction to the $S$th excitation energy is, within the dTDA,
 This correction can be renormalized by computing, at no extra cost, the renormalization factor which reads
 \begin{equation}
 \label{eq:Z}
-	\zeta_{S} = \qty[ 1 - \T{(\bX{S}{\BSE})} \cdot \left. \pdv{\bA{}{(1)}(\Om{S}{})}{\Om{S}{}} \right|_{\Om{S}{} = \Om{S}{\BSE}} \cdot \bX{S}{\BSE} ]^{-1}
+	\zeta_{S} = \qty[ 1 - \T{(\bX{S}{\BSE})} \cdot \eval{\pdv{\bA{}{(1)}(\Om{S}{})}{\Om{S}{}}}_{\Om{S}{} = \Om{S}{\BSE}} \cdot \bX{S}{\BSE} ]^{-1}
 \end{equation}
 This yields our final expression for the dynamically-corrected BSE excitation energies:
 \begin{equation}
@@ -538,7 +538,7 @@ Reference full configuration interaction (FCI) calculations have been performed 
 In terms of computational cost, the overall scaling of BSE@$GT$ is equivalent to BSE@$GW$ as they both correspond to seeking the lowest eigenvalues of a matrix of size $(2\Nocc\Nvir \times 2\Nocc\Nvir)$. 
 Searching iteratively for the lowest eigenstates can be routinely performed via Davidson's algorithm with a $\order*{\Norb^4}$ computational cost. \cite{Davidson_1975}
 The cost of the dynamical correction, which is thoroughly discussed in Ref.~\onlinecite{Loos_2020h}, is more expensive but is again equivalent in both formalisms.
-The computational cost associated with the computation of the $T$-matrix and the screening $W$ both scale as $\order*{\Norb^6}$ as one must obtain, respectively, all the eigenvalues and eigenvectors of the pp-RPA and ph-RPA problems.
+The computational cost associated with the computation of the $T$-matrix and the screening $W$ both scale as $\order*{\Norb^6}$ as one must obtain all the eigenvalues and eigenvectors of the pp-RPA and ph-RPA problems, respectively.
 However, the prefactor of the pp-RPA calculation is significantly larger than its ph-RPA counterpart due to the larger size of the pp-RPA matrices and its non-Hermitian nature. \cite{Peng_2013,Scuseria_2013,Yang_2013,Yang_2013b,Yang_2014a,Zhang_2015,Zhang_2016}
 Moreover, within the $T$-matrix formalism, one must compute both the singlet and triplet contributions of the $T$-matrix, while for singlet states, only the singlet part of $W$ is required.
 Although similar approaches remain to be developed for the $T$-matrix formalism, contour deformation and density fitting techniques can be efficiently implemented in the case of $GW$ to reduce the scaling to $\order*{\Norb^3}$. \cite{Duchemin_2019,Duchemin_2020,Duchemin_2021}
@@ -632,14 +632,14 @@ In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dyn
 
 As a second example, we consider the symmetric dissociation of the linear molecule beryllium hydride (\ce{BeH2}), a system for which one can assume that the screening plays a more important role than in the previous example.
 The variation of the lowest singlet and triplet excitation energies as a function of the distance $R_{\ce{Be-H}}$ is shown in Fig.~\ref{fig:BeH2}, while the quasiparticle energies of the frontier orbitals and the associated (fundamental) gap computed at the $G_0W_0$ and $G_0T_0$ levels is depicted in Fig.~\ref{fig:BeH2_gap}.
+All calculations are performed with the cc-pVDZ basis.
 Again, one notes that the $G_0W_0$ and $G_0T_0$ quasiparticle energies are very similar near the Fermi level.
 Therefore, one can safely assume that any significant variation of the excitation energies computed within the $GW$- and $GT$-based formalisms originates mainly from their distinct kernel.
 The excitation energies computed with the dynamical schemes, dBSE@$G_0W_0$ and dBSE@$G_0T_0$, are reported as thin solid lines.
 Here, one can show that dynamical corrections improves in most cases the agreement between BSE and FCI.
-All calculations are performed with the cc-pVDZ basis.
 
 For the four lowest singlet excited states (left panel of Fig.~\ref{fig:BeH2}), dBSE@$G_0T_0$ is clearly better than dBSE@$G_0W_0$, while the opposite trend is observed for the four lowest triplet states (right panel of Fig.~\ref{fig:BeH2}).
-Note that, for large $R_{\ce{Be-H}}$, the two BSE-based schemes provide only a qualitative description of the excited states with error of several \si{\eV}.
+Note that, for large $R_{\ce{Be-H}}$, the two BSE-based schemes provide only a qualitative description of the excited states with errors of several \si{\eV}.
 Nonetheless, the overall ordering of the excited states are globally respected.
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -651,7 +651,7 @@ Nonetheless, the overall ordering of the excited states are globally respected.
 \begin{figure*}
 	\includegraphics[width=\linewidth]{H2O}
 	\caption{Error with respect to FCI for the singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2O} at equilibrium geometry computed at various levels of theory with the aug-cc-pVDZ basis.
-	The geometry as well as the reference FCI values have been extracted from the QUEST database. \cite{Veril_2021}
+	The geometry and the reference FCI values have been extracted from the QUEST database. \cite{Veril_2021}
 	Raw data are reported in {\SupInf}.}
 	\label{fig:H2O}
 \end{figure*}
@@ -659,7 +659,10 @@ Nonetheless, the overall ordering of the excited states are globally respected.
 
 As a third and final example, we compute the excitation energies associated with the two lowest singlet and two lowest triplet excited states of water at equilibrium geometry (see Fig.~\ref{fig:H2O}).
 Note that all these excited states are of Rydberg nature and correspond to $n \to 3s$ and $n \to 3p$ transitions for the $B_1$ and $A_2$ states, respectively. \cite{Loos_2018a}
-In addition to the BSE-based models studied in the present manuscript, we have selected well-known wave function methods, \cite{Bene_1971,Head-Gordon_1994,Head-Gordon_1995,Dreuw_2005} namely CIS, CIS(D), TDHF, and FCI (taken as reference) and computed the excitation energies for these transitions.
+In addition to the BSE-based models studied in the present manuscript, we have selected well-known wave function methods, \cite{Bene_1971,Head-Gordon_1994,Head-Gordon_1995,Dreuw_2005} namely CIS, CIS(D), TDHF, and FCI (taken as reference) and computed the excitation energies of these transitions.
+It is worth mentioning here that the TDHF (or RPAx) equations within the TDA are strictly equivalent to the CIS equation, \cite{Dreuw_2005} and that CIS(D) is a simple perturbative doubles correction to CIS, and can be considered as an excited-state analog of second-order M{\o}ller-Plesset perturbation theory. \cite{Head-Gordon_1994,Head-Gordon_1995}
+
+
 Two key observations can be made:
 i) BSE@$G_0W_0$ is by far the best performer with a slight overestimation of the order of \SI{0.1}{eV} (as compared to FCI);
 ii) BSE@$G_0T_0$ systematically underestimates the excitation energies [similarly to CIS(D)] and outperforms CIS, CIS(D) and TDHF for the singlet states only. 
@@ -756,18 +759,16 @@ Making the time dependence of Eq.~\eqref{eq:Strinati_1} explicit and defining $T
 	\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34}) 
 	= v(\bx_3,\bx_5)\delta(\tau_{34})\delta(\bx_3,\bx_4)\delta(\bx_6,\bx_5)-v(\bx_3,\bx_5)\delta(\tau_{34})	\delta(\bx_3,\bx_6)\delta(\bx_4,\bx_5)
 	\\
-	+ i \int d7 d8 v(\bx_3,\bx_5)G(\bx_3,\bx_7;\tau_{38})G(\bx_5,\bx_8;\tau^+_{38})\Bar{T}(\bx_7,\bx_8,\bx_4,\bx_6;\tau_{84}).
+	+ i \int d7 d8 v(\bx_3,\bx_5)G(\bx_3,\bx_7;\tau_{38})G(\bx_5,\bx_8;\tau^+_{38})\Bar{T}(\bx_7,\bx_8,\bx_4,\bx_6;\tau_{84})
 \end{multline}
 Using the Fourier transform $G(\tau)=\int \frac{d\omega}{2\pi}G(\omega)e^{-i\omega\tau}$, changing variable from $t_3$ to $\tau_{34}$ and taking the limit $t_{1'}=t_1^+$, we have
 \begin{multline}
 	\chi_S(\bx_1,\bx_{1'},0^-)
 	= -i\int d\bx_3 d\bx_4 d\bx_5 d\bx_6\int d\tau_{34} \int \frac{d\omega'}{2\pi}G(\bx_1,\bx_3;\omega'+\omega_S)G(\bx_4,\bx_{1'};\omega')e^{i\omega'\tau_{34}}
 	\\
-	 \times \Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})\chi_S(\bx_6,\bx_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}.
+	 \times \Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})\chi_S(\bx_6,\bx_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}
 \end{multline}
-Using the Lehman representation of the one-body Green's function in the quasiparticle approximation given by Eq.~\eqref{eq:G},
-%$$G(x_1,x_2;\omega)=\sum_{p}\frac{\psi_p(x_1)\psi_p^*(x_2)}{\omega-\epsilon_p+ i\eta \text{sgn}(\epsilon_p-\mu)},$$ where $\psi_p$ and $\epsilon_p$ are single-particle wavefunctions and energies, respectively, and $\mu$ the chemical potential, 
-and multiply the left- and right-hand sides by $(\e{a}{}-\e{i}{}-\omega_S)\int d\bx_1 d\bx^{\prime}_1 \SO{a}(\bx_1)\SO{i}(\bx_1')$, we obtain  
+Using the Lehman representation of the one-body Green's function in the quasiparticle approximation given by Eq.~\eqref{eq:G}, and multiply the left- and right-hand sides by $(\e{a}{}-\e{i}{}-\omega_S)\int d\bx_1 d\bx^{\prime}_1 \SO{a}(\bx_1)\SO{i}(\bx_1')$, we obtain  
 \begin{multline}
 \label{eq:General_DYN}
 	\qty(\e{a}{}-\e{i}{}-\omega_S)\int d\bx_1d\bx^{\prime}_1 \SO{a}(\bx_1)\SO{i}(\bx_1')  \chi_S(\bx_1,\bx_{1'},0^-) =
@@ -806,11 +807,10 @@ Using the definition $X_{ia,S}=\mel{N}{\hat{c}^\dagger_{i}\hat{c}_a}{N,S}$, we a
 	\label{eq:egval}
 	\qty(\e{a}{}-\e{i}{}-\omega_S) X_{ia,S}+\sum_{jb}X_{jb,S}\mel{ib}{}{aj} - \sum_{jb}X_{jb,S}\widetilde{T}_{ib,aj}(\omega_S)=0
 \end{equation}
-%with $$\langle ab|ij\rangle=\int d\bx_1d\bx_2 \SO{a}(\bx_1) \SO{b}(\bx_2)v(\bx_1,\bx_2) \SO{i}(\bx_1) \SO{j}(\bx_2),$$ 
 where the spectral representation of the dynamical $T$-matrix is
 \begin{equation}
 	\widetilde{T}_{ib,aj}(\omega_S)
-	= \frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\Bar{T}^c_{ib,aj}(\omega)e^{-i\omega\eta} \left[\frac{1}{\omega_S-\omega+\e{j}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{b}{}-\e{a}{}+i\eta}\right]. 
+	= \frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\Bar{T}^c_{ib,aj}(\omega)e^{-i\omega\eta} \qty[\frac{1}{\omega_S-\omega+\e{j}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{b}{}-\e{a}{}+i\eta}] 
  \label{eq:H2preso_eigen_2_T}
 \end{equation}
 Equation \eqref{eq:egval} represents a non-linear eigenvalue equation to calculate the positive excitation energies of a system, which can be rewritten as
@@ -822,7 +822,6 @@ with
 \begin{equation}
 	A_{ia,jb}(\omega_S)=(\e{a}{}-\e{i}{})\delta_{ij}\delta_{ab} + \mel{ib}{}{aj} - \widetilde{T}_{ib,aj}(\omega_S).
 \end{equation}
-%Here $H_{ia,jb}(\omega_S)=A_{ia,jb}(\omega_S)$ and $H_{ia,bj}(\omega_S)=B_{ia,jb}(\omega_S)$.
 If one drops the dynamical part $\widetilde{T}$, one ends up with the usual time-dependent Hartree-Fock (TDHF) equations. \cite{Dreuw_2005}
 To calculate the correlation contribution, one must employ Eq.~\eqref{eq:T} in Eq.~\eqref{eq:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
 
