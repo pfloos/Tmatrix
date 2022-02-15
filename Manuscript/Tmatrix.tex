@@ -27,7 +27,7 @@
 \newcommand{\fnm}{\footnotemark}
 \newcommand{\fnt}{\footnotetext}
 \newcommand{\tabc}[1]{\multicolumn{1}{c}{#1}}
-\newcommand{\SupInf}{\textcolor{blue}{supporting information}}
+\newcommand{\SupMat}{\textcolor{blue}{supplementary material}}
 \newcommand{\QP}{\textsc{quantum package}}
 \newcommand{\T}[1]{#1^{\intercal}}
 
@@ -556,31 +556,31 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 
 %%% FIGURE 1 %%%
 \begin{figure*}[t]
-	\includegraphics[width=\textwidth]{H2}
+	\includegraphics[width=\textwidth]{fig1}
 	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
-	Raw data are reported in {\SupInf}.}
+	Raw data are reported in {\SupMat}.}
 	\label{fig:H2}
 \end{figure*}
 %%% %%% %%% %%%
 
 %%% FIGURE 2 %%%
 \begin{figure}[t]
-	\includegraphics[width=\linewidth]{H2_gap}
+	\includegraphics[width=\linewidth]{fig2}
 	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the $G_0W_0$ (blue) and $G_0T_0$ (red) levels with the cc-pVTZ basis.
-	Raw data are reported in {\SupInf}.}
+	Raw data are reported in {\SupMat}.}
 	\label{fig:H2_gap}
 \end{figure}
 %%% %%% %%% %%%
 
 %%% FIGURE 3 %%%
 \begin{figure*}[t]
-	\includegraphics[width=0.4\linewidth]{H2_dBSE1}
+	\includegraphics[width=0.4\linewidth]{fig3a}
 	\hspace{0.1\linewidth}
-	\includegraphics[width=0.4\linewidth]{H2_dBSE3}
+	\includegraphics[width=0.4\linewidth]{fig3b}
 	\caption{
 	Error with respect to FCI for the lowest singlet (left) and the lowest triplet (right) excitation energies of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed within the static schemes (BSE@$G_0W_0$ and BSE@$G_0T_0$) and the dynamically-corrected schemes (dBSE@$G_0W_0$ and dBSE@$G_0T_0$) .
 	The cc-pVTZ basis is employed for all calculations.
-	Raw data are reported in {\SupInf}.}
+	Raw data are reported in {\SupMat}.}
 	\label{fig:H2_dBSE}
 \end{figure*}
 %%% %%% %%% %%%
@@ -613,19 +613,19 @@ In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dyn
 
 %%% FIGURE 4 %%%
 \begin{figure*}[t]
-	\includegraphics[width=\textwidth]{BeH2}
+	\includegraphics[width=\textwidth]{fig4}
 	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{BeH2} as a function of the distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
 	The dynamically-corrected BSE excitation energies are represented as thin lines for dBSE@$G_0W_0$ (blue) and dBSE@$G_0T_0$ (red).
-	Raw data are reported in {\SupInf}.}
+	Raw data are reported in {\SupMat}.}
 	\label{fig:BeH2}
 \end{figure*}
 %%% %%% %%% %%%
 
 %%% FIGURE 5 %%%
 \begin{figure}[t]
-	\includegraphics[width=\linewidth]{BeH2_gap}
+	\includegraphics[width=\linewidth]{fig5}
 	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{BeH2} as a function of the internuclear distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the BSE@$G_0W_0$ (blue) and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
-	Raw data are reported in {\SupInf}.}
+	Raw data are reported in {\SupMat}.}
 	\label{fig:BeH2_gap}
 \end{figure}
 %%% %%% %%% %%%
@@ -649,10 +649,10 @@ Nonetheless, the overall ordering of the excited states are globally respected.
 
 %%% FIGURE 6 %%%
 \begin{figure*}
-	\includegraphics[width=\linewidth]{H2O}
+	\includegraphics[width=\linewidth]{fig6}
 	\caption{Error with respect to FCI for the singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2O} at equilibrium geometry computed at various levels of theory with the aug-cc-pVDZ basis.
 	The geometry and the reference FCI values have been extracted from the QUEST database. \cite{Veril_2021}
-	Raw data are reported in {\SupInf}.}
+	Raw data are reported in {\SupMat}.}
 	\label{fig:H2O}
 \end{figure*}
 %%% %%% %%% %%%
@@ -666,33 +666,6 @@ Two key observations can be made:
 i) BSE@$G_0W_0$ is by far the best performer with a slight overestimation of the order of \SI{0.1}{eV} (as compared to FCI);
 ii) BSE@$G_0T_0$ systematically underestimates the excitation energies [similarly to CIS(D)] and outperforms CIS, CIS(D) and TDHF for the singlet states only. 
 These general trends are also observed for other systems and they nicely evidence the crucial role of the screening in $GW$, hinting that a screened version of the $T$-matrix formalism as proposed in Ref.~\onlinecite{Romaniello_2012} might be a promising way for improvement.
-
-%%% TABLE I %%%
-%\begin{table*}
-%	\caption{Singlet and triplet excitation energies (in \si{\eV}) of various molecular systems at equilibrium geometry computed at various levels of theory with the aug-cc-pVDZ basis set.
-%	The corresponding equilibrium geometries as well as the reference FCI values have been extracted from the QUEST database. \cite{Veril_2021}}
-%	\label{tab:mol}
-%	\begin{ruledtabular}
-%		\begin{tabular}{llccccccccc}
-%					&			&		&	\mc{8}{c}{Methods}																\\
-%			\cline{4-11}
-%			Mol.	&	State	&	Nature						&	CIS		&	CIS(D)	&	TDHF	&	BSE@$G_0W_0$	&	dBSE@$G_0W_0$	&	BSE@$G_0T_0$	&	dBSE@$G_0T_0$	&	FCI	\\
-%			\hline
-%			\ce{H2O}	&	$^1B_1(n \to 3s)$		&	Ryd.	&	8.66	&	6.61	&	8.61	&	7.70	&	7.62	&	6.84	&	6.80	&	7.53\\
-%						&	$^1A_2(n \to 3p)$		&	Ryd.	&	10.34	&	8.33	&	10.30	&	9.41	&	9.34	&	8.60	&	8.56	&	9.32\\
-%						&	$^3B_1(n \to 3s)$		&	Ryd.	&	7.98	&	6.69	&	7.86	&	7.23	&	7.09	&	6.30	&	6.23	&	7.14\\
-%						&	$^3A_2(n \to 3p)$		&	Ryd.	&	10.01	&	8.70	&	9.89	&	9.22	&	9.11	&	8.36	&	8.29	&	9.14\\
-%			\ce{HCl}	&	$^1\Pi$					&	CT		&	8.36	&	7.87	&	8.31	&	8.04	&	7.95	&	7.42	&	7.38	&	7.82\\
-%			\ce{HC#CH}	&	$^1\Sigma_u^-(\pps)$	&	Val.	&	6.28	&	6.29	&	5.91	&	7.27	&	6.96	&	5.64	&	5.55	&	7.20\\
-%						&	$^1\Delta_u(\pps)$		&	Val.	&	6.62	&	6.97	&	6.44	&	7.61	&	7.33	&	5.87	&	5.81	&	7.51\\
-%						&	$^3\Sigma_u^+(\pps)$	&	Val.	&	4.52	&	5.75	&	2.19	&	5.63	&	5.12	&	4.02	&	3.83	&	5.50\\
-%						&	$^3\Delta_u(\pps)$		&	Val.	&	5.45	&	6.65	&	4.52	&	6.52	&	6.13	&	4.87	&	4.74	&	6.46\\
-%			\ce{H2C=NH}	&	$^1A''(\nps)$			&	Val.	&	5.86	&	4.46	&	5.69	&	6.16	&	5.85	&	4.12	&	4.04	&	5.25\\
-%						&	$^3A''(\nps)$			&	Val.	&	4.71	&	4.72	&	4.39	&	5.49	&	4.96	&	3.25	&	3.11	&	4.63\\
-%		\end{tabular}
-%	\end{ruledtabular}
-%\end{table*}
-%%% %%% %%% %%%
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
@@ -826,17 +799,14 @@ with
 If one drops the dynamical part $\widetilde{T}$, one ends up with the usual time-dependent Hartree-Fock (TDHF) equations. \cite{Dreuw_2005}
 To calculate the correlation contribution, one must employ $\Bar{T}^c_{ib,aj}(\omega)=-{T}_{ib,aj}(\omega)$ (with ${T}_{ib,aj}$ given in Eq.~\eqref{eq:T}) in Eq.~\eqref{eq:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \twocolumngrid
 \section*{Data availability statement}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The \hypertarget{SI}{data} that support the findings of this study are openly available in Zenodo at \href{http://doi.org/XX.XXXX/zenodo.XXXXXXX}{http://doi.org/XX.XXXX/zenodo.XXXXXXX}.
+The data that supports the findings of this study are available within the article and its supplementary material.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{Tmatrix}
 %%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 \end{document}
