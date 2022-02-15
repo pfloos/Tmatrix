@@ -17,6 +17,7 @@
 \newcommand{\eg}{\textit{e.g.}}
 \newcommand{\alert}[1]{\textcolor{red}{#1}}
 \usepackage[normalem]{ulem}
+\newcommand{\pina}[1]{\textcolor{blue}{#1}}
 \newcommand{\titou}[1]{\textcolor{red}{#1}}
 \newcommand{\trashPFL}[1]{\textcolor{red}{\sout{#1}}}
 \newcommand{\trashXB}[1]{\textcolor{darkgreen}{\sout{#1}}}
@@ -304,7 +305,7 @@ are two-electron integrals in the spinorbital basis, \ie,
 	\braket{pq}{rs} = \iint \SO{p}(\bx_1) \SO{q}(\bx_2) \frac{1}{\abs{\br_1 - \br_2}} \SO{r}(\bx_1) \SO{s}(\bx_2)  d\bx_1 d\bx_2
 \end{equation}
 The pp-RPA problem yields, in the absence of instabilities (which should not appear in Coulombic systems with repulsive interactions only \cite{Scuseria_2013}), $\Nvir(\Nvir-1)/2$ positive eigenvalues $\Om{n}{N+2}$ and $\Nocc(\Nocc-1)/2$ negative eigenvalues $\Om{n}{N-2}$, which  correspond respectively to double attachments and double detachments.
-The pp-RPA correlation energy is given by \cite{Peng_2013,Scuseria_2013}
+The pp-RPA correlation energy is given by \pina{Is this important? We don't calculate the correlation energy} \cite{Peng_2013,Scuseria_2013}
 \begin{equation}
 \begin{split}
 	\Ec^\ppRPA 
@@ -315,7 +316,7 @@ The pp-RPA correlation energy is given by \cite{Peng_2013,Scuseria_2013}
 \end{equation}
 
 Based on the knowledge of the pp-RPA eigenvalues and eigenvectors, one can then construct the $T$ matrix.
-In the spinorbital basis, the correlation part of the $T$ matrix has the following expression \cite{Zhang_2016}
+In the spinorbital basis, the correlation part of the $T$ matrix has the following expression\pina{We have to be careful with the notation, because the relation between this T and the T in the appendix is a minus sign. See also supporting information Eqs 0.23-0.24} \cite{Zhang_2016}
 \begin{equation}
 \label{eq:T}
 	T_{pq,rs}(\omega) 
@@ -336,7 +337,7 @@ Combining Eqs.~\eqref{eq:G} and \eqref{eq:T}, the correlation part of the $T$-ma
 \label{eq:SigGT}
 	\Sigma^{GT}_{pq}(\omega)
 	= \sum_{in} \frac{\braket*{pi}{\chi_n^{N+2}}\braket*{qi}{\chi_n^{N+2}}}{\omega + \e{i}{} - \Om{n}{N+2} + i\eta}
-	- \sum_{an} \frac{\braket*{pa}{\chi_n^{N-2}}\braket*{qa}{\chi_n^{N-2}}}{\omega + \e{a}{} - \Om{n}{N-2} - i\eta}
+	+ \sum_{an} \frac{\braket*{pa}{\chi_n^{N-2}}\braket*{qa}{\chi_n^{N-2}}}{\omega + \e{a}{} - \Om{n}{N-2} - i\eta}
 \end{equation}
 While the dynamical $GW$ self-energy corresponds to the downfolding of the 2h1p and 2p1h configurations on the 1h and 1p configurations via their coupling with the 1h1p configurations, respectively, \cite{Bintrim_2021a} Eq.~\eqref{eq:SigGT} shows that, in the case of the $T$-matrix approximation, the same 2h1p and 2p1h configurations are downfolded on the 1p and 1h configurations via their coupling with the 2h and 2p configurations, respectively.
 
@@ -356,9 +357,9 @@ Other levels of (partial) self-consistency can be considered like the \textit{``
 \section{Neutral excitations}
 \label{sec:neutral}
 %%%%%%%%%%%%%%%%%%%%%%
-Like the one-body Green's function is the pillar of the $GW$ and $GT$ approximations, the two-body Green's function $G_2$ is the central quantity of the Bethe-Salpeter equation (BSE) formalism of many-body perturbation theory \cite{Salpeter_1951,Strinati_1988,Blase_2018,Blase_2020} via its link with the two-body correlation function $L$ which satisfies the self-consistent BSE 
+Like the one-body Green's function is the pillar of the $GW$ and $GT$ approximations, the two-body Green's function $G_2$ is the central quantity of the Bethe-Salpeter equation (BSE) formalism of many-body perturbation theory \cite{Salpeter_1951,Strinati_1988,Blase_2018,Blase_2020} via its link with the two-body correlation function $L$ which satisfies the self-consistent BSE \pina{what do u mean? BSE as a Dyson equation? Maybe like this it seems that we solve self-consistently the BSE, which is not the case} 
 \begin{multline}
-	 iL(1,2;1',2') = L_0(1,2;1',2') 
+	 \pina{i}L(1,2;1',2') = L_0(1,2;1',2') 
 	 \\
 	 + \int L_0(1,4;1',3) \Xi(3,5;4,6) L(6,2;5,2') d3d4d5d6
 \end{multline}
@@ -377,7 +378,7 @@ and
 \label{eq:Xi}
 	\Xi(3,5;4,6) = i \fdv{\Sigma(3,4)}{G(6,5)}
 \end{equation}
-is the so-called BSE kernel that takes into account the self-consistent variation of $\Sigma$ with respect to the variation of $G$.
+is the so-called BSE kernel that takes into account the self-consistent variation \pina{what do u mean?} of $\Sigma$ with respect to the variation of $G$.
 By taking into account the interaction of the excited electron and its hole left behind (the infamous excitonic effect), the BSE is able to faithfully model (neutral) optical excitations as measured by absorption spectroscopy. 
 The moderate cost of the BSE [which scales as $\order*{K^4}$ in its standard implementation] and its all-round accuracy are the main reasons behind its growing popularity in the molecular electronic structure community. \cite{Rohlfing_1999a,Horst_1999,Puschnig_2002,Tiago_2003,Boulanger_2014,Jacquemin_2015a,Bruneval_2015,Jacquemin_2015b,Hirose_2015,Jacquemin_2017a,Jacquemin_2017b,Rangel_2017,Krause_2017,Gui_2018,Blase_2018,Liu_2020,Blase_2020,Holzer_2018a,Holzer_2018b,Loos_2020e,Loos_2021}
 
@@ -444,9 +445,9 @@ where, following Strinati's seminal work, \cite{Strinati_1988} one can derive th
 \label{eq:dT}
 \begin{split}
 	\widetilde{T}_{pq,rs}(\omega) 
-		& = \sum_{n} \frac{\braket*{pq}{\chi_n^{N+2}}\braket*{rs}{\chi_n^{N+2}}}{\omega - \Om{n}{N+2} + (\e{i}{\GT} + \e{j}{\GT}) + i\eta}
+		& = \sum_{n} \frac{\braket*{pq}{\chi_n^{N+2}}\braket*{rs}{\chi_n^{N+2}}}{\omega - \Om{n}{N+2} + (\pina{\e{i}{\GT}} + \pina{\e{j}{\GT}}) + i\eta}
 		\\
-		& + \sum_{n} \frac{\braket*{pq}{\chi_n^{N-2}}\braket*{rs}{\chi_n^{N-2}}}{\omega + \Om{n}{N-2} - (\e{a}{\GT} + \e{b}{\GT}) + i\eta}
+		& + \sum_{n} \frac{\braket*{pq}{\chi_n^{N-2}}\braket*{rs}{\chi_n^{N-2}}}{\omega + \Om{n}{N-2} - (\pina{\e{a}{\GT}} + \pina{\e{b}{\GT}}) + i\eta}
 \end{split}
 \end{equation}
 from which, one can check that we recover the static expression \eqref{eq:T} in the limit $\Om{n}{N\pm2} \to \infty$.
@@ -596,7 +597,7 @@ Of course, both formalisms cannot ``see'' the $\text{F}\,{}^1\Sigma_g^+$ states 
 Therefore, it cannot model properly the avoided crossing between $\text{E}\,{}^1\Sigma_g^+$ and $\text{F}\,{}^1\Sigma_g^+$ states.
 For the $\text{B'}\,{}^1\Sigma_u^+$ and $\text{C}\,{}^1\Pi_u$ states, BSE@$G_0W_0$ and BSE@$G_0T_0$ reproduces fairly well the FCI potential energy curves with a modest preference for the latter.
 
-Similar observations can be made for the triplet states, the $GW$- and $GT$-based formalisms yielding very similar excitation energies, except maybe for the $\text{c}\,{}^3\Pi_u$ state for which BSE@$G_0W_0$ has clearly the edge.
+Similar observations can be made for the triplet states, the $GW$- and $GT$-based formalisms yielding very similar excitation energies, except \pina{maybe} for the $\text{c}\,{}^3\Pi_u$ state for which BSE@$G_0W_0$ has clearly the edge.
 Moreover, triplet instabilities seems to affect BSE@$G_0T_0$ slightly earlier than BSE@$G_0W_0$.
 
 In Fig.~\ref{fig:H2_dBSE}, we show the energy shift provided by the dynamical correction for the lowest singlet and lowest triplet excited states of \ce{H2} as a function of $R_{\ce{H-H}}$. 
@@ -750,7 +751,7 @@ Making the time dependence of Eq.~\eqref{eq:Strinati_1} explicit and defining $T
 \begin{equation}
 \label{eq:DYN_T}
 	\chi_S(\bx_1,\bx_{1'},\tau_{11'})e^{-i\omega_S(t_1+t_{1'})/2}
-	=-i\int d3d4d5d6 G(\bx_1,\bx_3;\tau_{13})G(\bx_4,\bx_{1'};\tau_{11'})
+	=-i\int d\bx_3d\bx_4d\bx_5d\bx_6\int dt_3dt_4 G(\bx_1,\bx_3;\tau_{13})G(\bx_4,\bx_{1'};\tau_{11'})
 	\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34})\chi_S(\bx_6,\bx_5;-\tau_{34})e^{-i\omega_S\tau_{34}/2}
 \end{equation}
 [where $\tau_{ij}=t_i-t_j$ and $\tau^+_{ij}=t^+_i-t_j$ with $t^+_i=t_i+\eta$ ($\eta \to 0^+$)] and
@@ -759,7 +760,7 @@ Making the time dependence of Eq.~\eqref{eq:Strinati_1} explicit and defining $T
 	\Bar{T}(\bx_3,\bx_5,\bx_4,\bx_6;\tau_{34}) 
 	= v(\bx_3,\bx_5)\delta(\tau_{34})\delta(\bx_3,\bx_4)\delta(\bx_6,\bx_5)-v(\bx_3,\bx_5)\delta(\tau_{34})	\delta(\bx_3,\bx_6)\delta(\bx_4,\bx_5)
 	\\
-	+ i \int d7 d8 v(\bx_3,\bx_5)G(\bx_3,\bx_7;\tau_{38})G(\bx_5,\bx_8;\tau^+_{38})\Bar{T}(\bx_7,\bx_8,\bx_4,\bx_6;\tau_{84})
+	+ i \int d\bx_7 d\bx_8\int t_ v(\bx_3,\bx_5)G(\bx_3,\bx_7;\tau_{37})G(\bx_5,\bx_8;\tau^+_{37})\Bar{T}(\bx_7,\bx_8,\bx_4,\bx_6;\tau_{74})
 \end{multline}
 Using the Fourier transform $G(\tau)=\int \frac{d\omega}{2\pi}G(\omega)e^{-i\omega\tau}$, changing variable from $t_3$ to $\tau_{34}$ and taking the limit $t_{1'}=t_1^+$, we have
 \begin{multline}
@@ -794,8 +795,8 @@ After some algebraic steps, one gets
 \begin{multline}
 	-\qty(\e{a}{}-\e{i}{}-\omega_S)\mel{N}{\hat{c}^\dagger_{i}\hat{c}_a}{N,S}
 	\\
-    = -\sum_{jb}\mel{N}{\hat{c}^\dagger_{j}\hat{c}_b}{N,S}
-    \qty{ -\frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\ \Bar{T}_{ib,aj}(\omega) e^{-i\omega\eta} \qty[\frac{1}{\omega_S-\omega+\e{j}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{b}{}-\e{a}{}+i\eta} ] }
+    = \sum_{jb}\mel{N}{\hat{c}^\dagger_{j}\hat{c}_b}{N,S}
+    \qty{ \frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\ \Bar{T}_{ib,aj}(\omega) e^{-i\omega\eta} \qty[\frac{1}{\omega_S-\omega+\e{j}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{b}{}-\e{a}{}+i\eta} ] }
 \end{multline}
 where we have defined 
 \begin{equation}
@@ -810,7 +811,7 @@ Using the definition $X_{ia,S}=\mel{N}{\hat{c}^\dagger_{i}\hat{c}_a}{N,S}$, we a
 where the spectral representation of the dynamical $T$-matrix is
 \begin{equation}
 	\widetilde{T}_{ib,aj}(\omega_S)
-	= \frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\Bar{T}^c_{ib,aj}(\omega)e^{-i\omega\eta} \qty[\frac{1}{\omega_S-\omega+\e{j}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{b}{}-\e{a}{}+i\eta}] 
+	= -\frac{i}{2\pi}\int d\omega \lim_{\eta \to 0^+}\Bar{T}^c_{ib,aj}(\omega)e^{-i\omega\eta} \qty[\frac{1}{\omega_S-\omega+\e{j}{}+\e{i}{}+i\eta}+\frac{1}{\omega_S+\omega-\e{b}{}-\e{a}{}+i\eta}] 
  \label{eq:H2preso_eigen_2_T}
 \end{equation}
 Equation \eqref{eq:egval} represents a non-linear eigenvalue equation to calculate the positive excitation energies of a system, which can be rewritten as
@@ -823,7 +824,7 @@ with
 	A_{ia,jb}(\omega_S)=(\e{a}{}-\e{i}{})\delta_{ij}\delta_{ab} + \mel{ib}{}{aj} - \widetilde{T}_{ib,aj}(\omega_S).
 \end{equation}
 If one drops the dynamical part $\widetilde{T}$, one ends up with the usual time-dependent Hartree-Fock (TDHF) equations. \cite{Dreuw_2005}
-To calculate the correlation contribution, one must employ Eq.~\eqref{eq:T} in Eq.~\eqref{eq:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
+To calculate the correlation contribution, one must employ $\Bar{T}^c_{ib,aj}(\omega)=-{T}_{ib,aj}(\omega)$ (with ${T}_{ib,aj}$ given in Eq.~\eqref{eq:T}) in Eq.~\eqref{eq:H2preso_eigen_2_T}, and after integration over the frequency, it yields Eq.~\eqref{eq:dT}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
