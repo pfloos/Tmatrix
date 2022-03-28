@@ -117,7 +117,7 @@
 \author{Pierre-Fran\c{c}ois \surname{Loos}}
 	\email{loos@irsamc.ups-tlse.fr}
 	\affiliation{\LCPQ}
-\author{Pina Romaniello}
+\author{Pina \surname{Romaniello}}
 	\email{romaniello@irsamc.ups-tlse.fr}
 	\affiliation{\LPT}
 	\affiliation{\ETSF}
@@ -305,7 +305,7 @@ and
 \end{equation}
 is the so-called BSE kernel that takes into account the variation of $\Sigma$ with respect to the variation of $G$.
 By taking into account the interaction of the excited electron and its hole left behind (the infamous excitonic effect), the BSE is able to faithfully model (neutral) optical excitations as measured by absorption spectroscopy. 
-The moderate cost of the BSE [which scales as $\order*{K^4}$ in its standard implementation] and its all-round accuracy are the main reasons behind its growing popularity in the molecular electronic structure community. \cite{Rohlfing_1999a,Horst_1999,Puschnig_2002,Tiago_2003,Boulanger_2014,Jacquemin_2015a,Bruneval_2015,Jacquemin_2015b,Hirose_2015,Jacquemin_2017a,Jacquemin_2017b,Rangel_2017,Krause_2017,Gui_2018,Blase_2018,Liu_2020,Blase_2020,Holzer_2018a,Holzer_2018b,Loos_2020e,Loos_2021}
+The moderate cost of the BSE [which scales as $\order*{K^4}$ in its standard implementation] and its all-round accuracy are the main reasons behind its growing popularity in the molecular electronic structure community. \cite{Rohlfing_1999a,Horst_1999,Puschnig_2002,Tiago_2003,Rocca_2010,Boulanger_2014,Jacquemin_2015a,Bruneval_2015,Jacquemin_2015b,Hirose_2015,Jacquemin_2017a,Jacquemin_2017b,Rangel_2017,Krause_2017,Gui_2018,Blase_2018,Liu_2020,Blase_2020,Holzer_2018a,Holzer_2018b,Loos_2020e,Loos_2021}
 
 In order to target neutral (singly-)excited states, we first consider the static version of the BSE employing the $GT$ quasiparticle energies [see Eq.~\eqref{eq:G0T0}] as well as $T$-matrix kernel [\ie, $\Sigma^{\GT}$ in Eq.~\eqref{eq:Xi}].
 In this case, the BSE@$GT$ linear eigenvalue problem simply reads
@@ -387,8 +387,8 @@ Based on Rayleigh-Schr\"odinger perturbation theory, the non-linear eigenproblem
 \begin{multline}
 \label{eq:LR-PT}
 	\begin{pmatrix}
-		\bA{}{\dBSE}(\Om{S}{})		&	\bB{}{\BSE}(\Om{S}{})	\\
-		-\bB{}{\BSE}(-\Om{S}{})	&	-\bA{}{\BSE}(-\Om{S}{})	\\
+		\bA{}{\dBSE}(\Om{S}{})		&	\bB{}{\BSE}	\\
+		-\bB{}{\BSE}	&	-\bA{}{\BSE}(-\Om{S}{})	\\
 	\end{pmatrix}
 	\\
 	=

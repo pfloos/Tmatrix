@@ -1,0 +1,132 @@
+\documentclass[10pt]{letter}
+\usepackage{UPS_letterhead,xcolor,mhchem,ragged2e,hyperref}
+\newcommand{\alert}[1]{\textcolor{red}{#1}}
+\definecolor{darkgreen}{HTML}{009900}
+
+
+\begin{document}
+
+\begin{letter}%
+{To the Editors of the Journal of Chemical Physics,}
+
+\opening{Dear Editors,}
+
+\justifying
+Please find attached a revised version of the manuscript entitled 
+\begin{quote}
+	\textit{``Static and Dynamic Bethe-Salpeter Equations in the $T$-Matrix Approximation''}.
+\end{quote}
+We thank the reviewers for their constructive comments.
+Our detailed responses to their comments can be found below.
+For convenience, changes are highlighted in red in the revised version of the manuscript. 
+
+We look forward to hearing from you.
+
+\closing{Sincerely, the authors.}
+
+\newpage
+
+%%% REVIEWER 1 %%%
+\noindent \textbf{\large Authors' answer to Reviewer \#1}
+ 
+{The manuscript reports neutral excitation energy calculations with the Bethe-Salpeter equation in the $T$-matrix approximation. 
+The paper is well written and reports important new results. 
+
+However general conclusions like "BSE@GT performs best for few-electron systems whereas BSE@GW is better for larger systems" 
+are drawn out of only 3 systems: H2, H2O and BeH2. None of the 3 can be considered as a "large" system. 
+
+I think the work would be much stronger with a more comprehensive benchmark set.}
+\\
+\alert{
+We thanks the reviewer for these positive comments.
+We are planning on performing a comprehensive benchmark in a forthcoming paper but we feel that it is currently outside the scope of the present paper which is dedicated to the introduction of a new theory and test calculations.
+In accordance with the reviewer's comment, we have soften our conclusion about the accuracy of the BSE@GT.
+}
+
+\begin{enumerate}
+
+\item 
+{Eq. (3) shows the non-interacting Green's function. 
+The word "non-interacting" is missing in the text (else $i$ and $a$ are not orbital indices). }
+\\
+\alert{
+}
+
+\item 
+{In Eq. (23), the block $B^\text{BSE}$ should not have a dependence wrt $\Omega_S$ to be consistent with Eq. (20).}
+\\
+\alert{
+Thank you for spotting this typo. 
+This has been corrected.
+}
+
+\item 
+{In Figs. 2 \& 5, some curves are hidden behind other curves. For instance the G0W0 LUMO is virtually impossible to distinguish. 
+Having HOMO, LUMO and the band gap on the same plot is maybe not a good representation.}
+\\
+\alert{
+We have improved Figs.~2 and 5 and we plot separately these three quantities.
+}
+
+\item 
+{The GT self-energy in Eq. (12) is very different from the GW self-energy. 
+But according to Fig 2 and 5, the quasiparticle energies are very similar. 
+Is it something that expected? 
+Are all the GW diagrams included in the the GT self-energy?}
+\\
+\alert{
+}
+
+\end{enumerate}
+
+%%% REVIEWER 2 %%%
+\noindent \textbf{\large Authors' answer to Reviewer \#2}
+
+{In this work Loos and Romaniello discuss a new implementation of the Bethe-Salpeter equation (BSE) based on the T-matrix approximation. The formalism is thoroughly discussed and both a static and dynamical BSE kernel are developed. Numerical applications include the calculation of excitation energies of the H2, BeH, and H2O molecules; for the dimers different interatomic distances are considered. To establish the accuracy of the new BSE approach based on the T-matrix (BSE@G0T0), full CI reference results are provided. 
+Looking at the results it seems that the T-matrix based approaches do not provide a significant improvement with respect to the traditional GW-BSE approach. This confirms that in general it is challenging to develop approximations that improve the traditional GW-BSE approach based on the ph-RPA screening. 
+Nevertheless, this paper represents a significant effort in going beyond the traditional BSE and could be of interest for the ab initio simulation community and at the base of important future developments. By also considering the quality of the presentation and the soundness of the results, I recommend its publication in the Journal of Chemical Physics.}
+\\
+\alert{
+}
+
+\begin{enumerate}
+
+\item 
+{The abstract discusses the research that has been carried out, but one or two sentences should be added to describe the outcome/conclusions of this work.}
+\\
+\alert{
+We have modified the abstract to include an additional sentence on the main outcome of the paper.
+}
+
+\item 
+{In figures 2 and 5 the LUMO@GT curve (diamonds) is completely covered by the LUMO@GW curve (squares). 
+This could confuse the reader. 
+It would be better, for example, to increase the size of the diamonds to make this curve visible.}
+\\
+\alert{
+We have improved Figs.~2 and 5 and we plot separately these three quantities.
+}
+
+\item 
+{The Green's functions are built from a HF starting point but the authors mention that a self-consistent implementation is available (but not considered in the paper). 
+I understand that this implementation might not be fully ready for production, but the authors could at least discuss if they expect improvements from self-consistency or by changing the starting point.}
+\\
+\alert{
+For these small molecular systems, the improvement brought by the self-consistent schemes is going to be marginal.
+We have mentioned this in the revised version of the manuscript.
+}
+
+\item 
+{Since the authors provide an extensive literature review on the BSE for molecular systems (Refs. 70-87 and many others), they should also include in their references the work of D. Rocca, D. Lu, and G. Galli, J. Chem. Phys. 2010, which has been among the first ones to apply the BSE to molecules. 
+}
+\\
+\alert{
+Sorry for the omission. 
+We have added the reference to the work of Galli and coworkers in due place.
+}
+
+\end{enumerate}
+
+
+\end{letter}
+\end{document}
