@@ -127,6 +127,7 @@ While the well-established $GW$ approximation corresponds to a resummation of th
 Here, we derive and implement, for the first time, the static and dynamic Bethe-Salpeter equations when one considers $T$-matrix quasiparticle energies as well as a $T$-matrix-based kernel.
 The performance of the static scheme and its perturbative dynamical correction are assessed by computing the neutral excited states of molecular systems.
 Comparison with more conventional schemes as well as other wave function methods are also reported.
+\alert{Our results suggest that the $T$-matrix-based formalism performs best in few-electron systems where the electron density remains low.}
 %\bigskip
 %\begin{center}
 %	\boxed{\includegraphics[width=0.5\linewidth]{TOC}}
@@ -457,7 +458,7 @@ We consider here only systems with closed-shell singlet ground states.
 Thus, the $GW$ and $GT$ calculations are performed by considering a (restricted) HF starting point and standard gaussian basis sets (defined with cartesian functions) are employed.
 Note that all quasiparticle energies which are obtained via Eq.~\eqref{eq:G0T0} are corrected in the same way.
 Finally, the infinitesimal $\eta$ is set to zero for all calculations.
-The ev$GT$ and qs$GT$ schemes have been also implemented but are not considered here.
+\alert{The ev$GT$ and qs$GT$ schemes have been also implemented but are not considered here, mainly because, for the small molecular systems studied here (see below), we have observed very small differences between one-shot and self-consistent quasiparticle energies.}
 Although the dynamical correction is computed in the dTDA throughout, the zeroth-order excitonic Hamiltonian [see Eq.~\eqref{eq:BSE}] is always the ``full'' BSE static Hamiltonian, i.e., without TDA. 
 Reference full configuration interaction (FCI) calculations have been performed with {\QP}. \cite{Garniron_2019}
 
@@ -599,8 +600,9 @@ These general trends are also observed for other systems and they nicely evidenc
 We have derived and implemented, for the first time, the static and dynamic Bethe-Salpeter equations when one considers $T$-matrix quasiparticle energies as well as a $T$-matrix-based kernel.
 The performance of the static scheme and its perturbative dynamical correction have been assessed by computing the neutral excited states of several molecular systems.
 Our results suggest that, in the context of the computation of molecular excitation energies, the BSE@$GT$ formalism performs best in few-electron systems where the electron density remains low.
-For larger systems where the screening is more important, it seems to be, overall, less accurate than BSE@$GW$.
-However, it still outperforms conventional methods such CIS and TDHF for singlet states.
+\alert{The overall accuracy of the present scheme still needs to be assessed for larger systems (where the screening is known to be more important). 
+For such purposes, a comprehensive benchmark study would be required and we are planning to do so in the future}
+%However, it still outperforms conventional methods such CIS and TDHF for singlet states.
 
 It would be interesting to investigate its performance for the computation of ground-state correlation energies within the adiabatic connection fluctuation dissipation formalism where BSE@$GW$ has been shown to be particularly outstanding. \cite{Maggio_2016,Holzer_2018b,Loos_2020e}
 The combination of $GT$ and $GW$ via the range separation of the Coulomb operator to avoid double counting of the low-order diagrams is also a promising avenue.

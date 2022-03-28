@@ -40,7 +40,9 @@ I think the work would be much stronger with a more comprehensive benchmark set.
 \alert{
 We thanks the reviewer for these positive comments.
 We are planning on performing a comprehensive benchmark in a forthcoming paper but we feel that it is currently outside the scope of the present paper which is dedicated to the introduction of a new theory and test calculations.
-In accordance with the reviewer's comment, we have soften our conclusion about the accuracy of the BSE@GT.
+Accordingly with the reviewer's comment, we have soften our conclusion about the accuracy of the BSE@GT for large systems while mentioning that a more comprehensive benchmark study would be required:
+``The overall accuracy of the present scheme still needs to be assessed for larger systems (where the screening is known to be more important). 
+For such purposes, a comprehensive benchmark study would be required and we are planning to do so in the future''
 }
 
 \begin{enumerate}
@@ -82,11 +84,17 @@ Are all the GW diagrams included in the the GT self-energy?}
 %%% REVIEWER 2 %%%
 \noindent \textbf{\large Authors' answer to Reviewer \#2}
 
-{In this work Loos and Romaniello discuss a new implementation of the Bethe-Salpeter equation (BSE) based on the T-matrix approximation. The formalism is thoroughly discussed and both a static and dynamical BSE kernel are developed. Numerical applications include the calculation of excitation energies of the H2, BeH, and H2O molecules; for the dimers different interatomic distances are considered. To establish the accuracy of the new BSE approach based on the T-matrix (BSE@G0T0), full CI reference results are provided. 
-Looking at the results it seems that the T-matrix based approaches do not provide a significant improvement with respect to the traditional GW-BSE approach. This confirms that in general it is challenging to develop approximations that improve the traditional GW-BSE approach based on the ph-RPA screening. 
-Nevertheless, this paper represents a significant effort in going beyond the traditional BSE and could be of interest for the ab initio simulation community and at the base of important future developments. By also considering the quality of the presentation and the soundness of the results, I recommend its publication in the Journal of Chemical Physics.}
+{In this work Loos and Romaniello discuss a new implementation of the Bethe-Salpeter equation (BSE) based on the T-matrix approximation. 
+The formalism is thoroughly discussed and both a static and dynamical BSE kernel are developed. 
+Numerical applications include the calculation of excitation energies of the H2, BeH, and H2O molecules; for the dimers different interatomic distances are considered. 
+To establish the accuracy of the new BSE approach based on the T-matrix (BSE@G0T0), full CI reference results are provided. 
+Looking at the results it seems that the T-matrix based approaches do not provide a significant improvement with respect to the traditional GW-BSE approach. 
+This confirms that in general it is challenging to develop approximations that improve the traditional GW-BSE approach based on the ph-RPA screening. 
+Nevertheless, this paper represents a significant effort in going beyond the traditional BSE and could be of interest for the ab initio simulation community and at the base of important future developments. 
+By also considering the quality of the presentation and the soundness of the results, I recommend its publication in the Journal of Chemical Physics.}
 \\
 \alert{
+We thank the reviewer for his/her kind comments.
 }
 
 \begin{enumerate}
@@ -95,7 +103,7 @@ Nevertheless, this paper represents a significant effort in going beyond the tra
 {The abstract discusses the research that has been carried out, but one or two sentences should be added to describe the outcome/conclusions of this work.}
 \\
 \alert{
-We have modified the abstract to include an additional sentence on the main outcome of the paper.
+We have modified the abstract to include an additional sentence on the main outcome of the paper: ``Our results suggest that the $T$-matrix-based formalism performs best in few-electron systems where the electron density remains low.''
 }
 
 \item 
@@ -104,7 +112,7 @@ This could confuse the reader.
 It would be better, for example, to increase the size of the diamonds to make this curve visible.}
 \\
 \alert{
-We have improved Figs.~2 and 5 and we plot separately these three quantities.
+We have improved Figs.~2 and 5 and we plot separately the three main quantities (HOMO, LUMO and gap).
 }
 
 \item 
@@ -112,8 +120,8 @@ We have improved Figs.~2 and 5 and we plot separately these three quantities.
 I understand that this implementation might not be fully ready for production, but the authors could at least discuss if they expect improvements from self-consistency or by changing the starting point.}
 \\
 \alert{
-For these small molecular systems, the improvement brought by the self-consistent schemes is going to be marginal.
-We have mentioned this in the revised version of the manuscript.
+For these small molecular systems, the differences in quasiparticle energies between one-shoot and self-consistent schemes are small.
+We have mentioned this observation in the revised version of the manuscript: ``The ev$GT$ and qs$GT$ schemes have been also implemented but are not considered here, mainly because, for the small molecular systems studied here (see below), we have observed very small differences between one-shot and self-consistent quasiparticle energies.''
 }
 
 \item 
