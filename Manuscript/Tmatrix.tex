@@ -1,5 +1,5 @@
 \documentclass[aip,jcp,reprint,noshowkeys,superscriptaddress]{revtex4-1}
-\usepackage{graphicx,dcolumn,bm,xcolor,microtype,multirow,amscd,amsmath,amssymb,amsfonts,physics,longtable,wrapfig,txfonts,siunitx}
+\usepackage{graphicx,dcolumn,bm,xcolor,microtype,multirow,amscd,amsmath,amssymb,amsfonts,physics,longtable,wrapfig,txfonts,siunitx,float}
 \usepackage[version=4]{mhchem}
 
 \usepackage[utf8]{inputenc}
@@ -175,7 +175,7 @@ We assume real quantities throughout this manuscript, $i$, $j$, $k$, and $l$ are
 \section{Charged excitations}
 \label{sec:charged}
 %%%%%%%%%%%%%%%%%%%%%%
-By definition, the one-body Green's function is \cite{Martin_2016}
+By definition, \alert{in the quasiparticle approximation,} the one-body Green's function is \cite{Martin_2016}
 \begin{equation}
 \label{eq:G}
 	G(\bx_1,\bx_2;\omega) 
@@ -481,7 +481,7 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 %%%%%%%%%%%%%%%%%%%%%%
 
 %%% FIGURE 1 %%%
-\begin{figure*}[t]
+\begin{figure*}
 	\includegraphics[width=\textwidth]{fig1}
 	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVTZ basis.
 	Raw data are reported in {\SupMat}.}
@@ -490,7 +490,7 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 %%% %%% %%% %%%
 
 %%% FIGURE 2 %%%
-\begin{figure}[t]
+\begin{figure}
 	\includegraphics[width=\linewidth]{fig2}
 	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{H2} as a function of the internuclear distance $R_{\ce{H-H}}$ (in \si{\angstrom}) computed at the $G_0W_0$ (blue) and $G_0T_0$ (red) levels with the cc-pVTZ basis.
 	Raw data are reported in {\SupMat}.}
@@ -499,7 +499,7 @@ Although similar approaches remain to be developed for the $T$-matrix formalism,
 %%% %%% %%% %%%
 
 %%% FIGURE 3 %%%
-\begin{figure*}[t]
+\begin{figure*}
 	\includegraphics[width=0.4\linewidth]{fig3a}
 	\hspace{0.1\linewidth}
 	\includegraphics[width=0.4\linewidth]{fig3b}
@@ -538,7 +538,7 @@ In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dyn
 %%%%%%%%%%%%%%%%%%%%%%
 
 %%% FIGURE 4 %%%
-\begin{figure*}[t]
+\begin{figure*}
 	\includegraphics[width=\textwidth]{fig4}
 	\caption{Singlet (left) and triplet (right) excitation energies (in \si{\eV}) of \ce{BeH2} as a function of the distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the FCI (black), BSE@$G_0W_0$ (blue), and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
 	The dynamically-corrected BSE excitation energies are represented as thin lines for dBSE@$G_0W_0$ (blue) and dBSE@$G_0T_0$ (red).
@@ -548,7 +548,7 @@ In the case of the triplet state of $\text{b}\,{}^3\Sigma_u^+$ symmetry, the dyn
 %%% %%% %%% %%%
 
 %%% FIGURE 5 %%%
-\begin{figure}[t]
+\begin{figure}
 	\includegraphics[width=\linewidth]{fig5}
 	\caption{HOMO and LUMO quasiparticle energies as well as HOMO-LUMO gap (in \si{\eV}) of \ce{BeH2} as a function of the internuclear distance $R_{\ce{Be-H}}$ (in \si{\angstrom}) computed at the BSE@$G_0W_0$ (blue) and BSE@$G_0T_0$ (red) levels with the cc-pVDZ basis.
 	Raw data are reported in {\SupMat}.}
@@ -601,7 +601,7 @@ We have derived and implemented, for the first time, the static and dynamic Beth
 The performance of the static scheme and its perturbative dynamical correction have been assessed by computing the neutral excited states of several molecular systems.
 Our results suggest that, in the context of the computation of molecular excitation energies, the BSE@$GT$ formalism performs best in few-electron systems where the electron density remains low.
 \alert{The overall accuracy of the present scheme still needs to be assessed for larger systems (where the screening is known to be more important). 
-For such purposes, a comprehensive benchmark study would be required and we are planning to do so in the future}
+For such purposes, a comprehensive benchmark study would be required and we are planning to do so in the future.}
 %However, it still outperforms conventional methods such CIS and TDHF for singlet states.
 
 It would be interesting to investigate its performance for the computation of ground-state correlation energies within the adiabatic connection fluctuation dissipation formalism where BSE@$GW$ has been shown to be particularly outstanding. \cite{Maggio_2016,Holzer_2018b,Loos_2020e}
@@ -725,7 +725,7 @@ with
 	A_{ia,jb}(\omega_S)=(\e{a}{}-\e{i}{})\delta_{ij}\delta_{ab} + \mel{ib}{}{aj} + \widetilde{\cT}^c_{ib,aj}(\omega_S).
 \end{equation}
 If one drops the dynamical part $\widetilde{\cT}^c$, one ends up with the usual time-dependent Hartree-Fock (TDHF) equations. \cite{Dreuw_2005} To calculate the correlation contribution, one can employ Eq.~\eqref{eq:T} in Eq.~\eqref{eq:H2preso_eigen_2_T}, and, after integration over the frequency, one gets Eq.~\eqref{eq:dT}.
-
+\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \twocolumngrid
 \section*{Data availability statement}
