@@ -51,9 +51,8 @@ For such purposes, a comprehensive benchmark study would be required and we are 
 {Eq. (3) shows the non-interacting Green's function. 
 The word "non-interacting" is missing in the text (else $i$ and $a$ are not orbital indices). }
 \\
-\alert{
-This is actually not the definition of the non-interacting Green's function, but the definition of the Green's function in the quasiparticle approximations [which can be defined at the Hartree-Fock, Kohn-Sham, or $GW$ level as mentioned just below Eq.~(3)].
-Thank you for pointing out this misunderstanding; we have clarified this statement.
+\alert{The referee is correct, Eq.~3 is not the fully interacting Green's function with the notation used in the manuscript. 
+To avoid confusion with the non-interacting Green's function, which usually refers to the case where the electron-electron interaction is switched off, we have now added to the manuscript that Eq.~3 is the Green's function within the quasiparticle approximation, meaning that it is built from one-electron energies and orbitals corresponding to a given electronic structure method, such as Hartree-Fock, Kohn-Sham, or $GW$ (retaining only the quasiparticle part). We have hence changed the text before Eq. 3 as "By definition, in the quasiparticle approximation, the one-body Green's function is".
 }
 
 \item 
@@ -78,8 +77,12 @@ But according to Fig 2 and 5, the quasiparticle energies are very similar.
 Is it something that expected? 
 Are all the GW diagrams included in the the GT self-energy?}
 \\
-\alert{
-}
+\alert{The $T$-matrix self-energy contains all the diagrams of the $GW$ self-energy up to second order in the bare Coulomb interaction (this means the Hartree-Fock self energy and the second order direct term). 
+At higher order, the two approximations differ, since, as mentioned in the manuscripts, $GW$ contains the so-called bubble diagrams and the $T$-matrix the ladder diagrams. 
+Probably the fact that both approximations give similar quasiparticle energies for the small systems we study in the manuscript is due to the fact that the second-order diagrams are the most important ones in this case. 
+As already mentioned in the manuscript, this trend has already been observed in the Hubbard dimer and in molecular systems. 
+We should also mention that in the case of the Hubbard dimer, the two approximations do not give similar satellite energies and amplitudes. 
+Hence, it is difficult to draw conclusions on the observed trends.}
 
 \end{enumerate}
 
